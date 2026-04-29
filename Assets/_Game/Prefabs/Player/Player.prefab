@@ -76,9 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3b0ada1c062f2fe908a2fbacd21676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 10
-  sprintSpeed: 25
-  sprintEnergyPerSecond: 8
 --- !u!70 &4534524538076802132
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
