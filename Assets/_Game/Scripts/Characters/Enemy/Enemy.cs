@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
         targetAngle -= 90f;
         
         float currentAngle = transform.eulerAngles.z;
-        float smoothedAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, _enemyInfo.rotationSpeed * Time.deltaTime);
+        float smoothedAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, _enemyInfo.rotationSpeed);
         transform.rotation = Quaternion.Euler(0, 0, smoothedAngle);
     }
     
@@ -62,8 +62,8 @@ public enum EnemyType
     Tower,
 }
 
-[System.Serializable]
-public class EnemyInfo
+[CreateAssetMenu(menuName = "Enemy/EnemyInfo")]
+public class EnemyInfo : ScriptableObject
 {
     public string name;
     public Sprite sprite;

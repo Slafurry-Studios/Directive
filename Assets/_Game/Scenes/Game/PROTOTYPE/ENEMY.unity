@@ -668,6 +668,12 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 342981162}
+    - target: {fileID: 5561386347891236115, guid: d03567c3f48a27144a99a050c99b12b8,
+        type: 3}
+      propertyPath: _enemyInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 89e789aebac6637448d5c38227436f93,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
