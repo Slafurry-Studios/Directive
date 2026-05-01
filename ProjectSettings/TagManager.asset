@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Environment
+  - Enemy
+  - PlayerBullet
+  - EnemyBullet
+  - UI
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Collider
+  - Water
+  - UI
+  - Player
+  - Enemy
+  - Environment
+  - PlayerBullet
+  - EnemyBullet
+  - VFX
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 556355323
+    locked: 0
+  - name: Colliders
+    uniqueID: 2994035371
+    locked: 0
+  - name: Entities
+    uniqueID: 1143440991
+    locked: 0
+  - name: VFX
+    uniqueID: 2270216639
+    locked: 0
+  - name: Bullet
+    uniqueID: 2328449535
+    locked: 0
