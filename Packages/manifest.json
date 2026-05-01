@@ -13,7 +13,10 @@
     "com.unity.test-framework": "1.1.33",
     "com.unity.textmeshpro": "3.0.7",
     "com.unity.timeline": "1.7.7",
+<<<<<<< HEAD
     "com.unity.toolchain.linux-x86_64": "2.0.11",
+=======
+>>>>>>> d87c479b391dbd53a5351895cf634a87b14dc689
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.4",
     "com.unity.modules.ai": "1.0.0",

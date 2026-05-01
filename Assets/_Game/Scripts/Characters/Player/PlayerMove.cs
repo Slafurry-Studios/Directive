@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+<<<<<<< HEAD
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 15f; // Slerp needs a lower value for smooth feel (e.g., 10-20)
@@ -69,4 +70,13 @@ public class PlayerMove : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
+=======
+    private Rigidbody2D rb;
+    void Awake()
+    {
+        rb = GetComponentInParent<Rigidbody2D>();
+    }
+
+
+>>>>>>> d87c479b391dbd53a5351895cf634a87b14dc689
 }

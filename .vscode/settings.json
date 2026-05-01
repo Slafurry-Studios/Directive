@@ -51,5 +51,9 @@
         "temp/": true,
         "Temp/": true
     },
+<<<<<<< HEAD
     "dotnet.defaultSolution": "Bullet-Hell-Jam-main.sln"
+=======
+    "dotnet.defaultSolution": "Bullet Hell Jam.sln"
+>>>>>>> d87c479b391dbd53a5351895cf634a87b14dc689
 }
