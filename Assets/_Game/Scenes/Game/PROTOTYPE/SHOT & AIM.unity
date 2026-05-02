@@ -298,6 +298,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5821759772133921703, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
+        type: 3}
+      propertyPath: projectileTag
+      value: PlayerBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 5821759772133921703, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
+        type: 3}
+      propertyPath: projectileLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 7112240186625215184, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
         type: 3}
       propertyPath: m_Name
