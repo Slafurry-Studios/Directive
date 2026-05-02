@@ -8,21 +8,16 @@ public class PlayerDash : MonoBehaviour
     private PlayerEnergy playerEnergy;
 
     [Header("Dash Physics")]
-    [Tooltip("The velocity applied to the player during the dash.")]
     [SerializeField] private float dashSpeed = 20f;
-    
-    [Tooltip("How long the dash lasts in seconds.")]
     [SerializeField] private float dashDuration = 0.2f;
     
-    [Header("Requirements and Limits")]
-    [Tooltip("Time in seconds between consecutive dashes.")]
+    [Header("Requirements Limits")]
     [SerializeField] private float dashCooldown = 1f;
-    
-    [Tooltip("Amount of energy required to perform a dash.")]
     [SerializeField] private int dashCost = 20;
 
     private bool isDashing;
     private float lastDashTime;
+    private Quaternion originalRotation;
 
     void Awake()
     {
@@ -44,6 +39,7 @@ public class PlayerDash : MonoBehaviour
     {
         isDashing = true;
         lastDashTime = Time.time;
+        originalRotation = transform.rotation;
         
         playerEnergy.UseEnergy(dashCost);
 
@@ -54,6 +50,9 @@ public class PlayerDash : MonoBehaviour
             inputDirection = new Vector2(transform.localScale.x, 0).normalized;
         }
 
+        float angle = Mathf.Atan2(inputDirection.y, inputDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = inputDirection * dashSpeed;
@@ -61,6 +60,8 @@ public class PlayerDash : MonoBehaviour
         yield return new WaitForSeconds(dashDuration);
 
         rb.gravityScale = originalGravity;
+        transform.rotation = originalRotation; 
+        
         isDashing = false;
         player.ResetCondition();
     }
