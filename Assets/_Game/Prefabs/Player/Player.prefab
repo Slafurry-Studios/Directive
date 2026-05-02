@@ -130,6 +130,9 @@ GameObject:
   - component: {fileID: 3551342090420717348}
   - component: {fileID: 566072303518343088}
   - component: {fileID: 2332223318591871777}
+  - component: {fileID: 2943792230177157983}
+  - component: {fileID: 3401948503167030432}
+  - component: {fileID: 5821759772133921703}
   - component: {fileID: 4534524538076802132}
   - component: {fileID: 172919344976134809}
   - component: {fileID: 3770952827574659532}
@@ -208,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  aimMoveSpeed: 2
   rotationSpeed: 15
 --- !u!114 &2332223318591871777
 MonoBehaviour:
@@ -225,6 +229,49 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 1
   dashCost: 20
+--- !u!114 &2943792230177157983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112240186625215184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5e91576c37ed46da78b662f262e313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 10
+  mouseButton: 1
+  isAiming: 0
+--- !u!114 &3401948503167030432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112240186625215184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fbe72b0c7d49c1484f12ea80a726f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootKey: 323
+  firePoint: {fileID: 150059319073822795}
+--- !u!114 &5821759772133921703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112240186625215184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f32a02d4ec1d39786997c53c2c330ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 7799813857153272959, guid: 0b1aa58ceb420073794b9c9f70cd6615,
+    type: 3}
 --- !u!70 &4534524538076802132
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
