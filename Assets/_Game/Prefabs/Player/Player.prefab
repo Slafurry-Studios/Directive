@@ -272,6 +272,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 7799813857153272959, guid: 0b1aa58ceb420073794b9c9f70cd6615,
     type: 3}
+  projectileLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  projectileTag: PlayerBullet
 --- !u!70 &4534524538076802132
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
