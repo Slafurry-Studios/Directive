@@ -306,11 +306,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7112240186625215184, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
-        type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 1567547746}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7cca1f6eb910156aaeed99e6a5cd17a, type: 3}
 --- !u!4 &1179213007 stripped
 Transform:
@@ -402,28 +398,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1567547742 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7112240186625215184, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1179213006}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1567547746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567547742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a1edcec79b962ea7a4d2c615008a4c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashSpeed: 20
-  dashDuration: 0.2
-  dashCooldown: 1
-  dashCost: 20
 --- !u!1 &1661071520
 GameObject:
   m_ObjectHideFlags: 0
