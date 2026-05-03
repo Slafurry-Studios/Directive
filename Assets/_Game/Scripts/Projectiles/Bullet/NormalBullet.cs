@@ -8,6 +8,6 @@ public class NormalBullet : BaseProjectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject, lifeTime);
+        Destroy(gameObject);
     }
 }

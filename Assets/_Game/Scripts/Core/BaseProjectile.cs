@@ -7,7 +7,7 @@ public abstract class BaseProjectile : MonoBehaviour
     protected float moveSpeed = 10f;
 
     [SerializeField] [Tooltip("How long the projectile lives before being destroyed.")]
-    protected float lifeTime;
+    protected float lifeTime = 5f;
 
     protected Vector2 direction;
 

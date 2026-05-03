@@ -400,21 +400,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 896503700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f340e7e1a1766c4c92c1f6ddb263ad9, type: 3}
+  m_Script: {fileID: 11500000, guid: 056739c7711924d41ac0257fa4913fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6744558972759748, guid: 5875d29f324f50e438000b681c76167d,
+  projectilePrefab: {fileID: 7799813857153272959, guid: 5875d29f324f50e438000b681c76167d,
     type: 3}
-  spawnType: 0
-  fireRate: 0.4
-  spreadCount: 5
-  spreadAngle: 45
-  circleCount: 12
-  circleRotationSpeed: 50
-  burstCount: 3
+  projectileLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  projectileTag: Untagged
+  fireRate: 1
+  burstCount: 5
   burstDelay: 0.1
-  burstCooldown: 2
-  spiralStep: 15
 --- !u!1001 &1179213006
 PrefabInstance:
   m_ObjectHideFlags: 0
