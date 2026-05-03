@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Minion
   m_EditorClassIdentifier: Assembly-CSharp::EnemyInfo
-  name: Minion
-  sprite: {fileID: 1976451346, guid: 639cd4c96c3ffa1689d62d4dbccbe9a9, type: 3}
+  sprite: {fileID: 1367277960, guid: 639cd4c96c3ffa1689d62d4dbccbe9a9, type: 3}
   armoured: 0
   type: 0
-  moveSpeed: 10
+  moveSpeed: 5
   rotationSpeed: 100
-  shootSpeed: 2
-  attackRange: 1
-  attackCoolDown: 1
+  shootSpeed: 5
+  attackRange: 5
+  attackCoolDown: 5
