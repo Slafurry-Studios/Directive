@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-// ============ BASE PATTERN LOGIC ============
 public abstract class PatternSpawner : ProjectileSpawner
 {
     [Header("Pattern Timing")]
