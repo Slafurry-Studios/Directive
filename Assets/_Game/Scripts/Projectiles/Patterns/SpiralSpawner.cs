@@ -8,7 +8,7 @@ public class SpiralSpawner : PatternSpawner
 
     private float currentSpiralAngle = 0f;
 
-    protected override void ExecutePattern()
+    public override void ExecutePattern()
     {
         Vector2 dir = Quaternion.Euler(0, 0, currentSpiralAngle) * Vector2.right;
         SpawnProjectile(transform, dir);

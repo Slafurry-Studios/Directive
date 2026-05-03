@@ -11,7 +11,7 @@ public class BurstSpawner : PatternSpawner
 
     private bool isBursting = false;
 
-    protected override void ExecutePattern()
+    public override void ExecutePattern()
     {
         if (!isBursting)
         {

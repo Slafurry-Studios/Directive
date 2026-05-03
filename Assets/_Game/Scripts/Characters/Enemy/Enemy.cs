@@ -7,12 +7,19 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyInfo _enemyInfo;
     [SerializeField] private GameObject _target;
+    private PatternSpawner _spawner;
+    private float _projectileSpawnTime;
+    private float _projectileSpawnCount;
+
+    private int spawnBulletCount;
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<SpriteRenderer>().sprite = _enemyInfo.sprite;
         if (_target == null)
             _target = GameObject.FindGameObjectWithTag("Player");
+        _spawner = GetComponent<PatternSpawner>();
+        
     }
 
     // Update is called once per frame
@@ -38,7 +45,14 @@ public class Enemy : MonoBehaviour
                 _enemyInfo.moveSpeed * Time.deltaTime
             );
         }
+
         
+        if (distance <= _enemyInfo.attackRange)
+        {
+            var directionVector = (_target.transform.position - this.transform.position).normalized;
+            AttackPlayer(directionVector);
+            _projectileSpawnTime += Time.deltaTime;
+        }
     }
     
     void RotateTowardsPlayer()
@@ -52,7 +66,20 @@ public class Enemy : MonoBehaviour
         float smoothedAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, _enemyInfo.rotationSpeed);
         transform.rotation = Quaternion.Euler(0, 0, smoothedAngle);
     }
-    
+
+    void AttackPlayer(Vector3 direction)
+    {
+        if (_projectileSpawnCount < _enemyInfo.shootSpeed)
+        {
+            _spawner.ExecutePattern();
+            _projectileSpawnCount++;
+        }
+        if (_projectileSpawnTime >= _enemyInfo.attackCoolDown)
+        {
+            _projectileSpawnCount = 0;
+            _projectileSpawnTime = 0;
+        }
+    }
 }
 
 public enum EnemyType
@@ -65,7 +92,6 @@ public enum EnemyType
 [CreateAssetMenu(menuName = "Enemy/EnemyInfo")]
 public class EnemyInfo : ScriptableObject
 {
-    public string name;
     public Sprite sprite;
     public bool armoured;
     public EnemyType type;

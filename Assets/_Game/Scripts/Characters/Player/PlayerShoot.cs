@@ -1,7 +1,6 @@
 using UnityEngine;
 
 // ============ PLAYER SHOOTING LOGIC ============
-[RequireComponent(typeof(ProjectileSpawner))]
 public class PlayerShoot : MonoBehaviour
 {
     // ============ DESIGNER CONFIGURATION ============
@@ -14,12 +13,12 @@ public class PlayerShoot : MonoBehaviour
     private Transform firePoint;
 
     // ============ INTERNAL STATE ============
-    private ProjectileSpawner spawner;
+    private PatternSpawner spawner;
 
     // ============ UNITY EVENTS ============
     private void Awake()
     {
-        spawner = GetComponent<ProjectileSpawner>();
+        spawner = GetComponent<PatternSpawner>();
     }
 
     private void Update()
@@ -42,6 +41,6 @@ public class PlayerShoot : MonoBehaviour
 
         Vector2 shootDirection = firePoint.right;
         
-        spawner.SpawnProjectile(firePoint, shootDirection);
+        spawner.ExecutePattern();
     }
 }
