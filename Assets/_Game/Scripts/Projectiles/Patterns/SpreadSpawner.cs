@@ -8,7 +8,7 @@ public class SpreadSpawner : PatternSpawner
     [SerializeField] [Tooltip("The total arc angle of the spread.")]
     private float spreadAngle = 45f;
 
-    protected override void ExecutePattern()
+    public override void ExecutePattern()
     {
         float startAngle = -spreadAngle / 2f;
         float step = (spreadCount > 1) ? spreadAngle / (spreadCount - 1) : 0;

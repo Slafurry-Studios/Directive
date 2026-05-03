@@ -411,7 +411,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 89e789aebac6637448d5c38227436f93,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7657734303117630096, guid: d03567c3f48a27144a99a050c99b12b8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -435,15 +436,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1301952851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f32a02d4ec1d39786997c53c2c330ee6, type: 3}
+  m_Script: {fileID: 11500000, guid: 01815cb3a2c89eca48c74d6c29068e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8646858830204719791, guid: 985c60b5d16a0cd46bc7a01bfd887b4d,
+  projectilePrefab: {fileID: 7799813857153272959, guid: 0b1aa58ceb420073794b9c9f70cd6615,
     type: 3}
   projectileLayer:
     serializedVersion: 2
-    m_Bits: 1024
-  projectileTag: EnemyBullet
+    m_Bits: 0
+  projectileTag: Untagged
+  circleCount: 12
+  rotationSpeed: 50
 --- !u!1 &1509406699
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class CircleSpawner : PatternSpawner
         currentOffsetAngle += rotationSpeed * Time.deltaTime;
     }
 
-    protected override void ExecutePattern()
+    public override void ExecutePattern()
     {
         float angleStep = 360f / circleCount;
 

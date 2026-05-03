@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyInfo _enemyInfo;
     [SerializeField] private GameObject _target;
-    private ProjectileSpawner _spawner;
+    private PatternSpawner _spawner;
     private float _projectileSpawnTime;
     private float _projectileSpawnCount;
 
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = _enemyInfo.sprite;
         if (_target == null)
             _target = GameObject.FindGameObjectWithTag("Player");
-        _spawner = GetComponent<ProjectileSpawner>();
+        _spawner = GetComponent<PatternSpawner>();
         
     }
 
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
     {
         if (_projectileSpawnCount < _enemyInfo.shootSpeed)
         {
-            _spawner.SpawnProjectile(this.transform, direction);
+            _spawner.ExecutePattern();
             _projectileSpawnCount++;
         }
         if (_projectileSpawnTime >= _enemyInfo.attackCoolDown)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1187321291712262935}
   - component: {fileID: 4942690156619926996}
   - component: {fileID: 5561386347891236115}
+  - component: {fileID: 7657734303117630096}
   m_Layer: 0
   m_Name: ENEMY
   m_TagString: Enemy
@@ -112,14 +113,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de075d7ab29c7644852503ebe32b15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyInfo:
-    name: 'ABC '
-    sprite: {fileID: -1054850931, guid: 639cd4c96c3ffa1689d62d4dbccbe9a9, type: 3}
-    armoured: 0
-    type: 0
-    moveSpeed: 2
-    rotationSpeed: 100
-    shootSpeed: 2
-    attackRange: 1
-    attackCoolDown: 4
+  _enemyInfo: {fileID: 11400000, guid: 89e789aebac6637448d5c38227436f93, type: 2}
   _target: {fileID: 0}
+--- !u!114 &7657734303117630096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3229631769395593999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f32a02d4ec1d39786997c53c2c330ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 8646858830204719791, guid: 985c60b5d16a0cd46bc7a01bfd887b4d,
+    type: 3}
+  projectileLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  projectileTag: EnemyBullet
