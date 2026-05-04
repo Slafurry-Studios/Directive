@@ -20,5 +20,5 @@ public abstract class PatternSpawner : ProjectileSpawner
         // }
     }
 
-    public abstract void ExecutePattern();
+    public abstract void ExecutePattern(int damage);
 }

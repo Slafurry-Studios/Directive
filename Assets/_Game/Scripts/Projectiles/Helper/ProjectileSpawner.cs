@@ -16,7 +16,7 @@ public class ProjectileSpawner : MonoBehaviour
     private string projectileTag = "Untagged";
 
     // ============ LOGIC ============
-    public void SpawnProjectile(Transform spawnPoint, Vector2 direction)
+    public void SpawnProjectile(Transform spawnPoint, Vector2 direction, int damage)
     {
         if (projectilePrefab == null) return;
 
@@ -31,7 +31,7 @@ public class ProjectileSpawner : MonoBehaviour
             newProjectile.gameObject.tag = projectileTag;
         }
 
-        newProjectile.Setup(direction);
+        newProjectile.Setup(direction, damage);
     }
 
     private int MaskToLayer(LayerMask mask)

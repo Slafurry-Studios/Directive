@@ -8,7 +8,7 @@ public class SpreadSpawner : PatternSpawner
     [SerializeField] [Tooltip("The total arc angle of the spread.")]
     private float spreadAngle = 45f;
 
-    public override void ExecutePattern()
+    public override void ExecutePattern(int damage)
     {
         float startAngle = -spreadAngle / 2f;
         float step = (spreadCount > 1) ? spreadAngle / (spreadCount - 1) : 0;
@@ -17,7 +17,7 @@ public class SpreadSpawner : PatternSpawner
         {
             float angle = startAngle + (step * i);
             Vector2 dir = Quaternion.Euler(0, 0, angle) * transform.right;
-            SpawnProjectile(transform, dir);
+            SpawnProjectile(transform, dir, damage);
         }
     }
 }
