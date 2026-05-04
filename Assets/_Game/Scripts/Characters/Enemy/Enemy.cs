@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
     {
         if (_projectileSpawnCount < _enemyInfo.shootSpeed)
         {
-            _spawner.ExecutePattern();
+            _spawner.ExecutePattern(_enemyInfo.damage);
             _projectileSpawnCount++;
         }
         if (_projectileSpawnTime >= _enemyInfo.attackCoolDown)
@@ -96,6 +96,7 @@ public class EnemyInfo : ScriptableObject
     public bool armoured;
     public EnemyType type;
     public float moveSpeed;
+    public int damage;
     [Range(50f, 100f)] public float rotationSpeed = 100f;
     public float shootSpeed;
     public float attackRange;

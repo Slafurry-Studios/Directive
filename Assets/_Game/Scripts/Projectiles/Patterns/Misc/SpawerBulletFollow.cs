@@ -66,7 +66,8 @@ public class SpawnerBulletFollow : MonoBehaviour
 
         if (projectile != null)
         {
-            projectile.Setup(direction);
+            int damage = 10; // we hardcode this as we dont know will this class would be used or not, but we can change this later if needed
+            projectile.Setup(direction, damage);
         }
     }
 }
