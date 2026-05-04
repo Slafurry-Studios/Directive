@@ -13,12 +13,12 @@ public class PlayerShoot : MonoBehaviour
     private Transform firePoint;
 
     // ============ INTERNAL STATE ============
-    private PatternSpawner spawner;
+    private ProjectileSpawner spawner;
 
     // ============ UNITY EVENTS ============
     private void Awake()
     {
-        spawner = GetComponent<PatternSpawner>();
+        spawner = GetComponent<ProjectileSpawner>();
     }
 
     private void Update()
@@ -41,6 +41,6 @@ public class PlayerShoot : MonoBehaviour
 
         Vector2 shootDirection = firePoint.right;
         
-        spawner.ExecutePattern();
+        spawner.SpawnProjectile(firePoint.transform, shootDirection);
     }
 }
