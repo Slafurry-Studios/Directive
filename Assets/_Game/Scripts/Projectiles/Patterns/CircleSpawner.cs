@@ -15,7 +15,7 @@ public class CircleSpawner : PatternSpawner
         currentOffsetAngle += rotationSpeed * Time.deltaTime;
     }
 
-    public override void ExecutePattern()
+    public override void ExecutePattern(int damage)
     {
         float angleStep = 360f / circleCount;
 
@@ -23,7 +23,7 @@ public class CircleSpawner : PatternSpawner
         {
             float angle = (i * angleStep) + currentOffsetAngle;
             Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
-            SpawnProjectile(transform, dir);
+            SpawnProjectile(transform, dir, damage);
         }
     }
 }
