@@ -3,8 +3,8 @@ using System;
 
 public abstract class Health : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
-    private int currentHealth;
+    [SerializeField] protected int maxHealth = 100;
+    protected int currentHealth;
     private bool isDead = false;
 
     // ================= EVENTS =================
@@ -41,12 +41,12 @@ public abstract class Health : MonoBehaviour
     // ================= PROTECTED HOOKS =================
 
     /// <summary>
-    /// Override ini untuk logika tambahan saat mati (animasi, drop item, dll)
-    /// Selalu panggil base.OnDeath() jika ingin event tetap jalan
+/// Override this for additional logic on death (animations, item drops, etc) 
+/// Always call base.OnDeath() if you want the event to continue
     /// </summary>
     protected virtual void Death()
     {
-        // Override di subclass
+        // Override in subclass
     }
 
     // ================= PRIVATE =================
@@ -56,7 +56,7 @@ public abstract class Health : MonoBehaviour
         isDead = true;
 
         OnDeath?.Invoke();
-        Death(); // hook untuk subclass
+        Death(); // hook for subclass
     }
 
     private void NotifyHealthChanged()
