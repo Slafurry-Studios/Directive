@@ -18,12 +18,14 @@ public class PlayerDash : MonoBehaviour
     private bool isDashing;
     private float lastDashTime;
     private Quaternion originalRotation;
+    private Animator animator;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GetComponent<Player>();
         playerEnergy = GetComponent<PlayerEnergy>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -32,6 +34,7 @@ public class PlayerDash : MonoBehaviour
         {
             player.OnDashStart();
             StartCoroutine(DashRoutine());
+            animator.SetBool("Dash", isDashing);
         }
     }
 
