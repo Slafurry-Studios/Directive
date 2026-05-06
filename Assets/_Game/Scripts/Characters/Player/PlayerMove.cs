@@ -6,7 +6,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float aimMoveSpeed = 2f;
     [SerializeField] private float rotationSpeed = 15f;
-    
+
     [SerializeField] private Animator feetAnimator;
 
     private Player player;
@@ -25,25 +25,26 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         ReadInput();
-        if (!player.IsAiming())
-        {
-            HandleRotation();
-        }
         animator.SetBool("isAiming", player.IsAiming());
     }
 
     void FixedUpdate()
     {
         Move();
+
+        if (!player.IsAiming())
+        {
+            HandleRotation();
+        }
     }
 
     private void ReadInput()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-        
+
         moveInput = new Vector2(moveX, moveY);
-        
+
         if (moveInput.sqrMagnitude > 1)
         {
             moveInput.Normalize();
@@ -53,14 +54,15 @@ public class PlayerMove : MonoBehaviour
         {
             lastMoveDirection = moveInput;
         }
-        
-        animator.SetFloat("move",moveInput.sqrMagnitude );
-        feetAnimator.SetFloat("move",moveInput.sqrMagnitude );
+
+        animator.SetFloat("move", moveInput.sqrMagnitude);
+        feetAnimator.SetFloat("move", moveInput.sqrMagnitude);
     }
 
     private void Move()
     {
         float speedModifier = player.IsAiming() ? aimMoveSpeed : moveSpeed;
+
         Vector2 nextPosition = rb.position + moveInput * speedModifier * Time.fixedDeltaTime;
         rb.MovePosition(nextPosition);
     }
@@ -70,9 +72,13 @@ public class PlayerMove : MonoBehaviour
         if (moveInput.sqrMagnitude > 0)
         {
             float targetAngle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle + 90f);
-            
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle + 90f);
+
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * 360f * Time.fixedDeltaTime
+            );
         }
     }
 }
