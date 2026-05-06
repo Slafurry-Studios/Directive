@@ -22,7 +22,7 @@ public class EnemyShoot : MonoBehaviour
         {
             Vector2 playerPos = _sensor.PlayerPos;
             Vector2 myPos = (Vector2)transform.position;
-            Vector2 direction = playerPos - myPos;
+            Vector2 direction = playerPos - myPos + 90f * Vector2.Perpendicular(playerPos - myPos);
 
             StartCoroutine(AttackRoutine(direction));
         }

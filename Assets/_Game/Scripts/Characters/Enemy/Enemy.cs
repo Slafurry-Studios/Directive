@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
         _sensor = GetComponent<EnemySensor>();
     }
 
+    
+
     public EnemySensor Sensor => _sensor;
     public EnemyInfo Info => _enemyInfo;
     public GameObject Target => _target;

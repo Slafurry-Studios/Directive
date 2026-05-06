@@ -18,7 +18,7 @@ public class EnemyChase : MonoBehaviour
     [Header("Visual Settings")]
     [SerializeField] 
     [Tooltip("Offset for the rotation. Adjust this if the sprite is not facing the player correctly (e.g., 90, -90, 180).")]
-    private float angleOffset = -90f;
+    private float angleOffset = 0f;
 
     private Enemy _enemy;
     private EnemySensor _sensor;

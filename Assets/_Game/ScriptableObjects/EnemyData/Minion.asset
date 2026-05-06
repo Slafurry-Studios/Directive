@@ -17,6 +17,8 @@ MonoBehaviour:
   type: 0
   moveSpeed: 5
   rotationSpeed: 100
-  shootSpeed: 5
+  shootSpeed: 1
+  health: 4
+  damage: 10
   attackRange: 5
   attackCoolDown: 5
