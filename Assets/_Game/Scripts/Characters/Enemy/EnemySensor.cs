@@ -16,14 +16,16 @@ public class EnemySensor : MonoBehaviour
     {
         UpdatePlayerDistance();
     }
-    
+
     private void UpdatePlayerDistance()
     {
-        float distance = Vector3.Distance(transform.position, _enemy.Target.transform.position);
+        if (_enemy.Target == null) return;
+
+        float distance = Vector2.Distance(transform.position, _enemy.Target.transform.position);
+
         playerPos = _enemy.Target.transform.position;
         playerDistance = distance;
     }
-
     public Vector2 PlayerPos => playerPos;
     public float PlayerDistance => playerDistance;
 }
