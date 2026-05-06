@@ -1,0 +1,65 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using DG.Tweening;
+
+public class Enemy : MonoBehaviour
+{
+    [SerializeField] private EnemyInfo _enemyInfo;
+    [SerializeField] private GameObject _target;
+    private EnemySensor _sensor;
+    private PatternSpawner _spawner;
+    private float _projectileSpawnTime;
+    private float _projectileSpawnCount;
+
+    private int spawnBulletCount;
+    // Start is called before the first frame update
+    void Start()
+    {
+        GetComponent<SpriteRenderer>().sprite = _enemyInfo.sprite;
+        if (_target == null)
+            _target = GameObject.FindGameObjectWithTag("Player");
+        _spawner = GetComponent<PatternSpawner>();
+        _sensor = GetComponent<EnemySensor>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // ChasePlayer();
+    }
+
+    void AttackPlayer(Vector3 direction)
+    {
+        if (_projectileSpawnCount < _enemyInfo.shootSpeed)
+        {
+            _spawner.ExecutePattern();
+            _projectileSpawnCount++;
+        }
+        if (_projectileSpawnTime >= _enemyInfo.attackCoolDown)
+        {
+            _projectileSpawnCount = 0;
+            _projectileSpawnTime = 0;
+        }
+    }
+}
+
+public enum EnemyType
+{
+    Minion,
+    Boss,
+    Tower,
+}
+
+[CreateAssetMenu(menuName = "Enemy/EnemyInfo")]
+public class EnemyInfo : ScriptableObject
+{
+    public Sprite sprite;
+    public bool armoured;
+    public EnemyType type;
+    public float moveSpeed;
+    [Range(50f, 100f)] public float rotationSpeed = 100f;
+    public float shootSpeed;
+    public float attackRange;
+    public float attackCoolDown;
+}
