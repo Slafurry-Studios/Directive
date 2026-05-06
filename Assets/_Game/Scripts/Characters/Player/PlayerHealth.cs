@@ -6,19 +6,21 @@ public class PlayerHealth : Health
 {
     [Header("UI Settings")]
     [SerializeField] private Slider healthSlider; 
+    private Animator animator;
 
     protected override void Start()
     {
         base.Start();
         OnHealthChanged += UpdateUI;
         OnDeath += HandlePlayerDeath;
+        animator = GetComponent<Animator>();
 
         // Initialize UI on startup 
         UpdateUI(currentHealth, maxHealth);
     }
     private void UpdateUI(int current, int max)
     {
-        // Logic for updating the player's life bar
+        animator.SetTrigger("onHit");
         if (healthSlider != null)
         {
             healthSlider.maxValue = max;
@@ -32,24 +34,15 @@ public class PlayerHealth : Health
     {
         Debug.Log("Player died! Show Game Over.");
 
-        // Option 1: Immediately restart the level after the player dies 
         RestartLevel(); 
 
-        // Option 2: Bring up the Game Over Panel (If there is a UI Panel) 
-        // gameOverPanel.SetActive(true);
     }
 
     private void RestartLevel()
     {
-        // Takes the current scene index and reloads it
+        // Takesthe current scene index and reloads it
         Scene activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.buildIndex);
-    }
-
-    public override void TakeDamage(int amount)
-    {
-        // Calls the basic function to reduce blood
-        base.TakeDamage(amount);
     }
 
 }

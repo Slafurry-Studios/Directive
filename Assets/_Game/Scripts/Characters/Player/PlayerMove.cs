@@ -6,16 +6,20 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float aimMoveSpeed = 2f;
     [SerializeField] private float rotationSpeed = 15f;
+    
+    [SerializeField] private Animator feetAnimator;
 
     private Player player;
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 lastMoveDirection;
+    private Animator animator;
 
     void Awake()
     {
         player = GetComponent<Player>();
         rb = GetComponentInParent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -25,6 +29,7 @@ public class PlayerMove : MonoBehaviour
         {
             HandleRotation();
         }
+        animator.SetBool("isAiming", player.IsAiming());
     }
 
     void FixedUpdate()
@@ -48,6 +53,9 @@ public class PlayerMove : MonoBehaviour
         {
             lastMoveDirection = moveInput;
         }
+        
+        animator.SetFloat("move",moveInput.sqrMagnitude );
+        feetAnimator.SetFloat("move",moveInput.sqrMagnitude );
     }
 
     private void Move()
@@ -62,7 +70,7 @@ public class PlayerMove : MonoBehaviour
         if (moveInput.sqrMagnitude > 0)
         {
             float targetAngle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle + 90f);
             
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }

@@ -6,14 +6,16 @@ public class PlayerShoot : MonoBehaviour
     // ============ DESIGNER CONFIGURATION ============
     [Header("Input Settings")]
     [SerializeField]
-    [Tooltip("The key used to trigger a shot.")]
     private KeyCode shootKey = KeyCode.Mouse0;
+    
+    [SerializeField] [Tooltip("The damage dealt by each bullet.")]
+    private int damage = 10;
 
     [Header("References")]
     [SerializeField]
     [Tooltip("The point where the bullet will originate from.")]
     private Transform firePoint;
-    [SerializeField] int damage = 10;
+    private Animator animator;
 
     // ============ INTERNAL STATE ============
     private ProjectileSpawner spawner;
@@ -22,6 +24,7 @@ public class PlayerShoot : MonoBehaviour
     private void Awake()
     {
         spawner = GetComponent<ProjectileSpawner>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -35,6 +38,7 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetKeyDown(shootKey))
         {
             Shoot();
+            animator.SetTrigger("Shoot");
         }
     }
 
@@ -45,6 +49,5 @@ public class PlayerShoot : MonoBehaviour
         Vector2 shootDirection = firePoint.right;
 
         spawner.SpawnProjectile(firePoint.transform, shootDirection, damage);
-
     }
 }
