@@ -6,8 +6,9 @@ public class NormalBullet : BaseProjectile
         transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        base.OnTriggerEnter2D(collision);
     }
+
 }

@@ -70,7 +70,7 @@ public class PlayerMove : MonoBehaviour
         if (moveInput.sqrMagnitude > 0)
         {
             float targetAngle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle + 90f);
             
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }

@@ -11,20 +11,20 @@ public class BurstSpawner : PatternSpawner
 
     private bool isBursting = false;
 
-    public override void ExecutePattern()
+    public override void ExecutePattern(int damage)
     {
         if (!isBursting)
         {
-            StartCoroutine(FireBurstSequence());
+            StartCoroutine(FireBurstSequence(damage));
         }
     }
 
-    private IEnumerator FireBurstSequence()
+    private IEnumerator FireBurstSequence(int damage)
     {
         isBursting = true;
         for (int i = 0; i < burstCount; i++)
         {
-            SpawnProjectile(transform, transform.right);
+            SpawnProjectile(transform, transform.right, damage);
             yield return new WaitForSeconds(burstDelay);
         }
         isBursting = false;

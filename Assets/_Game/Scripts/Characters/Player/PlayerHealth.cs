@@ -1,25 +1,48 @@
 using UnityEngine;
+using UnityEngine.UI; // for Slider
+using UnityEngine.SceneManagement; // for SceneManager
 
 public class PlayerHealth : Health
 {
+    [Header("UI Settings")]
+    [SerializeField] private Slider healthSlider; 
+    private Animator animator;
+
     protected override void Start()
     {
         base.Start();
         OnHealthChanged += UpdateUI;
         OnDeath += HandlePlayerDeath;
+        animator = GetComponent<Animator>();
+
+        // Initialize UI on startup 
+        UpdateUI(currentHealth, maxHealth);
     }
     private void UpdateUI(int current, int max)
     {
+        animator.SetTrigger("onHit");
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = max;
+            healthSlider.value = current;
+        }
+        
+        Debug.Log($"Player Health: {current} / {max}");
     }
 
     private void HandlePlayerDeath()
     {
         Debug.Log("Player died! Show Game Over.");
+
+        RestartLevel(); 
+
     }
 
-    public override void TakeDamage(int amount)
+    private void RestartLevel()
     {
-        base.TakeDamage(amount);
+        // Takesthe current scene index and reloads it
+        Scene activeScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(activeScene.buildIndex);
     }
 
 }
