@@ -4,7 +4,7 @@ using System;
 public abstract class Health : MonoBehaviour
 {
     [SerializeField] protected int maxHealth = 100;
-    protected int currentHealth;
+    [SerializeField] protected int currentHealth;
     private bool isDead = false;
 
     // ================= EVENTS =================
@@ -30,6 +30,15 @@ public abstract class Health : MonoBehaviour
             HandleDeath();
     }
 
+    public virtual void ApplyKnockback(Vector2 direction, float force)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.AddForce(direction.normalized * force, ForceMode2D.Impulse);
+        }
+    }
+
     public virtual void Heal(int amount)
     {
         if (isDead || amount <= 0) return;
@@ -41,8 +50,8 @@ public abstract class Health : MonoBehaviour
     // ================= PROTECTED HOOKS =================
 
     /// <summary>
-/// Override this for additional logic on death (animations, item drops, etc) 
-/// Always call base.OnDeath() if you want the event to continue
+    /// Override this for additional logic on death (animations, item drops, etc) 
+    /// Always call base.OnDeath() if you want the event to continue
     /// </summary>
     protected virtual void Death()
     {

@@ -38,7 +38,7 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetKeyDown(shootKey))
         {
             Shoot();
-            animator.SetTrigger("Shoot");
+            animator.Play("player_shoot");
         }
     }
 

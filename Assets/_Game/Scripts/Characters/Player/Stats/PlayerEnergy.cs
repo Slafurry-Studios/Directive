@@ -6,10 +6,10 @@ public class PlayerEnergy : Energy
     {
         base.Start();
 
-        OnEnergyChanged += UpdateUI;
+        OnEnergyChanged += HandleEnergyChanged;
     }
 
-    private void UpdateUI(int current, int max)
+    private void HandleEnergyChanged(int current, int max)
     {
     }
 }

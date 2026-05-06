@@ -12,7 +12,8 @@ public abstract class BaseProjectile : MonoBehaviour
     protected float lifeTime = 5f;
 
     protected Vector2 direction;
-    protected int damageAmount = 10;
+    private int damageAmount;
+    private int knockbackForce = 5;
 
     public virtual void Setup(Vector2 launchDirection, int damage)
     {
@@ -28,6 +29,8 @@ public abstract class BaseProjectile : MonoBehaviour
         if (target != null)
         {
             target.TakeDamage(damageAmount);
+
+            target.ApplyKnockback(direction, knockbackForce);
 
             Debug.Log("Player hit Enemy! Damage: " + damageAmount);
         }

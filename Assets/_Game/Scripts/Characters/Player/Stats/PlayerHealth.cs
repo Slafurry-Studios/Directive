@@ -38,6 +38,25 @@ public class PlayerHealth : Health
 
     }
 
+    public override void ApplyKnockback(Vector2 direction, float force)
+    {
+        PlayerMove move = GetComponent<PlayerMove>();
+        move.enabled = false;
+        base.ApplyKnockback(direction, force);
+
+        // Re-enable movement after a short delay (e.g., 0.5 seconds)
+        Invoke(nameof(EnableMovement), 0.5f);
+    }
+
+    private void EnableMovement()
+    {
+        PlayerMove move = GetComponent<PlayerMove>();
+        if (move != null)
+        {
+            move.enabled = true;
+        }
+    }
+
     private void RestartLevel()
     {
         // Takesthe current scene index and reloads it
