@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 795641038196298374}
   - component: {fileID: -5616380828766077910}
   - component: {fileID: 6621893960073708545}
-  - component: {fileID: -232981623829520890}
-  - component: {fileID: -6077404584984375660}
+  - component: {fileID: -995413535492482770}
+  - component: {fileID: 8376793982471019474}
   m_Layer: 0
   m_Name: BounceBullet
   m_TagString: Untagged
@@ -97,7 +97,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 720569764, guid: 906ea9c3ea94e85c2aabce56ec67383b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c22ec8a59130bb849982201055fe2566, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -108,7 +108,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-232981623829520890
+--- !u!61 &-995413535492482770
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,17 +143,17 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5074811, y: 0.79210675}
-    oldSize: {x: 0.92, y: 0.84}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.33, y: 0.05}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.33, y: 0.05}
   m_EdgeRadius: 0
---- !u!50 &-6077404584984375660
+--- !u!50 &8376793982471019474
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -178,5 +178,5 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
