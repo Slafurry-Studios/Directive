@@ -13,7 +13,6 @@ public class SniperBrain : EnemyBrain
         {
             Vector2 retreatDir = (transform.position - _enemyInfo.Target.transform.position).normalized;
             _moveController.MoveTo((Vector2)transform.position + retreatDir * 2f);
-            Debug.Log("Enemy Moving");
         }
         else if (dist > stopDistance)
         {
