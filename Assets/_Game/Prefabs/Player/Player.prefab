@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   healthSlider: {fileID: 0}
 --- !u!114 &3551342090420717348
 MonoBehaviour:
@@ -235,7 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  aimMoveSpeed: 2
   rotationSpeed: 15
   feetAnimator: {fileID: 3292920003154960422}
 --- !u!114 &2332223318591871777
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32a02d4ec1d39786997c53c2c330ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: -5616380828766077910, guid: 999124a63d8e816248ac8bc4b970495e,
+  projectilePrefab: {fileID: 6744558972759748, guid: 985c60b5d16a0cd46bc7a01bfd887b4d,
     type: 3}
   projectileLayer:
     serializedVersion: 2
@@ -367,8 +367,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1143440991
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -436108633, guid: da030320afa7a7c40b870b84da18ab9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

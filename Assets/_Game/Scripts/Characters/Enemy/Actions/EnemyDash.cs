@@ -1,57 +1,56 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyDash : MonoBehaviour
 {
-    private Enemy _enemy;
-    private EnemySensor _sensor;
-    private bool _isDashing = false;
-    private float _dashTimeRemaining = 0f;
+    private Rigidbody2D rb;
+    private Enemy _enemy; 
+    private bool isDashing;
+    private float lastDashTime;
 
-    [Header("Dash Settings")]
-    [SerializeField] private float dashDuration = 0.5f;
-    [SerializeField] private float dashSpeedMultiplier = 2f;
-
-    void Start()
+    void Awake()
     {
-        _enemy = GetComponent<Enemy>();
-        _sensor = GetComponent<EnemySensor>();
+        rb = GetComponentInParent<Rigidbody2D>();
+        _enemy = GetComponentInParent<Enemy>();
     }
 
-    void Update()
+    public void RequestDash(Vector2 direction)
     {
-        if (PlayerInSight() && !_isDashing)
+        if (CanDash())
         {
-            StartDash();
-        }
-
-        if (_isDashing)
-        {
-            HandleDash();
+            _enemy.OnDashStart();
+            StartCoroutine(DashRoutine(direction));
         }
     }
 
-    private void StartDash()
+    private IEnumerator DashRoutine(Vector2 direction)
     {
-        _isDashing = true;
-        _dashTimeRemaining = dashDuration;
+        isDashing = true;
+        lastDashTime = Time.time;
+
+        Quaternion originalRotation = transform.rotation;
+        float originalGravity = rb.gravityScale;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle + 90f);
+
+        rb.gravityScale = 0f;
+        rb.velocity = direction.normalized * _enemy.Info.dash.dashSpeed;
+
+        yield return new WaitForSeconds(_enemy.Info.dash.dashDuration);
+
+        rb.gravityScale = originalGravity;
+        rb.velocity = Vector2.zero;
+        transform.rotation = originalRotation;
+
+        isDashing = false;
+        _enemy.ResetCondition();
     }
 
-    private void HandleDash()
+    public bool CanDash()
     {
-        if (_dashTimeRemaining > 0)
-        {
-            Vector2 direction = (_sensor.PlayerPos - (Vector2)transform.position).normalized;
-            transform.position += (Vector3)(direction * _enemy.Info.moveSpeed * dashSpeedMultiplier * Time.deltaTime);
-            _dashTimeRemaining -= Time.deltaTime;
-        }
-        else
-        {
-            _isDashing = false;
-        }
+        return !isDashing && Time.time >= lastDashTime + _enemy.Info.dash.dashCooldown;
     }
 
-    private bool PlayerInSight()
-    {
-        return _sensor.PlayerDistance <= _enemy.Info.attackRange;
-    }
+    public bool IsDashing => isDashing;
 }

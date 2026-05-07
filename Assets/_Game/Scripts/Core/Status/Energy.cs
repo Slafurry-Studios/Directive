@@ -23,6 +23,7 @@ public abstract class Energy : MonoBehaviour
     {
         RegainEnergy();
     }
+    
 
     // ================= PUBLIC API =================
     public virtual bool UseEnergy(int amount)

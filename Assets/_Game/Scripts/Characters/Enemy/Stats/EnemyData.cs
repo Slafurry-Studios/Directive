@@ -1,23 +1,41 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy/EnemyInfo")]
-public class EnemyInfo : ScriptableObject
+[CreateAssetMenu(menuName = "Enemy/EnemyData")]
+public class EnemyData : ScriptableObject
 {
-    public Sprite sprite;
-    public bool armoured;
-    public EnemyType type;
-    public float moveSpeed;
-    [Range(50f, 100f)] public float rotationSpeed = 100f;
-    public float shootSpeed;
-    public float health;
-    public int damage;
-    public float attackRange;
-    public float attackCoolDown;
+    public StatsSettings stats;
+    public MovementSettings movement;
+    public AttackSettings attack;
+    public DashSettings dash;
 }
 
-public enum EnemyType
+[System.Serializable]
+public struct StatsSettings
 {
-    Minion,
-    Boss,
-    Tower,
+    public float maxHealth;
+    public int contactDamage;
+}
+
+[System.Serializable]
+public struct MovementSettings
+{
+    public float moveSpeed;
+    [Range(100f, 1000f)] public float rotationSpeed;
+}
+
+[System.Serializable]
+public struct AttackSettings
+{
+    public int damage;
+    public int projectileDamage;
+    public float attackCoolDown;
+    public float projectileSpeed;
+}
+
+[System.Serializable]
+public struct DashSettings
+{
+    public float dashSpeed;
+    public float dashDuration;
+    public float dashCooldown;
 }
