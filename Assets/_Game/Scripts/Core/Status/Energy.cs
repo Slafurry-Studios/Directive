@@ -7,7 +7,7 @@ public abstract class Energy : MonoBehaviour
     [SerializeField] private int maxEnergy = 100;
     [SerializeField] private float regainEnergyPerSecond = 10f;
 
-    private float currentEnergy;
+    public float currentEnergy;
 
     // ================= EVENTS =================
     public event Action<int, int> OnEnergyChanged;
