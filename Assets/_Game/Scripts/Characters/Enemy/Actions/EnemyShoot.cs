@@ -1,11 +1,12 @@
 using System.Collections;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Transform firePoint;
+
     private Enemy _enemy;
-    private EnemySensor _sensor;
     private PatternSpawner _spawner;
     private bool _canAttack = true;
 
@@ -13,17 +14,17 @@ public class EnemyShoot : MonoBehaviour
     {
         _enemy = GetComponent<Enemy>();
         _spawner = GetComponent<PatternSpawner>();
-        _sensor = GetComponent<EnemySensor>();
+
+        if (firePoint == null)
+        {
+            firePoint = transform;
+        }
     }
 
-    void Update()
+    public void RequestAttack(Vector2 direction)
     {
-        if (PlayerInSight() && _canAttack)
+        if (_canAttack)
         {
-            Vector2 playerPos = _sensor.PlayerPos;
-            Vector2 myPos = (Vector2)transform.position;
-            Vector2 direction = playerPos - myPos + 90f * Vector2.Perpendicular(playerPos - myPos);
-
             StartCoroutine(AttackRoutine(direction));
         }
     }
@@ -32,14 +33,12 @@ public class EnemyShoot : MonoBehaviour
     {
         _canAttack = false;
 
-        _spawner.ExecutePattern(_enemy.Info.damage);
+        _spawner.ExecutePattern(_enemy.Info.damage, direction, firePoint.transform);
 
         yield return new WaitForSeconds(_enemy.Info.attackCoolDown);
+        
         _canAttack = true;
     }
 
-    private bool PlayerInSight()
-    {
-        return _sensor.PlayerDistance <= _enemy.Info.attackRange;
-    }
+    public bool IsReadyToShoot() => _canAttack;
 }

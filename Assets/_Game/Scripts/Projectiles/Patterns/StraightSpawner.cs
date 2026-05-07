@@ -1,7 +1,9 @@
+using UnityEngine;
+
 public class StraightSpawner : PatternSpawner
 {
-    public override void ExecutePattern(int damage)
+    public override void ExecutePattern(int damage, Vector2 direction, Transform position)
     {
-        SpawnProjectile(transform, transform.right, damage);
+        SpawnProjectile(position, direction, damage);
     }
 }

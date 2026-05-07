@@ -6,7 +6,7 @@ public class ProjectileSpawner : MonoBehaviour
     // ============ DESIGNER CONFIGURATION ============
     [Header("Projectile Settings")]
     [SerializeField] [Tooltip("The prefab to be spawned.")]
-    private BaseProjectile projectilePrefab;
+    private GameObject projectilePrefab;
 
     [Header("Identity Settings")]
     [SerializeField] [Tooltip("Select the layer for the spawned bullet.")]
@@ -19,13 +19,11 @@ public class ProjectileSpawner : MonoBehaviour
     public void SpawnProjectile(Transform spawnPoint, Vector2 direction, int damage)
     {
         if (projectilePrefab == null) return;
-
-        BaseProjectile newProjectile = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
+        BaseProjectile projectile = projectilePrefab.GetComponent<BaseProjectile>();
+        BaseProjectile newProjectile = Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
         
-        // Set Layer
         newProjectile.gameObject.layer = MaskToLayer(projectileLayer);
 
-        // Set Tag
         if (!string.IsNullOrEmpty(projectileTag))
         {
             newProjectile.gameObject.tag = projectileTag;

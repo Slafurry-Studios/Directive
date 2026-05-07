@@ -3,23 +3,16 @@ using UnityEngine;
 public class BounceBullet : BaseProjectile
 {
     [Header("Bounce Settings")]
-    [SerializeField]
-    private LayerMask environmentLayer;
-
-    [SerializeField]
-    private int maxBounces = 3;
+    [SerializeField] private LayerMask environmentLayer;
+    [SerializeField] private int maxBounces = 3;
 
     [Header("Shrink Settings")]
-    [SerializeField]
-    private float initialScale = 1f;
-
-    [SerializeField]
-    private float minimumScale = 0.1f;
-
-    [SerializeField]
-    private float shrinkSpeed = 0.3f;
+    [SerializeField] private float initialScale = 1f;
+    [SerializeField] private float minimumScale = 0.1f;
+    [SerializeField] private float shrinkSpeed = 0.3f;
 
     private Rigidbody2D rb;
+    private Collider2D myCollider;
     private int currentBounceCount;
     private float currentScale;
     private bool hasBounced;
@@ -27,28 +20,25 @@ public class BounceBullet : BaseProjectile
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        // penting: hindari rotasi dari physics
+        myCollider = GetComponent<Collider2D>();
+        
         rb.freezeRotation = true;
+        if(myCollider != null) myCollider.isTrigger = true;
     }
 
     public override void Setup(Vector2 launchDirection, int damage)
     {
         base.Setup(launchDirection, damage);
-
         currentBounceCount = 0;
         currentScale = initialScale;
         hasBounced = false;
-
         transform.localScale = Vector3.one * currentScale;
-
         direction = launchDirection.normalized;
     }
 
     protected override void Update()
     {
         base.Update();
-
         Move();
 
         if (hasBounced)
@@ -58,24 +48,30 @@ public class BounceBullet : BaseProjectile
     protected override void Move()
     {
         rb.velocity = direction * moveSpeed;
-
-        // rotate mengikuti arah gerak (bukan physics)
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
-    // ====== AKURAT: WAJIB COLLISION ======
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (((1 << collision.gameObject.layer) & environmentLayer) != 0)
+        if (((1 << other.gameObject.layer) & environmentLayer) != 0)
         {
-            ContactPoint2D contact = collision.GetContact(0);
 
-            Reflect(contact.normal);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 1f, environmentLayer);
+
+            if (hit.collider != null)
+            {
+                Reflect(hit.normal);
+            }
+            else
+            {
+                Vector2 stickyNormal = ((Vector2)transform.position - other.ClosestPoint(transform.position)).normalized;
+                Reflect(stickyNormal);
+            }
         }
         else
         {
-            Destroy(gameObject);
+            base.OnTriggerEnter2D(other);
         }
     }
 
@@ -84,13 +80,12 @@ public class BounceBullet : BaseProjectile
         currentBounceCount++;
         hasBounced = true;
 
-        if (currentBounceCount >= maxBounces)
+        if (currentBounceCount > maxBounces) 
         {
             Destroy(gameObject);
             return;
         }
 
-        // hukum refleksi: sudut datang = sudut pantul
         direction = Vector2.Reflect(direction, normal).normalized;
     }
 
@@ -98,10 +93,9 @@ public class BounceBullet : BaseProjectile
     {
         currentScale -= shrinkSpeed * Time.deltaTime;
         currentScale = Mathf.Max(currentScale, minimumScale);
-
         transform.localScale = Vector3.one * currentScale;
 
-        if (Mathf.Approximately(currentScale, minimumScale))
+        if (currentScale <= minimumScale)
             Destroy(gameObject);
     }
 }

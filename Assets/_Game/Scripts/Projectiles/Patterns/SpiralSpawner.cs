@@ -3,15 +3,14 @@ using UnityEngine;
 public class SpiralSpawner : PatternSpawner
 {
     [Header("Spiral Configuration")]
-    [SerializeField] [Tooltip("Degrees to rotate the spawn point after every shot.")]
-    private float spiralStep = 15f;
+    [SerializeField] private float spiralStep = 15f;
 
     private float currentSpiralAngle = 0f;
 
-    public override void ExecutePattern(int damage)
+    public override void ExecutePattern(int damage, Vector2 direction, Transform position)
     {
         Vector2 dir = Quaternion.Euler(0, 0, currentSpiralAngle) * Vector2.right;
-        SpawnProjectile(transform, dir, damage);
+        SpawnProjectile(position, dir, damage);
         currentSpiralAngle += spiralStep;
     }
 }
