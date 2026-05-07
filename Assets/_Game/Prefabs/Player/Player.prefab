@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   healthSlider: {fileID: 0}
 --- !u!114 &3551342090420717348
 MonoBehaviour:
@@ -296,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32a02d4ec1d39786997c53c2c330ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: -5616380828766077910, guid: 999124a63d8e816248ac8bc4b970495e,
+  projectilePrefab: {fileID: 6744558972759748, guid: 985c60b5d16a0cd46bc7a01bfd887b4d,
     type: 3}
   projectileLayer:
     serializedVersion: 2

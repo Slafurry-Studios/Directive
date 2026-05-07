@@ -5,14 +5,16 @@ public class EnemyBrain : MonoBehaviour
     private EnemyMovement _moveController;
     private EnemyShoot _shootController;
     private EnemySensor _sensor;
-    private Enemy _enemyInfo;
+    private Enemy _enemy;
 
     private void Start()
     {
         _moveController = GetComponent<EnemyMovement>();
         _shootController = GetComponent<EnemyShoot>();
         _sensor = GetComponent<EnemySensor>();
-        _enemyInfo = GetComponent<Enemy>();
+        _enemy = GetComponent<Enemy>();
+
+
     }
 
     private void Update()
