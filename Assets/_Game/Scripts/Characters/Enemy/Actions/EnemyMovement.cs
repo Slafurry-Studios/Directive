@@ -38,6 +38,16 @@ public class EnemyMovement : MonoBehaviour
         _rb.velocity = Vector2.zero;
     }
 
+    public void RotateTo(Vector2 target)
+    {
+        Vector2 direction = target - _rb.position;
+        if (direction.sqrMagnitude < 0.001f) return;
+
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + angleOffset;
+        float smoothedAngle = Mathf.MoveTowardsAngle(_rb.rotation, targetAngle, _data.Info.movement.rotationSpeed * Time.fixedDeltaTime);
+        _rb.MoveRotation(smoothedAngle);
+    }
+
     private void ApplyMovement()
     {
         Vector2 currentPos = _rb.position;
@@ -63,7 +73,6 @@ public class EnemyMovement : MonoBehaviour
         {
             float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + angleOffset;
             float smoothedAngle = Mathf.MoveTowardsAngle(_rb.rotation, targetAngle, _data.Info.movement.rotationSpeed * Time.fixedDeltaTime);
-            
             _rb.MoveRotation(smoothedAngle);
         }
     }

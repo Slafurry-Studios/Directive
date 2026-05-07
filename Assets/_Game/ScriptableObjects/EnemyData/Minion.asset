@@ -21,10 +21,9 @@ MonoBehaviour:
   attack:
     damage: 10
     projectileDamage: 10
-    attackRange: 4
     attackCoolDown: 1
     projectileSpeed: 5
   dash:
-    dashSpeed: 5
+    dashSpeed: 20
     dashDuration: 0.2
     dashCooldown: 2

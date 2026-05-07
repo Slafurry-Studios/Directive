@@ -28,7 +28,6 @@ public struct AttackSettings
 {
     public int damage;
     public int projectileDamage;
-    public float attackRange;
     public float attackCoolDown;
     public float projectileSpeed;
 }

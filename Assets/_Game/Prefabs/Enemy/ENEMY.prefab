@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 239265364734489043}
   - component: {fileID: 8238288605576552030}
   - component: {fileID: 8981338066825873223}
-  - component: {fileID: 1977175690816682073}
+  - component: {fileID: 1724529981736776822}
   m_Layer: 7
   m_Name: ENEMY
   m_TagString: Enemy
@@ -322,7 +322,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   deathVFX: {fileID: 0}
---- !u!114 &1977175690816682073
+--- !u!114 &1724529981736776822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -331,11 +331,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3229631769395593999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b41086307fba63c864f2ed3a714d28, type: 3}
+  m_Script: {fileID: 11500000, guid: c1ddef48a1780c7228606292b8a60f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopDistance: 8
-  retreatDistance: 4
+  preferredDistance: 5
+  tolerance: 1.5
+  repositionInterval: 2
+  dodgeChance: 0.4
 --- !u!1 &5099134293462031343
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76443f555f2b58580b6cb6abcfc66dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffset: -90
+  angleOffset: 90
 --- !u!114 &1103102544283348737
 MonoBehaviour:
   m_ObjectHideFlags: 0
