@@ -6,6 +6,7 @@ public class EnemyBrain : MonoBehaviour
     private EnemyShoot _shootController;
     private EnemySensor _sensor;
     private Enemy _enemy;
+    private EnemyDash _dash;
 
     private void Start()
     {
@@ -13,7 +14,7 @@ public class EnemyBrain : MonoBehaviour
         _shootController = GetComponent<EnemyShoot>();
         _sensor = GetComponent<EnemySensor>();
         _enemy = GetComponent<Enemy>();
-
+        _dash = GetComponent<EnemyDash>();
 
     }
 
@@ -21,6 +22,11 @@ public class EnemyBrain : MonoBehaviour
     {
         HandleMovement();
         HandleCombat();
+    }
+
+    private void HandleDash(Vector2 direction)
+    {
+        _dash.RequestDash(direction);
     }
 
     private void HandleMovement()

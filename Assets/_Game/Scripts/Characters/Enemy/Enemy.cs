@@ -23,11 +23,6 @@ public class Enemy : MonoBehaviour
         Invoke("Dash", 2);
     }
 
-    private void Dash()
-    {
-        _dash.RequestDash(- GetComponent<EnemySensor>().PlayerPos);
-    }
-
     public void OnDashStart()
     {
         _move.enabled = false;
