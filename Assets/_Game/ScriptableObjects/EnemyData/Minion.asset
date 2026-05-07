@@ -9,16 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3f65130c232dbaefbb8470e85100818f, type: 3}
   m_Name: Minion
   m_EditorClassIdentifier: Assembly-CSharp::EnemyInfo
-  sprite: {fileID: 1367277960, guid: 639cd4c96c3ffa1689d62d4dbccbe9a9, type: 3}
-  armoured: 0
-  type: 0
-  moveSpeed: 5
-  rotationSpeed: 100
-  shootSpeed: 1
-  health: 4
-  damage: 10
-  attackRange: 5
-  attackCoolDown: 5
+  stats:
+    maxHealth: 100
+    contactDamage: 20
+  movement:
+    moveSpeed: 5
+    rotationSpeed: 261
+  attack:
+    damage: 10
+    projectileDamage: 10
+    attackRange: 4
+    attackCoolDown: 1
+    projectileSpeed: 5
+  dash:
+    dashSpeed: 5
+    dashDuration: 0.2
+    dashCooldown: 2

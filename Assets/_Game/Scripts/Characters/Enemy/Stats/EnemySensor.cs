@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Enemy))]
 public class EnemySensor : MonoBehaviour
 {
     [Header("Detection FOV (For Shooting)")]
@@ -9,8 +8,8 @@ public class EnemySensor : MonoBehaviour
     [SerializeField] private float attackRange = 10f;
 
     private Enemy _enemy;
-    private Vector2 _playerPos;
-    private float _playerDistance;
+    [SerializeField] private Vector2 _playerPos;
+    [SerializeField] private float _playerDistance;
     private bool _isPlayerInAttackCone;
 
     public Vector2 PlayerPos => _playerPos;
@@ -19,7 +18,7 @@ public class EnemySensor : MonoBehaviour
 
     private void Start()
     {
-        _enemy = GetComponent<Enemy>();
+        _enemy = GetComponentInParent<Enemy>();
     }
 
     private void FixedUpdate()

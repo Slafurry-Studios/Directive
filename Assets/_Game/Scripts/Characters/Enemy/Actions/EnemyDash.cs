@@ -1,24 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyDash : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Enemy _enemy; 
-
-    [Header("Dash Physics")]
-    [SerializeField] private float dashSpeed = 20f;
-    [SerializeField] private float dashDuration = 0.2f;
-    [SerializeField] private float dashCooldown = 1f;
-
     private bool isDashing;
     private float lastDashTime;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        _enemy = GetComponent<Enemy>();
+        rb = GetComponentInParent<Rigidbody2D>();
+        _enemy = GetComponentInParent<Enemy>();
     }
 
     public void RequestDash(Vector2 direction)
@@ -42,9 +35,9 @@ public class EnemyDash : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle + 90f);
 
         rb.gravityScale = 0f;
-        rb.velocity = direction.normalized * dashSpeed;
+        rb.velocity = direction.normalized * _enemy.Info.dash.dashSpeed;
 
-        yield return new WaitForSeconds(dashDuration);
+        yield return new WaitForSeconds(_enemy.Info.dash.dashDuration);
 
         rb.gravityScale = originalGravity;
         rb.velocity = Vector2.zero;
@@ -56,7 +49,7 @@ public class EnemyDash : MonoBehaviour
 
     public bool CanDash()
     {
-        return !isDashing && Time.time >= lastDashTime + dashCooldown;
+        return !isDashing && Time.time >= lastDashTime + _enemy.Info.dash.dashCooldown;
     }
 
     public bool IsDashing => isDashing;

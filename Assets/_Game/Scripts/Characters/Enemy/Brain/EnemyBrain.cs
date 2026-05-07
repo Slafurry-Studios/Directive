@@ -1,62 +1,27 @@
 using UnityEngine;
 
-public class EnemyBrain : MonoBehaviour
+public abstract class EnemyBrain : MonoBehaviour
 {
-    private EnemyMovement _moveController;
-    private EnemyShoot _shootController;
-    private EnemySensor _sensor;
-    private Enemy _enemy;
-    private EnemyDash _dash;
+    protected EnemyMovement _moveController;
+    protected EnemyShoot _shootController;
+    protected EnemySensor _sensor;
+    protected EnemyDash _dash;
+    protected Enemy _enemyInfo;
 
-    private void Start()
+    protected virtual void Awake()
     {
-        _moveController = GetComponent<EnemyMovement>();
-        _shootController = GetComponent<EnemyShoot>();
-        _sensor = GetComponent<EnemySensor>();
-        _enemy = GetComponent<Enemy>();
-        _dash = GetComponent<EnemyDash>();
-
+        _moveController = GetComponentInChildren<EnemyMovement>();
+        _shootController = GetComponentInChildren<EnemyShoot>();
+        _sensor = GetComponentInChildren<EnemySensor>();
+        _dash = GetComponentInChildren<EnemyDash>();
+        _enemyInfo = GetComponent<Enemy>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        HandleMovement();
-        HandleCombat();
+        if (_enemyInfo.Target == null) return;
+        ExecuteBehavior();
     }
 
-    private void HandleDash(Vector2 direction)
-    {
-        _dash.RequestDash(direction);
-    }
-
-    private void HandleMovement()
-    {
-        if (_sensor.PlayerDistance > 1.5f)
-        {
-            _moveController.MoveTo(_sensor.PlayerPos);
-        }
-        else
-        {
-            _moveController.Stop();
-        }
-    }
-
-    private void HandleCombat()
-    {
-        if (_sensor.IsPlayerInAttackCone)
-        {
-            Vector2 direction = CalculateAttackDirection();
-            _shootController.RequestAttack(direction);
-        }
-    }
-
-    private Vector2 CalculateAttackDirection()
-    {
-        Vector2 myPos = (Vector2)transform.position;
-        Vector2 targetPos = _sensor.PlayerPos;
-
-        Vector2 baseDirection = (targetPos - myPos).normalized;
-
-        return baseDirection;
-    }
+    protected abstract void ExecuteBehavior();
 }

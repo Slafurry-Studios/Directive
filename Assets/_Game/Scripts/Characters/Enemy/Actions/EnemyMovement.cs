@@ -1,20 +1,18 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float rotationSpeed = 720f;
     [SerializeField] private float angleOffset = 0f;
-
+    private Enemy _data;
     private Rigidbody2D _rb;
     private Vector2 _targetPosition;
     private bool _isMoving = false;
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponentInParent<Rigidbody2D>();
+        _data = GetComponentInParent<Enemy>();
         _rb.gravityScale = 0;
         _rb.angularDrag = 0;
     }
@@ -40,11 +38,6 @@ public class EnemyMovement : MonoBehaviour
         _rb.velocity = Vector2.zero;
     }
 
-    public void SetSpeed(float newSpeed)
-    {
-        moveSpeed = newSpeed;
-    }
-
     private void ApplyMovement()
     {
         Vector2 currentPos = _rb.position;
@@ -53,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
         if (distance > 0.05f)
         {
             Vector2 direction = (_targetPosition - currentPos).normalized;
-            Vector2 newPos = currentPos + direction * moveSpeed * Time.fixedDeltaTime;
+            Vector2 newPos = currentPos + direction * _data.Info.movement.moveSpeed * Time.fixedDeltaTime;
             _rb.MovePosition(newPos);
         }
         else
@@ -69,7 +62,7 @@ public class EnemyMovement : MonoBehaviour
         if (direction.sqrMagnitude > 0.001f)
         {
             float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + angleOffset;
-            float smoothedAngle = Mathf.MoveTowardsAngle(_rb.rotation, targetAngle, rotationSpeed * Time.fixedDeltaTime);
+            float smoothedAngle = Mathf.MoveTowardsAngle(_rb.rotation, targetAngle, _data.Info.movement.rotationSpeed * Time.fixedDeltaTime);
             
             _rb.MoveRotation(smoothedAngle);
         }

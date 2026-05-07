@@ -4,7 +4,6 @@ public class PlayerMove : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float aimMoveSpeed = 2f;
     [SerializeField] private float rotationSpeed = 15f;
 
     [SerializeField] private Animator feetAnimator;
@@ -61,7 +60,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Move()
     {
-        float speedModifier = player.IsAiming() ? aimMoveSpeed : moveSpeed;
+        float speedModifier = moveSpeed;
 
         Vector2 nextPosition = rb.position + moveInput * speedModifier * Time.fixedDeltaTime;
         rb.MovePosition(nextPosition);

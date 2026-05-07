@@ -6,13 +6,13 @@ public class EnemyShoot : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform firePoint;
 
-    private Enemy _enemy;
+    private Enemy _data;
     private PatternSpawner _spawner;
     private bool _canAttack = true;
 
-    private void Start()
+    private void Awake()
     {
-        _enemy = GetComponent<Enemy>();
+        _data = GetComponentInParent<Enemy>();
         _spawner = GetComponent<PatternSpawner>();
 
         if (firePoint == null)
@@ -33,9 +33,9 @@ public class EnemyShoot : MonoBehaviour
     {
         _canAttack = false;
 
-        _spawner.ExecutePattern(_enemy.Info.damage, direction, firePoint.transform);
+        _spawner.ExecutePattern(_data.Info.attack.damage, direction, firePoint.transform);
 
-        yield return new WaitForSeconds(_enemy.Info.attackCoolDown);
+        yield return new WaitForSeconds(_data.Info.attack.attackCoolDown);
         
         _canAttack = true;
     }
