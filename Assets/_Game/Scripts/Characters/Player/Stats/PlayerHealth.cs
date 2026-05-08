@@ -4,52 +4,32 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Health
 {
-    [Header("UI Settings")]
-    [SerializeField] public Image healthBar;
-    [SerializeField] public Image[] healthPoints;
-
     private Animator animator;
-    private float lerpSpeed;
-
     protected override void Start()
     {
         base.Start();
-        OnHealthChanged += UpdateUI;
+        OnHealthChanged += HandlePlayerHit;
         OnDeath += HandlePlayerDeath;
         animator = GetComponent<Animator>();
 
         UpdateUI(currentHealth, maxHealth);
     }
 
-    private void Update()
+    private void HandlePlayerHit(int current, int max)
     {
-        lerpSpeed = 3f * Time.deltaTime;
-        HealthBarFiller();
+        animator.SetTrigger("onHit");
+
+        UpdateUI(current, max);
     }
 
     private void UpdateUI(int current, int max)
     {
-        animator.SetTrigger("onHit");
-        Debug.Log($"Player Health: {current} / {max}");
-    }
-
-    private void HealthBarFiller()
-    {
-        float healthRatio = (float)currentHealth / maxHealth;
-
-        if (healthBar != null)
-            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, healthRatio, lerpSpeed);
-
-        for (int i = 0; i < healthPoints.Length; i++)
+        if (HealthHUD.Instance != null)
         {
-            healthPoints[i].enabled = DisplayHealthPoint(currentHealth, i);
+            HealthHUD.Instance.UpdateUI(current, max);
         }
     }
 
-    private bool DisplayHealthPoint(float _health, int pointNumber)
-    {
-        return ((pointNumber * 10) < _health);
-    }
 
     private void HandlePlayerDeath()
     {
