@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fbead736837f146a1a32f36b2edf9f, type: 3}
+  m_Name: Ending
+  m_EditorClassIdentifier: 
+  dialogEntries:
+  - text: '[STATUS_REPORT]
+
+      [ANDERSON: RESCUED]
+
+      [MARTINEZ: RESCUED]
+
+      [CHEN:
+      RESCUED]
+
+      [JOHNSON: RESCUED]
+
+      [PATEL: RESCUED]
+
+      [KIM: RESCUED]
+
+      [WILSON:
+      RESCUED]
+
+      [GARCIA: RESCUED]
+
+      [NAKAMURA: RESCUED]
+
+      [BROWN:
+      RESCUED]
+
+      [OKAFOR: RESCUED]
+
+      [RUSSO: RESCUED]
+
+      [JENSEN: RESCUED]
+
+      [ALI:
+      RESCUED]
+
+      [SANTOS: RESCUED]
+
+      [DUBOIS: RESCUED]
+
+      [KOWALSKI:
+      RESCUED]
+
+      [SINGH: RESCUED]
+
+      [HAYES: RESCUED]
+
+      [TANAKA: RESCUED]
+
+      [FISCHER:
+      RESCUED]
+
+      [IBRAHIM: RESCUED]
+
+      [COSTA: RESCUED]
+
+      [PARK: RESCUED]
+
+      [MILLER:
+      RESCUED]
+
+      [NGUYEN: RESCUED]
+
+      [OFFICER ROSSI: RESCUED]
+
+      [PETROV:
+      RESCUED]
+
+      [WILLIAMS: RESCUED]
+
+      [AFOLABI: RESCUED]
+
+      [OFFICER
+      SCHMIDT: RESCUED]
+
+      [YAMAMOTO: RESCUED]
+
+      [MOREAU: RESCUED]
+
+      [HASSAN:
+      RESCUED]
+
+      [SILVA: RESCUED]
+
+      [LINDBERG: RESCUED]
+
+      [OSEI: RESCUED]
+
+      [JACOBS:
+      RESCUED]
+
+      [JOHANSSON: RESCUED]
+
+      [RAHMAN: RESCUED]
+
+      [NOLAN:
+      RESCUED]
+
+      [GOTO: RESCUED]
+
+      [MUELLER: RESCUED]
+
+      [DIALLO: RESCUED]
+
+      [TORRES:
+      RESCUED]
+
+      [OFFICER BERG: RESCUED]
+
+      [OKEKE: RESCUED]
+
+      [BLANCHARD:
+      RESCUED]
+
+      [SABO: RESCUED]
+
+      [REED: RESCUED]
+
+      [FINAL STATUS:
+      CITY PROTECTED SUCCESSFULLY]
+
+      [THANK YOU FOR YOUR SERVICE]'
+    color: 2
