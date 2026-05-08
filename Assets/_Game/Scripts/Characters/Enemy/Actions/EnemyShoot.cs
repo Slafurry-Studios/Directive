@@ -6,6 +6,11 @@ public class EnemyShoot : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform firePoint;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip shootSound;
+    [Range(0, 10f)]
+    [SerializeField] private float shootSoundVolume;
+
     private Enemy _data;
     private PatternSpawner _spawner;
     private bool _canAttack = true;
@@ -35,8 +40,10 @@ public class EnemyShoot : MonoBehaviour
 
         _spawner.ExecutePattern(_data.Info.attack.damage, direction, firePoint.transform);
 
+        if (SfxPlayer.Instance != null) SfxPlayer.Instance.PlayEnemySfx(clip: shootSound, volume: shootSoundVolume, loop: false);
+
         yield return new WaitForSeconds(_data.Info.attack.attackCoolDown);
-        
+
         _canAttack = true;
     }
 

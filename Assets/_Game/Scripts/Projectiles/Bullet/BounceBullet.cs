@@ -21,9 +21,10 @@ public class BounceBullet : BaseProjectile
     {
         rb = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
-        
+        trail = GetComponent<TrailRenderer>();
+
         rb.freezeRotation = true;
-        if(myCollider != null) myCollider.isTrigger = true;
+        if (myCollider != null) myCollider.isTrigger = true;
     }
 
     public override void Setup(Vector2 launchDirection, int damage)
@@ -67,6 +68,7 @@ public class BounceBullet : BaseProjectile
             {
                 Vector2 stickyNormal = ((Vector2)transform.position - other.ClosestPoint(transform.position)).normalized;
                 Reflect(stickyNormal);
+
             }
         }
         else
@@ -80,11 +82,13 @@ public class BounceBullet : BaseProjectile
         currentBounceCount++;
         hasBounced = true;
 
-        if (currentBounceCount > maxBounces) 
+        if (currentBounceCount > maxBounces)
         {
             Destroy(gameObject);
             return;
         }
+
+        if (SfxPlayer.Instance != null) SfxPlayer.Instance.PlayEnemySfx(clip: bounceSound, volume: bounceSoundVolume, loop: false);
 
         direction = Vector2.Reflect(direction, normal).normalized;
     }
