@@ -14,6 +14,11 @@ public class PlayerDash : MonoBehaviour
     [Header("Requirements Limits")]
     [SerializeField] private float dashCooldown = 1f;
     [SerializeField] private int dashCost = 20;
+    
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip dashSound;
+    [Range(0, 10f)]
+    [SerializeField] private float dashSoundVolume;
 
     private bool isDashing;
     private float lastDashTime;
@@ -57,6 +62,7 @@ public class PlayerDash : MonoBehaviour
         originalRotation = transform.rotation;
 
         playerEnergy.UseEnergy(dashCost);
+        if (SfxPlayer.Instance != null) SfxPlayer.Instance.PlayPlayerSfx(clip: dashSound, volume: dashSoundVolume, loop: false);
 
         float angle = Mathf.Atan2(lastMoveDirection.y, lastMoveDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle + 90f);

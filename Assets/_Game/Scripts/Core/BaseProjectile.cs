@@ -1,5 +1,9 @@
 using UnityEngine;
 
+
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(TrailRenderer))]
 public abstract class BaseProjectile : MonoBehaviour
 {
     [Header("Base Settings")]
@@ -10,6 +14,20 @@ public abstract class BaseProjectile : MonoBehaviour
     [SerializeField]
     [Tooltip("How long the projectile lives before being destroyed.")]
     protected float lifeTime = 5f;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip hitSound;
+    [Range(0, 10f)]
+    [SerializeField] private float hitSoundVolume;
+    [SerializeField] protected AudioClip bounceSound;
+    [Range(0, 10f)]
+    [SerializeField] protected float bounceSoundVolume;
+
+    [Header("VFX")]
+    public ParticleSystem bulletHitEffect;
+
+    protected TrailRenderer trail;
+
 
     protected Vector2 direction;
     private int damageAmount;
@@ -35,6 +53,7 @@ public abstract class BaseProjectile : MonoBehaviour
             Debug.Log("Player hit Enemy! Damage: " + damageAmount);
         }
 
+        if (SfxPlayer.Instance != null) SfxPlayer.Instance.PlayEnemySfx(clip: hitSound, volume: hitSoundVolume, loop: false);
         Destroy(gameObject);
     }
 

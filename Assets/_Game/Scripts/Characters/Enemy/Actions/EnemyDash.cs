@@ -4,9 +4,14 @@ using UnityEngine;
 public class EnemyDash : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private Enemy _enemy; 
+    private Enemy _enemy;
     private bool isDashing;
     private float lastDashTime;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip dashSound;
+    [Range(0, 10f)]
+    [SerializeField] private float dashSoundVolume;
 
     void Awake()
     {
@@ -27,6 +32,8 @@ public class EnemyDash : MonoBehaviour
     {
         isDashing = true;
         lastDashTime = Time.time;
+
+        if (SfxPlayer.Instance != null) SfxPlayer.Instance.PlayEnemySfx(clip: dashSound, volume: dashSoundVolume, loop: false);
 
         Quaternion originalRotation = transform.rotation;
         float originalGravity = rb.gravityScale;

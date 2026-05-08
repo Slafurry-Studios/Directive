@@ -3,12 +3,6 @@ using UnityEngine.UI;
 
 public class PlayerEnergy : Energy
 {
-    [Header("UI Settings")]
-    [SerializeField] public Image energyBar;
-    [SerializeField] public Image[] energyPoints;
-
-    private float lerpSpeed;
-
     protected override void Start()
     {
         base.Start();
