@@ -21,7 +21,7 @@ public class TextScript : MonoBehaviour
 
     [SerializeField] private float typingSpeed = 0.03f;
 
-    private readonly Queue<string> lines = new();
+    private readonly List<string> activeLines = new();
 
     private void Start()
     {
@@ -46,39 +46,69 @@ public class TextScript : MonoBehaviour
 
     IEnumerator PlayDialog()
     {
+        // =========================
+        // PREPROCESSING
+        // =========================
+
+        List<(string text, TextColor color)> processedLines = new();
+
         foreach (var entry in dialogData.dialogEntries)
         {
-            // convert jadi rich text color
+            if (entry == null || string.IsNullOrWhiteSpace(entry.text))
+                continue;
+
+            string[] splitLines = entry.text.Split('\n');
+
+            foreach (string line in splitLines)
+            {
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+
+                processedLines.Add(
+                    (
+                        line.Trim(),
+                        entry.color
+                    )
+                );
+            }
+        }
+
+        // =========================
+        // PLAY DIALOG
+        // =========================
+
+        foreach (var data in processedLines)
+        {
             string coloredLine =
-                $"<color={GetColor(entry.color)}>{entry.text}</color>";
+                $"<color={GetColor(data.color)}>{data.text}</color>";
 
             // tambah line baru
-            lines.Enqueue(coloredLine);
+            activeLines.Add(coloredLine);
 
-            // hapus line atas jika melebihi limit
-            while (lines.Count > maxLines)
-            {
-                lines.Dequeue();
-            }
-
-            // ambil semua line
-            string[] allLines = lines.ToArray();
-
-            // ambil semua kecuali line terakhir
-            string previousText = "";
-
-            for (int i = 0; i < allLines.Length - 1; i++)
-            {
-                previousText += allLines[i] + "\n";
-            }
-
-            // tampilkan text lama dulu
-            textUI.text = previousText;
+            // tampilkan semua line lama dulu
+            textUI.text = BuildTextWithoutLast();
 
             // typing line terakhir saja
             yield return StartCoroutine(
                 TypeLastLine(coloredLine)
             );
+
+            yield return null;
+
+            textUI.ForceMeshUpdate();
+
+            // hapus line atas jika visual line melebihi batas
+            while (textUI.textInfo.lineCount > maxLines)
+            {
+                if (activeLines.Count <= 1)
+                    break;
+
+                activeLines.RemoveAt(0);
+
+                textUI.text = BuildFullText();
+
+                textUI.ForceMeshUpdate();
+            }
 
             yield return new WaitForSeconds(delayBetweenDialogs);
 
@@ -86,8 +116,28 @@ public class TextScript : MonoBehaviour
         }
     }
 
+    string BuildFullText()
+    {
+        return string.Join("\n", activeLines);
+    }
+
+    string BuildTextWithoutLast()
+    {
+        if (activeLines.Count <= 1)
+            return "";
+
+        return string.Join(
+            "\n",
+            activeLines.GetRange(0, activeLines.Count - 1)
+        );
+    }
+
     IEnumerator TypeLastLine(string richText)
     {
+        // tambah enter jika sudah ada text sebelumnya
+        if (!string.IsNullOrEmpty(textUI.text))
+            textUI.text += "\n";
+
         bool insideTag = false;
 
         foreach (char c in richText)
@@ -97,10 +147,9 @@ public class TextScript : MonoBehaviour
 
             textUI.text += c;
 
+            // delay hanya untuk karakter visible
             if (!insideTag)
-            {
                 yield return new WaitForSeconds(typingSpeed);
-            }
 
             if (c == '>')
                 insideTag = false;
@@ -113,14 +162,13 @@ public class TextScript : MonoBehaviour
         {
             TextColor.White => "white",
 
-            // ungu tetap
             TextColor.Purple => "#B86CFF",
 
-            // hijau lebih terang neon
-            TextColor.Green => "#48ff00",
+            // neon green
+            TextColor.Green => "#48FF00",
 
-            // merah lebih terang vivid
-            TextColor.Red => "#690404",
+            // bright red
+            TextColor.Red => "#FF3030",
 
             _ => "white"
         };
