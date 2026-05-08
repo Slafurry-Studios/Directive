@@ -877,7 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c366ad2191f8040bec034e1e5b619b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: GameScene
+  gameSceneName: Intro
   settingsMenuSceneName: SettingsMenu
   aboutMenuSceneName: AboutMenu
 --- !u!1 &675159497

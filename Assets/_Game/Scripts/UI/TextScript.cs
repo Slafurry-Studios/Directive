@@ -1,21 +1,27 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
 
 public class TextScript : MonoBehaviour
 {
-    [Header("UI (Index-based)")]
-    [Tooltip("Urutan index menentukan urutan dialog")]
-    public List<TextMeshProUGUI> textUIList;
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI textUI;
 
     [Header("Data")]
-    public DialogData dialogData;
+    [SerializeField] private DialogData dialogData;
 
     [Header("Controller")]
-    public TextBox textBox;
+    [SerializeField] private TextBox textBox;
 
-    [Header("Dialog Settings")]
+    [Header("Settings")]
+    [SerializeField] private int maxLines = 4;
+
     [SerializeField] private float delayBetweenDialogs = 0.5f;
+
+    [SerializeField] private float typingSpeed = 0.03f;
+
+    private readonly Queue<string> lines = new();
 
     private void Start()
     {
@@ -24,56 +30,99 @@ public class TextScript : MonoBehaviour
 
     void Init()
     {
-        // fallback
         if (textBox == null)
             textBox = FindAnyObjectByType<TextBox>();
 
-        if (textBox == null)
+        if (textUI == null || dialogData == null || textBox == null)
         {
-            Debug.LogError("TextBox tidak ditemukan!");
+            Debug.LogError("Reference ada yang kosong!");
             return;
         }
 
-        if (dialogData == null)
-        {
-            Debug.LogError("DialogData belum di-assign!");
-            return;
-        }
+        textUI.text = "";
 
-        if (textUIList == null || textUIList.Count == 0)
-        {
-            Debug.LogError("Text UI List kosong!");
-            return;
-        }
-
-        // jalankan sesuai index
-        StartCoroutine(PlayByIndex());
+        StartCoroutine(PlayDialog());
     }
 
-    System.Collections.IEnumerator PlayByIndex()
+    IEnumerator PlayDialog()
     {
-        int count = Mathf.Min(textUIList.Count, dialogData.dialogEntries.Count);
-
-        for (int i = 0; i < count; i++)
+        foreach (var entry in dialogData.dialogEntries)
         {
-            var ui = textUIList[i];
-            var entry = dialogData.dialogEntries[i];
+            // convert jadi rich text color
+            string coloredLine =
+                $"<color={GetColor(entry.color)}>{entry.text}</color>";
 
-            if (ui == null) continue;
+            // tambah line baru
+            lines.Enqueue(coloredLine);
 
-            // Bersihkan text sebelum typing dimulai
-            ui.text = "";
+            // hapus line atas jika melebihi limit
+            while (lines.Count > maxLines)
+            {
+                lines.Dequeue();
+            }
 
-            // jalankan typing dengan UI yang sesuai (cursor akan berkedip selama proses)
+            // ambil semua line
+            string[] allLines = lines.ToArray();
+
+            // ambil semua kecuali line terakhir
+            string previousText = "";
+
+            for (int i = 0; i < allLines.Length - 1; i++)
+            {
+                previousText += allLines[i] + "\n";
+            }
+
+            // tampilkan text lama dulu
+            textUI.text = previousText;
+
+            // typing line terakhir saja
             yield return StartCoroutine(
-                textBox.TypeText(ui, entry.text, entry.color)
+                TypeLastLine(coloredLine)
             );
 
-            // Cursor tetap berkedip, tunggu sebelum dialog berikutnya
             yield return new WaitForSeconds(delayBetweenDialogs);
 
-            // Stop cursor sebelum dialog berikutnya
-            textBox.StopCursor(ui);
+            textBox.StopCursor(textUI);
         }
+    }
+
+    IEnumerator TypeLastLine(string richText)
+    {
+        bool insideTag = false;
+
+        foreach (char c in richText)
+        {
+            if (c == '<')
+                insideTag = true;
+
+            textUI.text += c;
+
+            if (!insideTag)
+            {
+                yield return new WaitForSeconds(typingSpeed);
+            }
+
+            if (c == '>')
+                insideTag = false;
+        }
+    }
+
+    string GetColor(TextColor color)
+    {
+        return color switch
+        {
+            TextColor.White => "white",
+
+            // ungu tetap
+            TextColor.Purple => "#B86CFF",
+
+            // hijau lebih terang neon
+            TextColor.Green => "#48ff00",
+
+            // merah lebih terang vivid
+            TextColor.Red => "#690404",
+
+            _ => "white"
+        };
     }
 }

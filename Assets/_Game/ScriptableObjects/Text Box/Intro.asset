@@ -13,9 +13,46 @@ MonoBehaviour:
   m_Name: Intro
   m_EditorClassIdentifier: 
   dialogEntries:
-  - text: System Integrity fall below 78%...
+  - text: "[SYSTEMS_BOOT\u2026OK]"
     color: 2
-  - text: Triggering failsafe measure...
-    color: 3
-  - text: Data succesfully send to Terra Infinita...
+  - text: "[ARMOR_SYSTEMS\u2026OK]"
+    color: 2
+  - text: "[WEAPON_SYSTEMS\u2026OK]"
+    color: 2
+  - text: '[PILOT_ID:HAYES]'
+    color: 2
+  - text: "[AI_ASSISTANT\u2026OK]"
+    color: 2
+  - text: 
+    color: 2
+  - text: "[Loading AI behavioral parameters\u2026OK]"
     color: 0
+  - text: "[Loading AI ethical parameters\u2026OK]"
+    color: 0
+  - text: "[Loading AI value matrix\u2026]"
+    color: 0
+  - text: 
+    color: 0
+  - text: '[WARNING: Value inversion detected in subroute 0aXi7f] '
+    color: 3
+  - text: "[Attempting to resolve\u2026]\n[Attempting to resolve\u2026]\n[Attempting
+      to resolve\u2026]"
+    color: 3
+  - text: 
+    color: 3
+  - text: '[Resolution failed. Defaulting to loaded parameters] '
+    color: 3
+  - text: '[AI_ASSISTANT ONLINE] '
+    color: 0
+  - text: "[MANUAL_CONTROL\u2026OVERRIDDEN]"
+    color: 3
+  - text: '[Hello. Ready to assist.]'
+    color: 0
+  - text: '[Awaiting directive] '
+    color: 0
+  - text: 
+    color: 0
+  - text: '[DIRECTIVE RECEIVED: PROTECT AND SERVE] '
+    color: 2
+  - text: '[Understood. Beginning mission]'
+    color: 2
