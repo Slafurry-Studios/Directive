@@ -21,6 +21,7 @@ public class EnemySensor : MonoBehaviour
         _enemy = GetComponentInParent<Enemy>();
     }
 
+
     private void FixedUpdate()
     {
         if (_enemy.Target == null) return;
