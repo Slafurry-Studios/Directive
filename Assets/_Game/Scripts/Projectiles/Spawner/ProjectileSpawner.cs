@@ -5,23 +5,26 @@ public class ProjectileSpawner : MonoBehaviour
 {
     // ============ DESIGNER CONFIGURATION ============
     [Header("Projectile Settings")]
-    [SerializeField] [Tooltip("The prefab to be spawned.")]
+    [SerializeField]
+    [Tooltip("The prefab to be spawned.")]
     private GameObject projectilePrefab;
 
     [Header("Identity Settings")]
-    [SerializeField] [Tooltip("Select the layer for the spawned bullet.")]
+    [SerializeField]
+    [Tooltip("Select the layer for the spawned bullet.")]
     private LayerMask projectileLayer;
     [TagSelector]
-    [SerializeField] [Tooltip("Select the tag for the spawned projectile.")]
+    [SerializeField]
+    [Tooltip("Select the tag for the spawned projectile.")]
     private string projectileTag = "Untagged";
 
     // ============ LOGIC ============
     public void SpawnProjectile(Transform spawnPoint, Vector2 direction, int damage)
     {
         if (projectilePrefab == null) return;
-        BaseProjectile projectile = projectilePrefab.GetComponent<BaseProjectile>();
-        BaseProjectile newProjectile = Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
-        
+        GameObject obj = ObjectPool.Instance.Get(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
+        BaseProjectile newProjectile = obj.GetComponent<BaseProjectile>();
+
         newProjectile.gameObject.layer = MaskToLayer(projectileLayer);
 
         if (!string.IsNullOrEmpty(projectileTag))

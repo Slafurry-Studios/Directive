@@ -17,8 +17,10 @@ public class BounceBullet : BaseProjectile
     private float currentScale;
     private bool hasBounced;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         rb = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
         trail = GetComponent<TrailRenderer>();
@@ -39,8 +41,7 @@ public class BounceBullet : BaseProjectile
 
     protected override void Update()
     {
-        base.Update();
-        Move();
+        base.Update(); 
 
         if (hasBounced)
             ShrinkOverTime();
@@ -84,7 +85,7 @@ public class BounceBullet : BaseProjectile
 
         if (currentBounceCount > maxBounces)
         {
-            Destroy(gameObject);
+            ReturnOrDestroy();
             return;
         }
 
@@ -100,6 +101,7 @@ public class BounceBullet : BaseProjectile
         transform.localScale = Vector3.one * currentScale;
 
         if (currentScale <= minimumScale)
-            Destroy(gameObject);
+
+            ReturnOrDestroy();
     }
 }
