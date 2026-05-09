@@ -208,6 +208,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  invincibilityLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  invincibilityDuration: 1
 --- !u!114 &3551342090420717348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +258,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashSpeed: 20
   dashDuration: 0.2
+  invincibilityLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   dashCooldown: 1
   dashCost: 20
   dashSound: {fileID: 8300000, guid: 559719d1a9c931459b65237ae629fe63, type: 3}
