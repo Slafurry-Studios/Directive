@@ -189,7 +189,7 @@ SpriteRenderer:
   m_SortingLayerID: 1143440991
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 488022837, guid: 0fd3b60d37f91ac4baed5799eec59335, type: 3}
+  m_Sprite: {fileID: -1326377311, guid: 3e3fd71348d87114997e7e5e9fd3a701, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -236,7 +236,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.89, y: 0.83}
+    oldSize: {x: 0.98, y: 0.97}
     newSize: {x: 1.02, y: 1.01}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -466,6 +466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffset: 90
+  moveSound: {fileID: 0}
+  moveSoundVolume: 1
 --- !u!114 &1103102544283348737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,6 +481,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2838424155064479233}
+  shootSound: {fileID: 0}
+  shootSoundVolume: 0
 --- !u!114 &8950764816017033939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,6 +495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8daf40dddc9db14b9023f977f558b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashSound: {fileID: 0}
+  dashSoundVolume: 0
 --- !u!114 &2259724398434592990
 MonoBehaviour:
   m_ObjectHideFlags: 0
