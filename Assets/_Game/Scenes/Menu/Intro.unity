@@ -628,7 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fa1b9fc54f42d49a045c3985db7fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lettersPerSecond: 20
+  lettersPerSecond: 40
   cursorSymbol: '|'
   cursorBlinkSpeed: 0.1
 --- !u!114 &1222490236
