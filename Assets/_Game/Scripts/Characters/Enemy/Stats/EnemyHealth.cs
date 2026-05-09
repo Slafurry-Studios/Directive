@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyHealth : Health
 {
     [SerializeField] private GameObject deathVFX;
+    private Enemy enemy;
     private Animator animator;
     protected override void Start()
     {
@@ -10,6 +11,7 @@ public class EnemyHealth : Health
         OnHealthChanged += HandleHit;
         OnDeath += Death;
         animator = GetComponent<Animator>();
+        enemy = GetComponent<Enemy>();
 
     }
 
@@ -39,6 +41,7 @@ public class EnemyHealth : Health
     {
         if (deathVFX != null) Instantiate(deathVFX, transform.position, Quaternion.identity);
         animator.SetBool("isDead", true);
+        enemy.Collection.RemoveEnemy(enemy);
         Destroy(gameObject, 2f);
     }
 }

@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyData _enemyInfo;
     [SerializeField] private GameObject _target;
+    [SerializeField] private EnemyCollection _collection;
     private EnemySensor _sensor;
 
     // ============ ACTIONS ==============
@@ -15,16 +16,19 @@ public class Enemy : MonoBehaviour
     public Animator BodyAnimator { get; private set; }
     public Animator FeetAnimator { get; private set; }
 
+
     private void Start()
     {
         _target = GameObject.FindGameObjectWithTag("Player");
         _sensor = GetComponentInChildren<EnemySensor>();
         _move = GetComponentInChildren<EnemyMovement>();
         _shoot = GetComponentInChildren<EnemyShoot>();
-
+        _collection = GetComponentInParent<EnemyCollection>(); 
         animators = GetComponentsInChildren<Animator>();
         BodyAnimator = animators[0];
         FeetAnimator = animators[1];
+
+        _collection.AddEnemy(this);
     }
 
     public void OnDashStart()
@@ -42,6 +46,7 @@ public class Enemy : MonoBehaviour
 
     public EnemySensor Sensor => _sensor;
     public EnemyData Info => _enemyInfo;
+    public EnemyCollection Collection => _collection;
     public GameObject Target => _target;
 }
 
