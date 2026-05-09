@@ -1,11 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class PlayerHealth : Health
 {
     [SerializeField] private LayerMask invincibilityLayer;
     [SerializeField] private float invincibilityDuration = 1.0f;
     [SerializeField] private float blinkInterval = 0.1f;
+
+    [Header("Damage Overlay")]
+    [SerializeField] private Image damageOverlay;
+    [SerializeField] private float overlayPeakAlpha = 0.4f;
+    [SerializeField] private float overlayFadeDuration = 0.4f;
+
+    [Header("Camera Shake")]
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+    [SerializeField] private float shakeForce = 1f;
 
     private int originalLayer;
     private Animator animator;
@@ -20,8 +31,10 @@ public class PlayerHealth : Health
 
         animator = GetComponent<Animator>();
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-
         originalLayer = gameObject.layer;
+
+        if (damageOverlay != null)
+            SetOverlayAlpha(0f);
 
         UpdateUI(currentHealth, maxHealth);
     }
@@ -38,8 +51,41 @@ public class PlayerHealth : Health
         Invoke(nameof(RestoreLayer), invincibilityDuration);
 
         StartCoroutine(BlinkEffect());
+        StartCoroutine(DamageOverlayEffect());
+        TriggerCameraShake(); // ← tambah ini
 
         UpdateUI(current, max);
+    }
+
+    private void TriggerCameraShake()
+    {
+        if (impulseSource != null)
+            impulseSource.GenerateImpulse(shakeForce);
+    }
+
+    private System.Collections.IEnumerator DamageOverlayEffect()
+    {
+        if (damageOverlay == null) yield break;
+
+        SetOverlayAlpha(overlayPeakAlpha);
+
+        float elapsed = 0f;
+        while (elapsed < overlayFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(overlayPeakAlpha, 0f, elapsed / overlayFadeDuration);
+            SetOverlayAlpha(alpha);
+            yield return null;
+        }
+
+        SetOverlayAlpha(0f);
+    }
+
+    private void SetOverlayAlpha(float alpha)
+    {
+        Color color = damageOverlay.color;
+        color.a = alpha;
+        damageOverlay.color = color;
     }
 
     private System.Collections.IEnumerator BlinkEffect()
@@ -73,9 +119,7 @@ public class PlayerHealth : Health
     private void UpdateUI(int current, int max)
     {
         if (HealthHUD.Instance != null)
-        {
             HealthHUD.Instance.UpdateUI(current, max);
-        }
     }
 
     private void HandlePlayerDeath()
@@ -87,11 +131,7 @@ public class PlayerHealth : Health
     public override void ApplyKnockback(Vector2 direction, float force)
     {
         PlayerMove move = GetComponent<PlayerMove>();
-
-        if (move != null)
-        {
-            move.enabled = false;
-        }
+        if (move != null) move.enabled = false;
 
         base.ApplyKnockback(direction, force);
 
@@ -101,11 +141,7 @@ public class PlayerHealth : Health
     private void EnableMovement()
     {
         PlayerMove move = GetComponent<PlayerMove>();
-
-        if (move != null)
-        {
-            move.enabled = true;
-        }
+        if (move != null) move.enabled = true;
     }
 
     private void RestartLevel()
@@ -122,20 +158,13 @@ public class PlayerHealth : Health
     private int MaskToLayer(LayerMask mask)
     {
         int bitmask = mask.value;
-
-        if (bitmask == 0)
-        {
-            return 0;
-        }
-
+        if (bitmask == 0) return 0;
         int result = 0;
-
         while (bitmask > 1)
         {
             bitmask >>= 1;
             result++;
         }
-
         return result;
     }
 }

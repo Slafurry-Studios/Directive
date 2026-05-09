@@ -19,6 +19,9 @@ public class EnemyHealth : Health
     {
         if (IsDead) return;
         animator.SetTrigger("onHit");
+
+        if (HitPause.Instance != null)
+            HitPause.Instance.Pause(0.05f); // ← 50ms cukup terasa
     }
 
     public override void ApplyKnockback(Vector2 direction, float force)

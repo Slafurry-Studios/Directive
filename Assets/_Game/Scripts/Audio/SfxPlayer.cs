@@ -9,14 +9,16 @@ public class SfxPlayer : MonoBehaviour
 
     [Header("Pool Sizes")]
     [SerializeField] private int _uiPoolSize = 5;
-    [SerializeField] private int _playerPoolSize = 5;
-    [SerializeField] private int _enemyPoolSize = 8;
-    [SerializeField] private int _environmentPoolSize = 5;
+    [SerializeField] private int _playerPoolSize = 10;
+    [SerializeField] private int _enemyPoolSize = 15;
+    [SerializeField] private int _environmentPoolSize = 10;
+    [SerializeField] private int _bulletPoolSize = 20;
 
     private AudioSource[] _uiPool;
     private AudioSource[] _playerPool;
     private AudioSource[] _enemyPool;
     private AudioSource[] _environmentPool;
+    private AudioSource[] _bulletPool;
 
     private const string SFX_VOLUME_KEY = "SfxVolume";
     private float _sfxVolume = 1f;
@@ -40,6 +42,7 @@ public class SfxPlayer : MonoBehaviour
         _playerPool = CreatePool("Player", _playerPoolSize);
         _enemyPool = CreatePool("Enemy", _enemyPoolSize);
         _environmentPool = CreatePool("Environment", _environmentPoolSize);
+        _bulletPool = CreatePool("Bullet", _bulletPoolSize);
     }
 
     void Start()
@@ -50,10 +53,20 @@ public class SfxPlayer : MonoBehaviour
 
     // ─── Public Playback ──────────────────────────────────────────────────────
 
-    public void PlayUISfx(AudioClip clip, float volume = 1f, bool loop = false) => PlayFromPool(_uiPool, clip, volume, loop);
-    public void PlayPlayerSfx(AudioClip clip, float volume = 1f, bool loop = false) => PlayFromPool(_playerPool, clip, volume, loop);
-    public void PlayEnemySfx(AudioClip clip, float volume = 1f, bool loop = false) => PlayFromPool(_enemyPool, clip, volume, loop);
-    public void PlayEnvironmentSfx(AudioClip clip, float volume = 1f, bool loop = false) => PlayFromPool(_environmentPool, clip, volume, loop);
+    public void PlayUISfx(AudioClip clip, float volume = 1f, bool loop = false, int priority = 16)
+        => PlayFromPool(_uiPool, clip, volume, loop, priority);
+
+    public void PlayPlayerSfx(AudioClip clip, float volume = 1f, bool loop = false, int priority = 32)
+        => PlayFromPool(_playerPool, clip, volume, loop, priority);
+
+    public void PlayEnemySfx(AudioClip clip, float volume = 1f, bool loop = false, int priority = 64)
+        => PlayFromPool(_enemyPool, clip, volume, loop, priority);
+
+    public void PlayEnvironmentSfx(AudioClip clip, float volume = 1f, bool loop = false, int priority = 128)
+        => PlayFromPool(_environmentPool, clip, volume, loop, priority);
+
+    public void PlayBulletSfx(AudioClip clip, float volume = 1f, bool loop = false, int priority = 200)
+        => PlayFromPool(_bulletPool, clip, volume, loop, priority);
 
     // ─── Loop Control ─────────────────────────────────────────────────────────
 
@@ -98,48 +111,62 @@ public class SfxPlayer : MonoBehaviour
 
     // ─── Internal ─────────────────────────────────────────────────────────────
 
-    private void PlayFromPool(AudioSource[] pool, AudioClip clip, float volume, bool loop)
+    private void PlayFromPool(AudioSource[] pool, AudioClip clip, float volume, bool loop, int priority = 128)
     {
         if (clip == null) return;
 
         float finalVolume = Mathf.Clamp01(volume * _sfxVolume);
 
-        int sameClipCount = 0;
-        foreach (AudioSource source in pool)
-            if (source.isPlaying && source.clip == clip)
-                sameClipCount++;
-
-        if (sameClipCount >= 20) return;
-
         if (loop)
         {
-
             if (_loopingSources.ContainsKey(clip)) return;
             AudioSource source = GetAvailableSource(pool);
             source.clip = clip;
             source.volume = finalVolume;
+            source.priority = priority;
             source.loop = true;
             source.Play();
             _loopingSources[clip] = source;
         }
         else
         {
-            AudioSource source = GetAvailableSource(pool);
-            source.clip = clip;
-            source.loop = false;
-            source.PlayOneShot(clip, finalVolume);
+            int sameClipCount = 0;
+            foreach (AudioSource source in pool)
+                if (source.isPlaying && source.clip == clip)
+                    sameClipCount++;
+
+            // if (sameClipCount >= 3) return;
+
+            AudioSource available = null;
+            foreach (AudioSource source in pool)
+            {
+                if (!source.isPlaying)
+                {
+                    available = source;
+                    break;
+                }
+            }
+
+            if (available == null)
+            {
+                available = pool[0];
+                foreach (AudioSource source in pool)
+                    if (source.time > available.time)
+                        available = source;
+            }
+
+            available.clip = clip;
+            available.volume = finalVolume;
+            available.priority = priority;
+            available.loop = false;
+            available.Play();
         }
     }
+
     private AudioSource GetAvailableSource(AudioSource[] pool)
     {
-        int playingCount = 0;
         foreach (AudioSource source in pool)
-        {
             if (!source.isPlaying) return source;
-            playingCount++;
-        }
-
-        Debug.LogWarning($"Pool full! All {playingCount} source are being played.");
 
         AudioSource oldest = pool[0];
         foreach (AudioSource source in pool)
@@ -161,6 +188,7 @@ public class SfxPlayer : MonoBehaviour
             go.transform.SetParent(parent.transform);
             pool[i] = go.AddComponent<AudioSource>();
             pool[i].playOnAwake = false;
+            pool[i].priority = 128; // default
         }
         return pool;
     }
