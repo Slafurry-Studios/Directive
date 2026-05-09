@@ -9,17 +9,54 @@ public class ScientistBrain : EnemyBrain
     [Header("Shoot Settings")]
     [SerializeField] private float shootRange = 4f;
 
+    [Header("Stuck Detection")]
+    [SerializeField] private float stuckCheckTime = 0.5f;
+    [SerializeField] private float stuckDistanceThreshold = 0.1f;
+
+    private Vector2 _lastPosition;
+    private float _stuckTimer;
+    private bool _isStuck;
+
     protected override void ExecuteBehavior()
     {
         float dist = _sensor.PlayerDistance;
-        Vector2 dirAwayFromPlayer = ((Vector2)transform.position - _sensor.PlayerPos).normalized;
 
+        Vector2 currentPos = transform.position;
+
+        Vector2 dirToPlayer =
+            (_sensor.PlayerPos - currentPos).normalized;
+
+        Vector2 dirAwayFromPlayer = -dirToPlayer;
+
+        // Selalu hadap player
         _moveController.RotateTo(_sensor.PlayerPos);
 
-        if (dist < safeDistance - tolerance)
+        bool shouldFlee = dist < safeDistance - tolerance;
+
+        // =========================
+        // STUCK CHECK
+        // =========================
+
+        _stuckTimer += Time.deltaTime;
+
+        if (_stuckTimer >= stuckCheckTime)
         {
-            Vector2 fleeTarget = (Vector2)transform.position + dirAwayFromPlayer * safeDistance;
-            _moveController.MoveTo(fleeTarget);
+            float movedDistance =
+                Vector2.Distance(currentPos, _lastPosition);
+
+            _isStuck = movedDistance < stuckDistanceThreshold;
+
+            _lastPosition = currentPos;
+            _stuckTimer = 0f;
+        }
+
+
+        if (shouldFlee && !_isStuck)
+        {
+            Vector2 moveTarget =
+                currentPos + dirAwayFromPlayer * safeDistance;
+
+            _moveController.MoveTo(moveTarget);
         }
         else
         {
@@ -28,7 +65,6 @@ public class ScientistBrain : EnemyBrain
 
         if (dist <= shootRange && _shootController.IsReadyToShoot())
         {
-            Vector2 dirToPlayer = (_sensor.PlayerPos - (Vector2)transform.position).normalized;
             _shootController.RequestAttack(dirToPlayer);
         }
     }
