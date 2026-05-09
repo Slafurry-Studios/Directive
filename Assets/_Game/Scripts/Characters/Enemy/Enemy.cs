@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
         FeetAnimator = animators[1];
 
         _collection.AddEnemy(this);
+        EnemyIndicatorManager.Instance.RegisterEnemy(transform);
     }
 
     public void OnDashStart()
