@@ -22,15 +22,17 @@ public class ProjectileSpawner : MonoBehaviour
     public void SpawnProjectile(Transform spawnPoint, Vector2 direction, int damage)
     {
         if (projectilePrefab == null) return;
+
         GameObject obj = ObjectPool.Instance.Get(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
+        if (obj == null) return; // ← tambah ini
+
         BaseProjectile newProjectile = obj.GetComponent<BaseProjectile>();
+        if (newProjectile == null) return; // ← safety
 
         newProjectile.gameObject.layer = MaskToLayer(projectileLayer);
 
         if (!string.IsNullOrEmpty(projectileTag))
-        {
             newProjectile.gameObject.tag = projectileTag;
-        }
 
         newProjectile.Setup(direction, damage);
     }

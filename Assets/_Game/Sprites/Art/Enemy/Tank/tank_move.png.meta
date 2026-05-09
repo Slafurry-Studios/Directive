@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f6071032ac982e9428a026f5335964c1
+guid: 3edbe8c437b24b54b956b899525879e7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,17 +106,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tank_shoot_0
+      name: tank_move_0
       rect:
         serializedVersion: 2
         x: 10
-        y: 0
-        width: 95
-        height: 95
+        y: 34
+        width: 99
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32fc1cc5ed67d6645bca6bad5bc44f84
-      internalID: -1794184059
+      spriteID: cf748df94ee0baa4faeb0b5b6cc9d16f
+      internalID: -171079363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tank_shoot_1
+      name: tank_move_1
       rect:
         serializedVersion: 2
-        x: 129
-        y: 4
+        x: 131
+        y: 28
         width: 95
-        height: 90
+        height: 69
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 610807547a50ea04caf8b0b3c8cd6c29
-      internalID: -1506618439
+      spriteID: 467d17e04b0e75349aec0d9c8fc10965
+      internalID: -1644232563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tank_shoot_2
+      name: tank_move_2
       rect:
         serializedVersion: 2
-        x: 248
-        y: 2
-        width: 95
-        height: 93
+        x: 249
+        y: 36
+        width: 96
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +179,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52dce8fd33cb02d4babcd755111ff939
-      internalID: 1299336988
+      spriteID: 17208e8432bbea144b27237e7beb650b
+      internalID: -838078147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_move_3
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 30
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7635285c76450b3449e8815233d0534d
+      internalID: 1547175787
       vertices: []
       indices: 
       edges: []
@@ -175,7 +209,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f697454dd33a1c846813c1d3812e13b3
+    spriteID: a1fd518b05563e641baa05d50320e177
     internalID: 0
     vertices: []
     indices: 
@@ -183,9 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tank_shoot_0: -1794184059
-      tank_shoot_1: -1506618439
-      tank_shoot_2: 1299336988
+      tank_move_0: -171079363
+      tank_move_1: -1644232563
+      tank_move_2: -838078147
+      tank_move_3: 1547175787
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
