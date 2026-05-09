@@ -1,9 +1,7 @@
 using UnityEngine;
 
-// ============ SPAWNING SYSTEM ============
 public class ProjectileSpawner : MonoBehaviour
 {
-    // ============ DESIGNER CONFIGURATION ============
     [Header("Projectile Settings")]
     [SerializeField]
     [Tooltip("The prefab to be spawned.")]
@@ -13,26 +11,33 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField]
     [Tooltip("Select the layer for the spawned bullet.")]
     private LayerMask projectileLayer;
+
+    [SerializeField]
+    [Tooltip("Enemy layer for bullet to detect hit.")]
+    private LayerMask enemyLayerForBullet;
+
     [TagSelector]
     [SerializeField]
     [Tooltip("Select the tag for the spawned projectile.")]
     private string projectileTag = "Untagged";
 
-    // ============ LOGIC ============
     public void SpawnProjectile(Transform spawnPoint, Vector2 direction, int damage)
     {
         if (projectilePrefab == null) return;
 
         GameObject obj = ObjectPool.Instance.Get(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
-        if (obj == null) return; // ← tambah ini
+        if (obj == null) return;
 
         BaseProjectile newProjectile = obj.GetComponent<BaseProjectile>();
-        if (newProjectile == null) return; // ← safety
+        if (newProjectile == null) return;
 
         newProjectile.gameObject.layer = MaskToLayer(projectileLayer);
 
         if (!string.IsNullOrEmpty(projectileTag))
             newProjectile.gameObject.tag = projectileTag;
+
+        if (enemyLayerForBullet.value != 0)
+            newProjectile.SetEnemyLayer(enemyLayerForBullet);
 
         newProjectile.Setup(direction, damage);
     }

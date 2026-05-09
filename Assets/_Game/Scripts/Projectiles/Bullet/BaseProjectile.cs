@@ -7,6 +7,7 @@ public abstract class BaseProjectile : MonoBehaviour
     [Header("Base Settings")]
     [SerializeField] protected float moveSpeed = 10f;
     [SerializeField] protected float lifeTime = 5f;
+    protected LayerMask enemyLayer;
 
     [Header("Audio Settings")]
     [SerializeField] private AudioClip hitSound;
@@ -102,4 +103,7 @@ public abstract class BaseProjectile : MonoBehaviour
     }
 
     protected abstract void Move();
+
+    public void SetEnemyLayer(LayerMask layer) => enemyLayer = layer;
+
 }

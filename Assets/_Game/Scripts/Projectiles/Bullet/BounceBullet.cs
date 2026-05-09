@@ -4,7 +4,6 @@ public class BounceBullet : BaseProjectile
 {
     [Header("Bounce Settings")]
     [SerializeField] private LayerMask environmentLayer;
-    [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int maxBounces = 3;
 
     [Header("Shrink Settings")]
