@@ -40,7 +40,7 @@ public class EnemyHealth : Health
 
     private void UpdateUI(int current, int max)
     {
-        
+
         if (!isHealthShown)
         {
             GameObject healthBarObj = Instantiate(healthBarPrefab);
@@ -68,6 +68,7 @@ public class EnemyHealth : Health
 
         animator.SetBool("isDead", true);
         enemy.Collection.RemoveEnemy(enemy);
+        EnemyIndicatorManager.Instance.UnregisterEnemy(transform);
 
         Destroy(healthBar.gameObject);
         Destroy(gameObject, 2f);
