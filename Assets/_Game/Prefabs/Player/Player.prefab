@@ -123,9 +123,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingLayerID: 1143440991
+  m_SortingLayer: 3
+  m_SortingOrder: -1
   m_Sprite: {fileID: -1822241651, guid: 2143e49a6e0087147b30d0d3d8a2c855, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -208,7 +208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  healthSlider: {fileID: 0}
 --- !u!114 &3551342090420717348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnergy: 100
   regainEnergyPerSecond: 10
+  currentEnergy: 0
 --- !u!114 &566072303518343088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,9 +235,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3b0ada1c062f2fe908a2fbacd21676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
   rotationSpeed: 15
   feetAnimator: {fileID: 3292920003154960422}
+  moveSound: {fileID: 8300000, guid: a134ef7a99c59e22ca0584229ee988cd, type: 3}
+  moveSoundVolume: 3.6
 --- !u!114 &2332223318591871777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +256,8 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 1
   dashCost: 20
+  dashSound: {fileID: 8300000, guid: 559719d1a9c931459b65237ae629fe63, type: 3}
+  dashSoundVolume: 4.62
 --- !u!114 &2943792230177157983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +288,8 @@ MonoBehaviour:
   shootKey: 323
   damage: 10
   firePoint: {fileID: 150059319073822795}
+  shootSound: {fileID: 8300000, guid: c0e503f17af86a0de913e637c302c04a, type: 3}
+  shootSoundVolume: 5.07
 --- !u!114 &5821759772133921703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +333,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &3770952827574659532
 SpriteRenderer:

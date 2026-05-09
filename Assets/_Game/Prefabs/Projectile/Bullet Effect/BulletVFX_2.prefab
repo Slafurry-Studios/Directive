@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7569454173877829732}
   - component: {fileID: 1731402386040083824}
   - component: {fileID: 9149263029663440091}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BulletVFX_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
