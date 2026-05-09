@@ -10,12 +10,21 @@ public class Enemy : MonoBehaviour
     private EnemyMovement _move;
     private EnemyShoot _shoot;
 
+    // ============ ANIMATOR ==============
+    private Animator[] animators;
+    public Animator BodyAnimator { get; private set; }
+    public Animator FeetAnimator { get; private set; }
+
     private void Start()
     {
         _target = GameObject.FindGameObjectWithTag("Player");
         _sensor = GetComponentInChildren<EnemySensor>();
         _move = GetComponentInChildren<EnemyMovement>();
         _shoot = GetComponentInChildren<EnemyShoot>();
+
+        animators = GetComponentsInChildren<Animator>();
+        BodyAnimator = animators[0];
+        FeetAnimator = animators[1];
     }
 
     public void OnDashStart()

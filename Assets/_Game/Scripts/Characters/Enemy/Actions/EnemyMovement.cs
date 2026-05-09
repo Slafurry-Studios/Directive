@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
     [Range(0f, 10f)]
     [SerializeField] private float moveSoundVolume = 1f;
 
-    private Enemy _data;
+    private Enemy _enemy;
     private Rigidbody2D _rb;
 
     private Vector2 _targetPosition;
@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponentInParent<Rigidbody2D>();
-        _data = GetComponentInParent<Enemy>();
+        _enemy = GetComponentInParent<Enemy>();
 
         _rb.gravityScale = 0f;
         _rb.angularDrag = 0f;
@@ -44,6 +44,8 @@ public class EnemyMovement : MonoBehaviour
         {
             _isMoving = true;
             StartMoveSfx();
+            _enemy.BodyAnimator.SetFloat("move", target.sqrMagnitude);
+            _enemy.FeetAnimator.SetFloat("move", target.sqrMagnitude);
         }
     }
 
@@ -55,6 +57,8 @@ public class EnemyMovement : MonoBehaviour
         _rb.velocity = Vector2.zero;
 
         StopMoveSfx();
+        _enemy.BodyAnimator.SetFloat("move", 0);
+        _enemy.FeetAnimator.SetFloat("move", 0);
     }
 
     public void RotateTo(Vector2 target)
@@ -71,7 +75,7 @@ public class EnemyMovement : MonoBehaviour
             Mathf.MoveTowardsAngle(
                 _rb.rotation,
                 targetAngle,
-                _data.Info.movement.rotationSpeed * Time.fixedDeltaTime
+                _enemy.Info.movement.rotationSpeed * Time.fixedDeltaTime
             );
 
         _rb.MoveRotation(smoothedAngle);
@@ -92,7 +96,7 @@ public class EnemyMovement : MonoBehaviour
             Vector2 newPos =
                 currentPos +
                 direction *
-                _data.Info.movement.moveSpeed *
+                _enemy.Info.movement.moveSpeed *
                 Time.fixedDeltaTime;
 
             _rb.MovePosition(newPos);
@@ -116,7 +120,7 @@ public class EnemyMovement : MonoBehaviour
                 Mathf.MoveTowardsAngle(
                     _rb.rotation,
                     targetAngle,
-                    _data.Info.movement.rotationSpeed * Time.fixedDeltaTime
+                    _enemy.Info.movement.rotationSpeed * Time.fixedDeltaTime
                 );
 
             _rb.MoveRotation(smoothedAngle);

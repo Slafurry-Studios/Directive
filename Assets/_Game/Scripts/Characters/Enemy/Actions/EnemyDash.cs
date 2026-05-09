@@ -25,6 +25,7 @@ public class EnemyDash : MonoBehaviour
         {
             _enemy.OnDashStart();
             StartCoroutine(DashRoutine(direction));
+            _enemy.BodyAnimator.SetBool("Dash", isDashing);
         }
     }
 

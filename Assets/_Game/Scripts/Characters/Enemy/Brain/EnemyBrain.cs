@@ -7,6 +7,7 @@ public abstract class EnemyBrain : MonoBehaviour
     protected EnemySensor _sensor;
     protected EnemyDash _dash;
     protected Enemy _enemyInfo;
+    private EnemyHealth _enemyHealth;
 
     protected virtual void Awake()
     {
@@ -15,11 +16,14 @@ public abstract class EnemyBrain : MonoBehaviour
         _sensor = GetComponentInChildren<EnemySensor>();
         _dash = GetComponentInChildren<EnemyDash>();
         _enemyInfo = GetComponent<Enemy>();
+        _enemyHealth = GetComponentInChildren<EnemyHealth>();
     }
 
     protected virtual void Update()
     {
         if (_enemyInfo.Target == null) return;
+
+        if (_enemyHealth.IsDead) return;
         ExecuteBehavior();
     }
 

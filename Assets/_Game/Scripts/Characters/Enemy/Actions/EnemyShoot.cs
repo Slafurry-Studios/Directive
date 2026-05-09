@@ -11,13 +11,13 @@ public class EnemyShoot : MonoBehaviour
     [Range(0, 10f)]
     [SerializeField] private float shootSoundVolume;
 
-    private Enemy _data;
+    private Enemy _enemy;
     private PatternSpawner _spawner;
     private bool _canAttack = true;
 
     private void Awake()
     {
-        _data = GetComponentInParent<Enemy>();
+        _enemy = GetComponentInParent<Enemy>();
         _spawner = GetComponent<PatternSpawner>();
 
         if (firePoint == null)
@@ -31,6 +31,7 @@ public class EnemyShoot : MonoBehaviour
         if (_canAttack)
         {
             StartCoroutine(AttackRoutine(direction));
+            _enemy.BodyAnimator.Play("shoot");
         }
     }
 
@@ -38,11 +39,11 @@ public class EnemyShoot : MonoBehaviour
     {
         _canAttack = false;
 
-        _spawner.ExecutePattern(_data.Info.attack.damage, direction, firePoint.transform);
+        _spawner.ExecutePattern(_enemy.Info.attack.damage, direction, firePoint.transform);
 
         if (SfxPlayer.Instance != null) SfxPlayer.Instance.PlayEnemySfx(clip: shootSound, volume: shootSoundVolume, loop: false);
 
-        yield return new WaitForSeconds(_data.Info.attack.attackCoolDown);
+        yield return new WaitForSeconds(_enemy.Info.attack.attackCoolDown);
 
         _canAttack = true;
     }
