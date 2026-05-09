@@ -220,6 +220,7 @@ MonoBehaviour:
   overlayFadeDuration: 0.4
   impulseSource: {fileID: 6175427853568362046}
   shakeForce: 0.5
+  healVFX: {fileID: 4658455796893224198, guid: f7ae8402b74f2cb4ba0253fc9f359b4d, type: 3}
 --- !u!114 &3551342090420717348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +236,8 @@ MonoBehaviour:
   maxEnergy: 100
   regainEnergyPerSecond: 10
   currentEnergy: 0
+  energyVFX: {fileID: 4658455796893224198, guid: c3088c03db9dccfb897623c1b2dc42c5,
+    type: 3}
 --- !u!114 &566072303518343088
 MonoBehaviour:
   m_ObjectHideFlags: 0
