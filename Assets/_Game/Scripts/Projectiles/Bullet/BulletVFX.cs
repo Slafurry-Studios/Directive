@@ -6,12 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(TrailRenderer))]
 public class BulletVFX : BaseProjectile
 {
-    [Header("VFX")]
-    public ParticleSystem bulletHitEffect;
-
     private Rigidbody2D rb;
-    private TrailRenderer trail;
-
     private bool isDestroying = false;
 
     private void Awake()
