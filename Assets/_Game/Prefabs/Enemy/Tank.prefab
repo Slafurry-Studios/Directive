@@ -269,9 +269,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!95 &239265364734489043
 Animator:
@@ -324,6 +324,8 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   deathVFX: {fileID: 0}
+  healthBarPrefab: {fileID: 7315872109440623634, guid: b9c523d9f6bc1c822a9cbd4cfc772992,
+    type: 3}
 --- !u!114 &2082020877769413067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +431,7 @@ Transform:
   m_GameObject: {fileID: 6370245498220547769}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.193, y: -0.792, z: 0}
+  m_LocalPosition: {x: -0.144, y: -0.698, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : Health
 {
     [SerializeField] private GameObject deathVFX;
     private Enemy enemy;
     private Animator animator;
+    [SerializeField] private GameObject healthBarPrefab;
+    private EnemyHealthBar healthBar;
+
+    private bool isHealthShown = false;
     protected override void Start()
     {
         base.Start();
@@ -12,16 +17,16 @@ public class EnemyHealth : Health
         OnDeath += Death;
         animator = GetComponent<Animator>();
         enemy = GetComponent<Enemy>();
-
     }
 
     private void HandleHit(int current, int max)
     {
         if (IsDead) return;
         animator.SetTrigger("onHit");
+        UpdateUI(current, max);
 
         if (HitPause.Instance != null)
-            HitPause.Instance.Pause(0.05f); // ← 50ms cukup terasa
+            HitPause.Instance.Pause(0.05f);
     }
 
     public override void ApplyKnockback(Vector2 direction, float force)
@@ -31,6 +36,20 @@ public class EnemyHealth : Health
 
         base.ApplyKnockback(direction, force);
         Invoke(nameof(EnableMovement), 0.5f);
+    }
+
+    private void UpdateUI(int current, int max)
+    {
+        
+        if (!isHealthShown)
+        {
+            GameObject healthBarObj = Instantiate(healthBarPrefab);
+            healthBar = healthBarObj.GetComponent<EnemyHealthBar>();
+            healthBar.SetTarget(transform);
+            isHealthShown = true;
+        }
+
+        healthBar.SetHealth(current, max);
     }
 
     private void EnableMovement()
@@ -43,8 +62,14 @@ public class EnemyHealth : Health
     protected override void Death()
     {
         if (deathVFX != null) Instantiate(deathVFX, transform.position, Quaternion.identity);
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Static;
+
         animator.SetBool("isDead", true);
         enemy.Collection.RemoveEnemy(enemy);
+
+        Destroy(healthBar.gameObject);
         Destroy(gameObject, 2f);
     }
 }

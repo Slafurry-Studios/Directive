@@ -23,7 +23,7 @@ public abstract class Energy : MonoBehaviour
     {
         RegainEnergy();
     }
-    
+
 
     // ================= PUBLIC API =================
     public virtual bool UseEnergy(int amount)
@@ -47,6 +47,14 @@ public abstract class Energy : MonoBehaviour
         if (currentEnergy >= maxEnergy) return;
 
         currentEnergy = Mathf.Min(currentEnergy + GetRegenRate() * Time.deltaTime, maxEnergy);
+        NotifyEnergyChanged();
+    }
+
+    public virtual void RegainEnergy(int amount)
+    {
+        if (currentEnergy >= maxEnergy) return;
+
+        currentEnergy += amount;
         NotifyEnergyChanged();
     }
 
