@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b66c6fd4dba131e4a9b98b4933821f79
+guid: f6071032ac982e9428a026f5335964c1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,17 +106,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tank_death_0
+      name: tank_shoot_0
       rect:
         serializedVersion: 2
         x: 10
-        y: 73
-        width: 96
-        height: 83
+        y: 0
+        width: 95
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,19 +137,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f08ad59dfdaf50c418ad513c13b4b2d2
-      internalID: -1703208392
+      spriteID: 32fc1cc5ed67d6645bca6bad5bc44f84
+      internalID: -1794184059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tank_death_1
+      name: tank_shoot_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 70
-        width: 97
+        x: 129
+        y: 4
+        width: 95
         height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,62 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dc63a4c823ee3d4a82d01cda7b7c5d5
-      internalID: -645473762
+      spriteID: 610807547a50ea04caf8b0b3c8cd6c29
+      internalID: -1506618439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tank_death_2
+      name: tank_shoot_2
       rect:
         serializedVersion: 2
-        x: 241
-        y: 81
-        width: 104
-        height: 86
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd3008d221813c14394075e9adcba551
-      internalID: -864828074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tank_death_3
-      rect:
-        serializedVersion: 2
-        x: 363
-        y: 36
-        width: 97
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 25300bb1b7535d846b9bc34a3ddf07f2
-      internalID: -1611377028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tank_death_4
-      rect:
-        serializedVersion: 2
-        x: 482
+        x: 248
         y: 2
-        width: 97
-        height: 175
+        width: 95
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2163db08cfbd73544a845ff938b5b159
-      internalID: -1925488655
+      spriteID: 52dce8fd33cb02d4babcd755111ff939
+      internalID: 1299336988
       vertices: []
       indices: 
       edges: []
@@ -217,7 +188,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8b84cb1533c085c49a5acdcf858402db
+    spriteID: f697454dd33a1c846813c1d3812e13b3
     internalID: 0
     vertices: []
     indices: 
@@ -225,11 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tank_death_0: -1703208392
-      tank_death_1: -645473762
-      tank_death_2: -864828074
-      tank_death_3: -1611377028
-      tank_death_4: -1925488655
+      tank_shoot_0: -1794184059
+      tank_shoot_1: -1506618439
+      tank_shoot_2: 1299336988
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

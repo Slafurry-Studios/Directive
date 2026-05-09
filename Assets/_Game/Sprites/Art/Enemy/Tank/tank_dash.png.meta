@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 906ea9c3ea94e85c2aabce56ec67383b
+guid: a14f574e6f84a664fb2e753e5c3e18f5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,19 +82,6 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -119,89 +106,39 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: image 5_0
+      name: tank_dash_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 89
-        height: 97
-      alignment: 9
-      pivot: {x: 0.50937027, y: 0.8487578}
+        x: 7
+        y: 15
+        width: 102
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64a4339eb8a962887a3811a6b18f101f
-      internalID: 132046389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: image 5_1
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 4
-        width: 88
-        height: 91
-      alignment: 9
-      pivot: {x: 0.50295275, y: 0.8169515}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 70df3128c0ddd5e3b9d67b8d6f798862
-      internalID: 274525638
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: image 5_2
-      rect:
-        serializedVersion: 2
-        x: 235
-        y: 1
-        width: 98
-        height: 94
-      alignment: 9
-      pivot: {x: 0.5145379, y: 0.8174629}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5edae6b3932ab0be6b3d1b881f2d4eae
-      internalID: 598578887
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: image 5_3
-      rect:
-        serializedVersion: 2
-        x: 355
-        y: 11
-        width: 92
-        height: 84
-      alignment: 9
-      pivot: {x: 0.5074811, y: 0.79210675}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dcb4ba4ab0f27021e966924103d4698d
-      internalID: 720569764
+      spriteID: 26a775b8005bd884491c045233f11a8b
+      internalID: 1101983709
       vertices: []
       indices: 
       edges: []
@@ -209,7 +146,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: beff99b6c9930fc44b8fd5a41bc4c680
     internalID: 0
     vertices: []
     indices: 
@@ -217,10 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      image 5_0: 132046389
-      image 5_1: 274525638
-      image 5_2: 598578887
-      image 5_3: 720569764
+      tank_dash_0: 1101983709
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

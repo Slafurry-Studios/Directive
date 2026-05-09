@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: -5616380828766077910}
   - component: {fileID: 6621893960073708545}
   - component: {fileID: -995413535492482770}
-  - component: {fileID: 8376793982471019474}
   - component: {fileID: 6707206922484193818}
   m_Layer: 0
   m_Name: Laser
@@ -59,6 +58,9 @@ MonoBehaviour:
   environmentLayer:
     serializedVersion: 2
     m_Bits: 256
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   maxBounces: 3
   initialScale: 1
   minimumScale: 0.1
@@ -160,33 +162,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33, y: 0.05}
   m_EdgeRadius: 0
---- !u!50 &8376793982471019474
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6744558972759748}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!96 &6707206922484193818
 TrailRenderer:
   serializedVersion: 3

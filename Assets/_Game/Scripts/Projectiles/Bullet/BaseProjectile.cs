@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(TrailRenderer))]
 public abstract class BaseProjectile : MonoBehaviour
 {
@@ -23,13 +22,14 @@ public abstract class BaseProjectile : MonoBehaviour
     private int damageAmount;
     private int knockbackForce = 5;
 
-    private PooledObject _pooled;
     private float _lifeTimer;
+
+    protected BoxCollider2D boxCollider;
 
     protected virtual void Awake()
     {
-        _pooled = GetComponent<PooledObject>();
         trail = GetComponent<TrailRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     public virtual void Setup(Vector2 launchDirection, int damage)
@@ -37,6 +37,7 @@ public abstract class BaseProjectile : MonoBehaviour
         direction = launchDirection;
         damageAmount = damage;
         _lifeTimer = lifeTime;
+
         if (trail != null)
         {
             trail.Clear();
@@ -56,7 +57,23 @@ public abstract class BaseProjectile : MonoBehaviour
         Move();
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D other)
+    protected RaycastHit2D BoxCastForward(LayerMask mask)
+    {
+        Vector2 size = boxCollider != null ? boxCollider.size : Vector2.one * 0.1f;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float distance = moveSpeed * Time.deltaTime;
+
+        return Physics2D.BoxCast(
+            origin: (Vector2)transform.position,
+            size: size,
+            angle: angle,
+            direction: direction,
+            distance: distance,
+            layerMask: mask
+        );
+    }
+
+    protected virtual void HandleHit(Collider2D other)
     {
         Health target = other.GetComponent<Health>();
 
@@ -76,8 +93,10 @@ public abstract class BaseProjectile : MonoBehaviour
     {
         if (trail != null) trail.enabled = false;
 
-        if (_pooled != null)
-            _pooled.ReturnToPool();
+        PooledObject pooled = GetComponent<PooledObject>();
+
+        if (pooled != null)
+            pooled.ReturnToPool();
         else
             Destroy(gameObject);
     }
