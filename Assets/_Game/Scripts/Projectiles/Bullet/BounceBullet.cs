@@ -89,7 +89,7 @@ public class BounceBullet : BaseProjectile
             return;
         }
 
-        if (SfxPlayer.Instance != null) SfxPlayer.Instance.PlayEnemySfx(clip: bounceSound, volume: bounceSoundVolume, loop: false);
+        if (SfxPlayer.Instance != null) SfxPlayer.Instance.PlayEnvironmentSfx(clip: bounceSound, volume: bounceSoundVolume, loop: false);
 
         direction = Vector2.Reflect(direction, normal).normalized;
     }
