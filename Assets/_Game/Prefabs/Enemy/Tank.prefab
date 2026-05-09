@@ -307,6 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyInfo: {fileID: 11400000, guid: 89e789aebac6637448d5c38227436f93, type: 2}
   _target: {fileID: 0}
+  _collection: {fileID: 0}
 --- !u!114 &8981338066825873223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,6 +515,9 @@ MonoBehaviour:
   projectileLayer:
     serializedVersion: 2
     m_Bits: 1024
+  enemyLayerForBullet:
+    serializedVersion: 2
+    m_Bits: 64
   projectileTag: EnemyBullet
   spreadCount: 5
   spreadAngle: 45

@@ -212,6 +212,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   invincibilityDuration: 1
+  blinkInterval: 0.1
 --- !u!114 &3551342090420717348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +315,9 @@ MonoBehaviour:
   projectileLayer:
     serializedVersion: 2
     m_Bits: 512
+  enemyLayerForBullet:
+    serializedVersion: 2
+    m_Bits: 128
   projectileTag: PlayerBullet
 --- !u!50 &172919344976134809
 Rigidbody2D:
