@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class EnemyHealth : Health
 {
+    [SerializeField] private GameObject healthBarPrefab;
     [SerializeField] private GameObject deathVFX;
     private Enemy enemy;
     private Animator animator;
-    [SerializeField] private GameObject healthBarPrefab;
     private EnemyHealthBar healthBar;
 
     private bool isHealthShown = false;

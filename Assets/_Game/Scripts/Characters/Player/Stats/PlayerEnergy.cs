@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class PlayerEnergy : Energy
 {
+    [Header("VFX")]
+    [SerializeField] private GameObject energyVFX;
+
     protected override void Start()
     {
         base.Start();
@@ -22,5 +25,11 @@ public class PlayerEnergy : Energy
         {
             EnergyHUD.Instance.UpdateUI(current, max);
         }
+    }
+
+    public override void RegainEnergy(int amount)
+    {
+        base.RegainEnergy(amount);
+        Instantiate(energyVFX, transform.position, Quaternion.identity);
     }
 }

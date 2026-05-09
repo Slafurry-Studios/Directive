@@ -18,6 +18,9 @@ public class PlayerHealth : Health
     [SerializeField] private CinemachineImpulseSource impulseSource;
     [SerializeField] private float shakeForce = 1f;
 
+    [Header("VFX")]
+    [SerializeField] private GameObject healVFX;
+
     private int originalLayer;
     private Animator animator;
     private SpriteRenderer[] spriteRenderers;
@@ -79,6 +82,12 @@ public class PlayerHealth : Health
         }
 
         SetOverlayAlpha(0f);
+    }
+
+    public override void Heal(int amount)
+    {
+        base.Heal(amount);
+        Instantiate(healVFX, transform.position, Quaternion.identity);
     }
 
     private void SetOverlayAlpha(float alpha)
