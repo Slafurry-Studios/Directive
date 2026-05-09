@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Health
 {
+    [SerializeField] private LayerMask invincibilityLayer;
+    [SerializeField] private float invincibilityDuration = 1.0f;
+    
+    private int originalLayer;
     private Animator animator;
     protected override void Start()
     {
@@ -12,12 +16,19 @@ public class PlayerHealth : Health
         OnDeath += HandlePlayerDeath;
         animator = GetComponent<Animator>();
 
+        originalLayer = gameObject.layer;
+
         UpdateUI(currentHealth, maxHealth);
     }
 
     private void HandlePlayerHit(int current, int max)
     {
         animator.SetTrigger("onHit");
+
+        gameObject.layer = MaskToLayer(invincibilityLayer);
+
+        CancelInvoke(nameof(RestoreLayer));
+        Invoke(nameof(RestoreLayer), invincibilityDuration);
 
         UpdateUI(current, max);
     }
@@ -56,5 +67,23 @@ public class PlayerHealth : Health
     {
         Scene activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.buildIndex);
+    }
+
+    private void RestoreLayer()
+    {
+        gameObject.layer = originalLayer;
+    }
+
+    private int MaskToLayer(LayerMask mask)
+    {
+        int bitmask = mask.value;
+        if (bitmask == 0) return 0;
+        int result = 0;
+        while (bitmask > 1)
+        {
+            bitmask >>= 1;
+            result++;
+        }
+        return result;
     }
 }
