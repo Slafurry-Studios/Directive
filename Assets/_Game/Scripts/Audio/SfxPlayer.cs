@@ -104,8 +104,16 @@ public class SfxPlayer : MonoBehaviour
 
         float finalVolume = Mathf.Clamp01(volume * _sfxVolume);
 
+        int sameClipCount = 0;
+        foreach (AudioSource source in pool)
+            if (source.isPlaying && source.clip == clip)
+                sameClipCount++;
+
+        if (sameClipCount >= 20) return;
+
         if (loop)
         {
+
             if (_loopingSources.ContainsKey(clip)) return;
             AudioSource source = GetAvailableSource(pool);
             source.clip = clip;
@@ -117,16 +125,28 @@ public class SfxPlayer : MonoBehaviour
         else
         {
             AudioSource source = GetAvailableSource(pool);
+            source.clip = clip;
             source.loop = false;
             source.PlayOneShot(clip, finalVolume);
         }
     }
-
     private AudioSource GetAvailableSource(AudioSource[] pool)
     {
+        int playingCount = 0;
         foreach (AudioSource source in pool)
+        {
             if (!source.isPlaying) return source;
-        return pool[0];
+            playingCount++;
+        }
+
+        Debug.LogWarning($"Pool full! All {playingCount} source are being played.");
+
+        AudioSource oldest = pool[0];
+        foreach (AudioSource source in pool)
+            if (source.time > oldest.time)
+                oldest = source;
+
+        return oldest;
     }
 
     private AudioSource[] CreatePool(string groupName, int size)

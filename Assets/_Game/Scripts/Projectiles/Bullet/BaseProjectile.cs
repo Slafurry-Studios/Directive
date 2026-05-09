@@ -67,7 +67,7 @@ public abstract class BaseProjectile : MonoBehaviour
         }
 
         if (SfxPlayer.Instance != null)
-            SfxPlayer.Instance.PlayEnemySfx(clip: hitSound, volume: hitSoundVolume, loop: false);
+            SfxPlayer.Instance.PlayEnvironmentSfx(clip: hitSound, volume: hitSoundVolume, loop: false);
 
         ReturnOrDestroy();
     }

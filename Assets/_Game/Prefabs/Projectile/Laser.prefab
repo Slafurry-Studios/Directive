@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 795641038196298374}
+  - component: {fileID: -5616380828766077910}
   - component: {fileID: 6621893960073708545}
-  - component: {fileID: 8646858830204719791}
-  - component: {fileID: -1884289349679694866}
-  - component: {fileID: -4304476677487787157}
+  - component: {fileID: -995413535492482770}
+  - component: {fileID: 8376793982471019474}
   - component: {fileID: 6707206922484193818}
   m_Layer: 0
   m_Name: Laser
@@ -36,6 +36,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5616380828766077910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744558972759748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86090194ba4e84f9586f0b7a09aaf75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 30
+  lifeTime: 5
+  hitSound: {fileID: 8300000, guid: f4fc1233d89c6c458bc439d7ebb790da, type: 3}
+  hitSoundVolume: 4.55
+  bounceSound: {fileID: 8300000, guid: 7e28f6096cbb782f2afd695152284a3f, type: 3}
+  bounceSoundVolume: 4.83
+  bulletHitEffect: {fileID: 1731402386040083824, guid: 77a28ebc1f0da00488a282fc1d328e0b,
+    type: 3}
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  maxBounces: 3
+  initialScale: 1
+  minimumScale: 0.1
+  shrinkSpeed: 0.3
 --- !u!212 &6621893960073708545
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -82,32 +109,13 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.33, y: 0.05}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8646858830204719791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6744558972759748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff65eb6e30ba0924b859ef6aee3022fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 32.88
-  lifeTime: 21.98
-  hitSound: {fileID: 0}
-  hitSoundVolume: 0
-  bounceSound: {fileID: 0}
-  bounceSoundVolume: 0
-  bulletHitEffect: {fileID: 0}
---- !u!61 &-1884289349679694866
+--- !u!61 &-995413535492482770
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +152,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.33, y: 0.05}
-    newSize: {x: 0.33, y: 0.05}
+    newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -152,7 +160,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33, y: 0.05}
   m_EdgeRadius: 0
---- !u!50 &-4304476677487787157
+--- !u!50 &8376793982471019474
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -200,7 +208,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,10 +226,10 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2024750657
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -231,20 +239,29 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.13376236
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0.5690508, b: 0.5613208, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -268,7 +285,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -278,8 +295,8 @@ TrailRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 0
   m_MaskInteraction: 0
-  m_Autodestruct: 0
+  m_Autodestruct: 1
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
