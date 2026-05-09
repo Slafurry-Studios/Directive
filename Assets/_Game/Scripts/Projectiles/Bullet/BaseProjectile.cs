@@ -17,6 +17,7 @@ public abstract class BaseProjectile : MonoBehaviour
 
     [Header("VFX")]
     public ParticleSystem bulletHitEffect;
+    public ParticleSystem bulletBounceEffect;
 
     protected TrailRenderer trail;
     protected Vector2 direction;
@@ -84,10 +85,19 @@ public abstract class BaseProjectile : MonoBehaviour
             target.ApplyKnockback(direction, knockbackForce);
         }
 
+        if (bulletHitEffect != null)
+            Instantiate(bulletHitEffect, transform.position, Quaternion.identity);
+
         if (SfxPlayer.Instance != null)
             SfxPlayer.Instance.PlayEnvironmentSfx(clip: hitSound, volume: hitSoundVolume, loop: false);
 
         ReturnOrDestroy();
+    }
+
+    protected void SpawnBounceEffect()
+    {
+        if (bulletBounceEffect != null)
+            Instantiate(bulletBounceEffect, transform.position, Quaternion.identity);
     }
 
     protected void ReturnOrDestroy()
@@ -105,5 +115,4 @@ public abstract class BaseProjectile : MonoBehaviour
     protected abstract void Move();
 
     public void SetEnemyLayer(LayerMask layer) => enemyLayer = layer;
-
 }

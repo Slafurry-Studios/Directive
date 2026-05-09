@@ -4,7 +4,6 @@ public class BounceBullet : BaseProjectile
 {
     [Header("Bounce Settings")]
     [SerializeField] private LayerMask environmentLayer;
-    [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int maxBounces = 3;
 
     [Header("Shrink Settings")]
@@ -72,8 +71,10 @@ public class BounceBullet : BaseProjectile
             return;
         }
 
+        SpawnBounceEffect();
+
         if (SfxPlayer.Instance != null)
-            SfxPlayer.Instance.PlayEnvironmentSfx(clip: bounceSound, volume: bounceSoundVolume, loop: false);
+            SfxPlayer.Instance.PlayBulletSfx(clip: bounceSound, volume: bounceSoundVolume, loop: false);
 
         direction = Vector2.Reflect(direction, normal).normalized;
         transform.Translate(direction * 0.05f, Space.World);

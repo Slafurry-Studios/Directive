@@ -55,12 +55,11 @@ MonoBehaviour:
   bounceSoundVolume: 4.83
   bulletHitEffect: {fileID: 1731402386040083824, guid: 77a28ebc1f0da00488a282fc1d328e0b,
     type: 3}
+  bulletBounceEffect: {fileID: 1731402386040083824, guid: 77a28ebc1f0da00488a282fc1d328e0b,
+    type: 3}
   environmentLayer:
     serializedVersion: 2
     m_Bits: 256
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
   maxBounces: 3
   initialScale: 1
   minimumScale: 0.1
@@ -204,7 +203,7 @@ TrailRenderer:
   m_SortingLayerID: -2024750657
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 0.3
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -214,7 +213,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.13376236
+        value: 0.054660797
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -235,7 +234,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.5690508, b: 0.5613208, a: 1}
+      key0: {r: 1, g: 0.62614334, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -272,6 +271,6 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0
   m_MaskInteraction: 0
-  m_Autodestruct: 1
+  m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1

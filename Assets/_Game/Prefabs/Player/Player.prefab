@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 3770952827574659532}
   - component: {fileID: 2295606349921838938}
   - component: {fileID: 6285451189861818541}
+  - component: {fileID: 3006135578887742997}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -310,14 +311,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32a02d4ec1d39786997c53c2c330ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6744558972759748, guid: 985c60b5d16a0cd46bc7a01bfd887b4d,
+  projectilePrefab: {fileID: 6744558972759748, guid: 999124a63d8e816248ac8bc4b970495e,
     type: 3}
   projectileLayer:
     serializedVersion: 2
     m_Bits: 512
   enemyLayerForBullet:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   projectileTag: PlayerBullet
 --- !u!50 &172919344976134809
 Rigidbody2D:
@@ -464,3 +465,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7965393, y: 0.23044777}
   m_EdgeRadius: 0
+--- !u!114 &3006135578887742997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112240186625215184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebce1aeaa700351b84f60b0a8a99248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  squashX: 1.3
+  squashY: 0.7
+  duration: 0.15

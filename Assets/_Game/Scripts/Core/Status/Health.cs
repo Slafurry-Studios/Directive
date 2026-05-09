@@ -10,10 +10,12 @@ public abstract class Health : MonoBehaviour
     // ================= EVENTS =================
     public event Action<int, int> OnHealthChanged;
     public event Action OnDeath;
-
+    private SquashOnHit squashOnHit;
     // ================= UNITY LIFECYCLE =================
     protected virtual void Start()
     {
+        squashOnHit = GetComponent<SquashOnHit>();
+
         currentHealth = maxHealth;
         NotifyHealthChanged();
     }
@@ -26,6 +28,8 @@ public abstract class Health : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth - amount, 0);
         NotifyHealthChanged();
 
+        if (squashOnHit != null) squashOnHit.Play();
+        
         if (currentHealth == 0)
             HandleDeath();
     }
