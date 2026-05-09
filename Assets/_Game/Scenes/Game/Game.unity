@@ -834,6 +834,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2332223318591871777, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
+        type: 3}
+      propertyPath: invincibilityLayer.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 2587178995501589127, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -883,6 +888,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174888551730391456, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
+        type: 3}
+      propertyPath: invincibilityLayer.m_Bits
+      value: 4096
       objectReference: {fileID: 0}
     - target: {fileID: 7112240186625215184, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
         type: 3}
