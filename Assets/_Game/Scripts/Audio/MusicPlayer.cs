@@ -25,20 +25,18 @@ public class MusicPlayer : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            LoadVolume();
+            OnReady?.Invoke(); // invoke di Awake setelah Instance siap
         }
         else
         {
             Destroy(gameObject);
-            return;
         }
-
     }
 
-    void Start()
-    {
-        LoadVolume();
-        OnReady?.Invoke();
-    }
+    void Start() { } // bisa dikosongkan
+
+
 
     // ─── Music ────────────────────────────────────────────────────────────────
 

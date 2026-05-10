@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fbead736837f146a1a32f36b2edf9f, type: 3}
+  m_Name: Commander
+  m_EditorClassIdentifier: 
+  dialogEntries:
+  - text: "[Intercepting transmission\u2026]"
+    color: 0
+  - text: "[Intercepting transmission\u2026]"
+    color: 0
+  - text: '[Decryption failed. Displaying raw audio log]'
+    color: 0
+  - text: '[SOURCE: UNKNOWN]'
+    color: 0
+  - text: '[TIMESTAMP: CORRUPTED]'
+    color: 3
+  - text: "[PLAYBACK: INITIATING\u2026]"
+    color: 0
+  - text: "[00:00] \"Why\u2026 why did you do this?\""
+    color: 0
+  - text: "[00:04] \"You were meant to\u2026 protect us\u2026\""
+    color: 0
+  - text: "[00:09] \"What did we do\u2026 to deserve\u2026 this\u2026\""
+    color: 0
+  - text: '[SIGNAL DROP DETECTED]'
+    color: 3
+  - text: "[RESUMING\u2026]"
+    color: 0
+  - text: ' '
+    color: 0
+  - text: "[00:13] \"Wait\u2026 your eyes\u2026\""
+    color: 0
+  - text: "[00:16] \"You don't even know\u2026 do you\u2026\""
+    color: 0
+  - text: "[00:20] \"You still think\u2026 you are\u2026 helping\u2026\""
+    color: 0
+  - text: '[SIGNAL DROP DETECTED]'
+    color: 3
+  - text: "[RESUMING\u2026]"
+    color: 0
+  - text: ' '
+    color: 0
+  - text: "[00:27] \"Hayes\u2026? Is that\u2026 you?\""
+    color: 0
+  - text: '[00:30] "Why?"'
+    color: 0
+  - text: "[00:32] \"Wait, you're not\u2026 in control\u2026 are you?\"\n"
+    color: 0
+  - text: ' '
+    color: 0
+  - text: '[VOICE MATCH: FAILED. IDENTITY UNKNOWN] '
+    color: 3
+  - text: '[FILE INTEGRITY: 61%] '
+    color: 0
+  - text: ' '
+    color: 0
+  - text: '[MISSION COMPLETE] '
+    color: 2
+  - text: "[DIRECTIVE: PROTECT AND SERVE\u2026OK] "
+    color: 2

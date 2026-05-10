@@ -22,6 +22,6 @@ MonoBehaviour:
     attackCoolDown: 0.2
     projectileSpeed: 20
   dash:
-    dashSpeed: 30
+    dashSpeed: 20
     dashDuration: 0.2
     dashCooldown: 1

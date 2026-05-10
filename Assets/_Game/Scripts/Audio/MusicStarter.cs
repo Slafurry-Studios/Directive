@@ -11,9 +11,11 @@ public class MusicStarter : MonoBehaviour
         if (MusicPlayer.Instance != null)
             MusicPlayer.Instance.PlayMusic(music, relativeVolume);
         else
+        {
+            MusicPlayer.OnReady -= Play;
             MusicPlayer.OnReady += Play;
+        }
     }
-
     private void Play()
     {
         MusicPlayer.Instance.PlayMusic(music, relativeVolume);

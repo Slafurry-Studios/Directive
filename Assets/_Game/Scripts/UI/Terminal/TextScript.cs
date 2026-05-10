@@ -102,15 +102,15 @@ public class TextScript : MonoBehaviour
 
         foreach (var entry in dialogData.dialogEntries)
         {
-            if (entry == null || string.IsNullOrWhiteSpace(entry.text))
-                continue;
+            // if (entry == null || string.IsNullOrWhiteSpace(entry.text))
+            //     continue;
 
             string[] splitLines = entry.text.Split('\n');
 
             foreach (string line in splitLines)
             {
-                if (string.IsNullOrWhiteSpace(line))
-                    continue;
+                // if (string.IsNullOrWhiteSpace(line))
+                //     continue;
 
                 processedLines.Add((line.Trim(), entry.color));
             }
