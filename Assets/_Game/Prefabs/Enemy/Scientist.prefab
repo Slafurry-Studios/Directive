@@ -305,8 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1803e941fcf9f7138be2006d353d3c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyInfo: {fileID: 11400000, guid: 89e789aebac6637448d5c38227436f93, type: 2}
-  _target: {fileID: 0}
+  _enemyInfo: {fileID: 11400000, guid: 3f1c205f3ecbb6c67af033aa3e0ba971, type: 2}
 --- !u!114 &8981338066825873223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  deathVFX: {fileID: 0}
+  healthBarPrefab: {fileID: 7315872109440623634, guid: b9c523d9f6bc1c822a9cbd4cfc772992,
+    type: 3}
 --- !u!114 &1724529981736776822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,6 +466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffset: 90
+  moveSound: {fileID: 0}
+  moveSoundVolume: 1
 --- !u!114 &1103102544283348737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,6 +481,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2838424155064479233}
+  shootSound: {fileID: 0}
+  shootSoundVolume: 0
 --- !u!114 &8950764816017033939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,6 +495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8daf40dddc9db14b9023f977f558b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashSound: {fileID: 0}
+  dashSoundVolume: 0
 --- !u!114 &2259724398434592990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,6 +514,8 @@ MonoBehaviour:
   projectileLayer:
     serializedVersion: 2
     m_Bits: 1024
+  enemyLayerForBullet:
+    serializedVersion: 2
+    m_Bits: 0
   projectileTag: EnemyBullet
   circleCount: 12
-  rotationSpeed: 50
