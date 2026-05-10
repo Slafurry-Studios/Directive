@@ -64,12 +64,14 @@ public class EnemyHealth : Health
 
     protected override void Death()
     {
+        enemy.DeactivateAll();
+        enemy.Collection.RemoveEnemy(enemy);
+        EnemyIndicatorManager.Instance.UnregisterEnemy(transform);
+
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Static;
 
         animator.SetBool("isDead", true);
-        enemy.Collection.RemoveEnemy(enemy);
-        EnemyIndicatorManager.Instance.UnregisterEnemy(transform);
 
         Destroy(healthBar.gameObject);
         Destroy(gameObject, 2f);

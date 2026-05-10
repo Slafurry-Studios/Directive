@@ -179,6 +179,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3241351933941645523}
+  - component: {fileID: 8082093477313576529}
+  - component: {fileID: 1930280075013814583}
   - component: {fileID: 1132723610185488243}
   - component: {fileID: 5585932982280728968}
   m_Layer: 6
@@ -203,6 +205,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2733189010587674715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8082093477313576529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749415810190413620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 324feb0f7a5e1494192d74e66995aa19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invincibilityLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  invincibilityDuration: 1
+  blinkInterval: 0.1
+--- !u!114 &1930280075013814583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749415810190413620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327aba044f5aa442aa8f4bc65c8ba43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overlayPeakAlpha: 0.4
+  overlayFadeDuration: 0.4
+  shakeForce: 1
 --- !u!114 &1132723610185488243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,16 +474,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  invincibilityLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  invincibilityDuration: 1
-  blinkInterval: 0.1
-  damageOverlay: {fileID: 0}
-  overlayPeakAlpha: 0.4
-  overlayFadeDuration: 0.4
-  impulseSource: {fileID: 0}
-  shakeForce: 0.5
   healVFX: {fileID: 4658455796893224198, guid: f7ae8402b74f2cb4ba0253fc9f359b4d, type: 3}
 --- !u!114 &5453804913925169458
 MonoBehaviour:
