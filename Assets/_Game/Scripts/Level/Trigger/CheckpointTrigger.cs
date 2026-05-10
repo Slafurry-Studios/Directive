@@ -11,4 +11,6 @@ public class CheckpointTrigger : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+
+    public int CheckPointID => checkpointID;
 }

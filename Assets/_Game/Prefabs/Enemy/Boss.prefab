@@ -96,7 +96,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: -2
   m_Sprite: {fileID: -1822241651, guid: 2143e49a6e0087147b30d0d3d8a2c855, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -140,8 +140,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.35, y: 7.29, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.61, y: 1.61, z: 1.61}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 554426001644796360}
   - {fileID: 7015151026453286596}
@@ -190,8 +190,8 @@ SpriteRenderer:
   m_SortingLayerID: 1143440991
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 488022837, guid: 0fd3b60d37f91ac4baed5799eec59335, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -1967482129, guid: ae3390b0a1adf76448b1b1df1c5cebd0, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -237,7 +237,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.89, y: 0.83}
+    oldSize: {x: 0.96, y: 1.19}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -306,9 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1803e941fcf9f7138be2006d353d3c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyInfo: {fileID: 11400000, guid: 89e789aebac6637448d5c38227436f93, type: 2}
-  _target: {fileID: 0}
-  _collection: {fileID: 0}
+  _enemyInfo: {fileID: 11400000, guid: a4754d4fe67218433aeacd8e095b492f, type: 2}
 --- !u!114 &8981338066825873223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +321,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  deathVFX: {fileID: 0}
+  healthBarPrefab: {fileID: 7315872109440623634, guid: b9c523d9f6bc1c822a9cbd4cfc772992,
+    type: 3}
 --- !u!114 &1599616916668525213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,7 +438,7 @@ Transform:
   m_GameObject: {fileID: 6370245498220547769}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.193, y: -0.792, z: 0}
+  m_LocalPosition: {x: -0.38, y: -0.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -493,7 +492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffset: 90
-  moveSound: {fileID: 0}
+  moveSound: {fileID: 8300000, guid: a134ef7a99c59e22ca0584229ee988cd, type: 3}
   moveSoundVolume: 1
 --- !u!114 &1103102544283348737
 MonoBehaviour:
@@ -508,7 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2838424155064479233}
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: c0e503f17af86a0de913e637c302c04a, type: 3}
   shootSoundVolume: 0
 --- !u!114 &8950764816017033939
 MonoBehaviour:
@@ -522,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8daf40dddc9db14b9023f977f558b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSound: {fileID: 0}
+  dashSound: {fileID: 8300000, guid: 559719d1a9c931459b65237ae629fe63, type: 3}
   dashSoundVolume: 0
 --- !u!114 &2259724398434592990
 MonoBehaviour:
@@ -536,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01815cb3a2c89eca48c74d6c29068e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6744558972759748, guid: 999124a63d8e816248ac8bc4b970495e,
+  projectilePrefab: {fileID: 6744558972759748, guid: 6b879c49869b23dd4ac05eaffb9a9151,
     type: 3}
   projectileLayer:
     serializedVersion: 2
@@ -545,4 +544,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   projectileTag: EnemyBullet
-  circleCount: 12
+  circleCount: 30

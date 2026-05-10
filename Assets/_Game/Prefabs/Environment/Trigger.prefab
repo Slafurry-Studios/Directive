@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1079552516454111729}
   - component: {fileID: 5229323990559767049}
+  - component: {fileID: 6603243866512845871}
   - component: {fileID: 5488594207344283903}
   m_Layer: 13
   m_Name: Trigger
@@ -47,6 +48,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToActivate: []
   objectToDeactivate: []
+--- !u!114 &6603243866512845871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534227634837767656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd00cabd4ad4e74fa832f766e33dc8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointID: 0
 --- !u!61 &5488594207344283903
 BoxCollider2D:
   m_ObjectHideFlags: 0

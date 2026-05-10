@@ -8,16 +8,14 @@ public abstract class BaseProjectile : MonoBehaviour
     protected float moveSpeed = 10f;
     [SerializeField] protected float lifeTime = 5f;
     protected LayerMask enemyLayer;
+    [SerializeField] protected LayerMask environmentLayer;
 
     [Header("Audio Settings")]
     [SerializeField] private AudioClip hitSound;
     [Range(0, 10f)][SerializeField] private float hitSoundVolume;
-    [SerializeField] protected AudioClip bounceSound;
-    [Range(0, 10f)][SerializeField] protected float bounceSoundVolume;
 
     [Header("VFX")]
     public ParticleSystem bulletHitEffect;
-    public ParticleSystem bulletBounceEffect;
 
     [Header("Shrink Settings")]
     [SerializeField] private bool enableShrink = false;
@@ -35,6 +33,7 @@ public abstract class BaseProjectile : MonoBehaviour
     private bool _isShrinking = false;
 
     protected BoxCollider2D boxCollider;
+    protected virtual bool HandleEnvironmentInUpdate => true;
 
     protected virtual void Awake()
     {
@@ -72,10 +71,28 @@ public abstract class BaseProjectile : MonoBehaviour
             return;
         }
 
+        if (HandleEnvironmentInUpdate)
+        {
+            RaycastHit2D envHit = BoxCastForward(environmentLayer);
+            if (envHit.collider != null)
+            {
+                HandleEnvironmentHit();
+                return;
+            }
+        }
+
         Move();
 
         if (enableShrink && _isShrinking)
             UpdateShrink();
+    }
+
+    protected virtual void HandleEnvironmentHit()
+    {
+        if (bulletHitEffect != null)
+            Instantiate(bulletHitEffect, transform.position, Quaternion.identity);
+
+        ReturnOrDestroy();
     }
 
     protected RaycastHit2D BoxCastForward(LayerMask mask)
@@ -113,11 +130,6 @@ public abstract class BaseProjectile : MonoBehaviour
         ReturnOrDestroy();
     }
 
-    protected void SpawnBounceEffect()
-    {
-        if (bulletBounceEffect != null)
-            Instantiate(bulletBounceEffect, transform.position, Quaternion.identity);
-    }
     protected void StartShrinking()
     {
         if (enableShrink)

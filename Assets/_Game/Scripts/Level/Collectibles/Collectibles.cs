@@ -9,8 +9,8 @@ public class Collectibles : MonoBehaviour
     {
         if (entity.CompareTag("Player"))
         {
-            if (type == COLLECTIBLE_TYPE.HEALTH) entity.GetComponent<PlayerHealth>().Heal(effect);
-            if (type == COLLECTIBLE_TYPE.ENERGY) entity.GetComponent<PlayerEnergy>().RegainEnergy(effect);
+            if (type == COLLECTIBLE_TYPE.HEALTH) entity.GetComponentInChildren<PlayerHealth>().Heal(effect);
+            if (type == COLLECTIBLE_TYPE.ENERGY) entity.GetComponentInChildren<PlayerEnergy>().RegainEnergy(effect);
 
             Destroy(gameObject);
         }

@@ -10,16 +10,16 @@ public class EnemyHealth : Health
     private bool isHealthShown = false;
     protected override void Start()
     {
-        base.Start();
-
-        OnHealthChanged += HandleHit;
-        OnDeath += Death;
-
         animator = GetComponent<Animator>();
         enemy = GetComponent<Enemy>();
 
         maxHealth = enemy.Info.stats.maxHealth;
         currentHealth = maxHealth;
+
+        base.Start();
+
+        OnHealthChanged += HandleHit;
+        OnDeath += Death;
     }
 
     private void HandleHit(int current, int max)
@@ -44,13 +44,20 @@ public class EnemyHealth : Health
     private void UpdateUI(int current, int max)
     {
 
-        if (!isHealthShown)
+        if (!isHealthShown && healthBarPrefab.GetComponent<BossHealthBar>() == null)
         {
             GameObject healthBarObj = Instantiate(healthBarPrefab);
             healthBar = healthBarObj.GetComponent<EnemyHealthBar>();
             healthBar.SetTarget(transform);
             isHealthShown = true;
         }
+
+        if (healthBarPrefab.GetComponent<BossHealthBar>() != null)
+        {
+            healthBarPrefab.SetActive(true);
+            healthBar = healthBarPrefab.GetComponent<EnemyHealthBar>();
+        }
+
 
         healthBar.SetHealth(current, max);
     }

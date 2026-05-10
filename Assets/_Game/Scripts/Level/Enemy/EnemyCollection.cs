@@ -21,7 +21,20 @@ public class EnemyCollection : MonoBehaviour
         }
     }
 
-    public void AddEnemy(Enemy enemy)
+    private void OnEnable()
+    {
+        enemies.Clear();
+
+        var found = GetComponentsInChildren<Enemy>(true);
+
+        foreach (var enemy in found)
+        {
+            AddEnemy(enemy);
+        }
+
+    }
+
+    private void AddEnemy(Enemy enemy)
     {
         if (!enemies.Contains(enemy))
         {
@@ -31,6 +44,7 @@ public class EnemyCollection : MonoBehaviour
 
     public void RemoveEnemy(Enemy enemy)
     {
+
         if (enemies.Contains(enemy))
         {
             enemies.Remove(enemy);
