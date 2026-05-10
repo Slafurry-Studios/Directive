@@ -5,9 +5,8 @@ public class MainMenu : MonoBehaviour
 {
     // ============ VARIABLES ============
     [Header("Scene Configuration")]
-    [SerializeField]
-    [Tooltip("The exact name of the main game scene to load when starting or continuing.")]
-    private string gameSceneName = "GameScene";
+    [SerializeField] private string introSceneName = "Intro";
+    [SerializeField] private string gameSceneName = "Game";
 
     [SerializeField]
     [Tooltip("The exact name of the settings menu scene to load.")]
@@ -17,10 +16,24 @@ public class MainMenu : MonoBehaviour
     [Tooltip("The exact name of the about menu scene to load.")]
     private string aboutMenuSceneName = "AboutMenu";
 
+    [Header("ContinueBtn")]
+    [SerializeField] private GameObject ContinueBtn;
+
     // ============ LOGIC ============
+
+    void Start()
+    {
+        int progress = PlayerPrefs.GetInt("PlayerCheckpoint", 0);
+        if (progress < 1)
+        {
+            ContinueBtn.SetActive(false);
+        }
+    }
+
     public void StartGame()
     {
-        SceneManager.LoadScene(gameSceneName);
+        PlayerPrefs.SetInt("PlayerCheckpoint", 0);
+        SceneManager.LoadScene(introSceneName);
     }
 
     public void ContinueGame()
