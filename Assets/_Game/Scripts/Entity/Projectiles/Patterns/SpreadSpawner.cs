@@ -6,7 +6,7 @@ public class SpreadSpawner : PatternSpawner
     [SerializeField] private int spreadCount = 5;
     [SerializeField] private float spreadAngle = 45f;
 
-    public override void ExecutePattern(int damage, Vector2 direction, Transform position)
+    public override void ExecutePattern(int damage, Vector2 direction, Transform position, int speed)
     {
         float baseAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         float startAngle = baseAngle - (spreadAngle / 2f);
@@ -16,7 +16,7 @@ public class SpreadSpawner : PatternSpawner
         {
             float angle = startAngle + (step * i);
             Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
-            SpawnProjectile(position, dir, damage);
+        SpawnProjectile(position, dir, damage, speed);
         }
     }
 }

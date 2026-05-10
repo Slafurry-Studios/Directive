@@ -39,7 +39,7 @@ public class EnemyShoot : MonoBehaviour
     {
         _canAttack = false;
 
-        _spawner.ExecutePattern(_enemy.Info.attack.damage, direction, firePoint.transform);
+        _spawner.ExecutePattern(_enemy.Info.attack.damage, direction, firePoint.transform, _enemy.Info.attack.projectileSpeed);
 
         if (SfxPlayer.Instance != null) SfxPlayer.Instance.PlayEnemySfx(clip: shootSound, volume: shootSoundVolume, loop: false);
 

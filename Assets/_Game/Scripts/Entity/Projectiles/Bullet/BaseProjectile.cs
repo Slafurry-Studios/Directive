@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BaseProjectile : MonoBehaviour
 {
     [Header("Base Settings")]
-    [SerializeField] protected float moveSpeed = 10f;
+    protected float moveSpeed = 10f;
     [SerializeField] protected float lifeTime = 5f;
     protected LayerMask enemyLayer;
 
@@ -19,12 +19,20 @@ public abstract class BaseProjectile : MonoBehaviour
     public ParticleSystem bulletHitEffect;
     public ParticleSystem bulletBounceEffect;
 
+    [Header("Shrink Settings")]
+    [SerializeField] private bool enableShrink = false;
+    [SerializeField] private float initialScale = 1f;
+    [SerializeField] private float minimumScale = 0.1f;
+    [SerializeField] private float shrinkSpeed = 0.3f;
+
     protected TrailRenderer trail;
     protected Vector2 direction;
     private int damageAmount;
     private int knockbackForce = 5;
 
     private float _lifeTimer;
+    private float _currentScale;
+    private bool _isShrinking = false;
 
     protected BoxCollider2D boxCollider;
 
@@ -34,11 +42,19 @@ public abstract class BaseProjectile : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    public virtual void Setup(Vector2 launchDirection, int damage)
+    public virtual void Setup(Vector2 launchDirection, int damage, int speed)
     {
         direction = launchDirection;
         damageAmount = damage;
+        moveSpeed = speed;
         _lifeTimer = lifeTime;
+
+        if (enableShrink)
+        {
+            _currentScale = initialScale;
+            _isShrinking = false;
+            transform.localScale = Vector3.one * _currentScale;
+        }
 
         if (trail != null)
         {
@@ -57,6 +73,9 @@ public abstract class BaseProjectile : MonoBehaviour
         }
 
         Move();
+
+        if (enableShrink && _isShrinking)
+            UpdateShrink();
     }
 
     protected RaycastHit2D BoxCastForward(LayerMask mask)
@@ -98,6 +117,21 @@ public abstract class BaseProjectile : MonoBehaviour
     {
         if (bulletBounceEffect != null)
             Instantiate(bulletBounceEffect, transform.position, Quaternion.identity);
+    }
+    protected void StartShrinking()
+    {
+        if (enableShrink)
+            _isShrinking = true;
+    }
+
+    private void UpdateShrink()
+    {
+        _currentScale -= shrinkSpeed * Time.deltaTime;
+        _currentScale = Mathf.Max(_currentScale, minimumScale);
+        transform.localScale = Vector3.one * _currentScale;
+
+        if (_currentScale <= minimumScale)
+            ReturnOrDestroy();
     }
 
     protected void ReturnOrDestroy()

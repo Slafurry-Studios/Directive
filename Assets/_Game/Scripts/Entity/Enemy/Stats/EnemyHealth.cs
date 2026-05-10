@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class EnemyHealth : Health
 {
     [SerializeField] private GameObject healthBarPrefab;
-    [SerializeField] private GameObject deathVFX;
     private Enemy enemy;
     private Animator animator;
     private EnemyHealthBar healthBar;
@@ -17,6 +16,8 @@ public class EnemyHealth : Health
         OnDeath += Death;
         animator = GetComponent<Animator>();
         enemy = GetComponent<Enemy>();
+        maxHealth = enemy.Info.stats.maxHealth;
+        currentHealth = maxHealth;
     }
 
     private void HandleHit(int current, int max)
@@ -61,8 +62,6 @@ public class EnemyHealth : Health
 
     protected override void Death()
     {
-        if (deathVFX != null) Instantiate(deathVFX, transform.position, Quaternion.identity);
-
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Static;
 

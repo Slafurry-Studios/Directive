@@ -6,36 +6,18 @@ public class BounceBullet : BaseProjectile
     [SerializeField] private LayerMask environmentLayer;
     [SerializeField] private int maxBounces = 3;
 
-    [Header("Shrink Settings")]
-    [SerializeField] private float initialScale = 1f;
-    [SerializeField] private float minimumScale = 0.1f;
-    [SerializeField] private float shrinkSpeed = 0.3f;
-
     private int currentBounceCount;
-    private float currentScale;
-    private bool hasBounced;
 
     protected override void Awake()
     {
         base.Awake();
     }
 
-    public override void Setup(Vector2 launchDirection, int damage)
+    public override void Setup(Vector2 launchDirection, int damage, int speed)
     {
-        base.Setup(launchDirection, damage);
+        base.Setup(launchDirection, damage, speed);
         currentBounceCount = 0;
-        currentScale = initialScale;
-        hasBounced = false;
-        transform.localScale = Vector3.one * currentScale;
         direction = launchDirection.normalized;
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-
-        if (hasBounced)
-            ShrinkOverTime();
     }
 
     protected override void Move()
@@ -63,13 +45,14 @@ public class BounceBullet : BaseProjectile
     private void Reflect(Vector2 normal)
     {
         currentBounceCount++;
-        hasBounced = true;
 
         if (currentBounceCount > maxBounces)
         {
             ReturnOrDestroy();
             return;
         }
+
+        StartShrinking();
 
         SpawnBounceEffect();
 
@@ -78,15 +61,5 @@ public class BounceBullet : BaseProjectile
 
         direction = Vector2.Reflect(direction, normal).normalized;
         transform.Translate(direction * 0.05f, Space.World);
-    }
-
-    private void ShrinkOverTime()
-    {
-        currentScale -= shrinkSpeed * Time.deltaTime;
-        currentScale = Mathf.Max(currentScale, minimumScale);
-        transform.localScale = Vector3.one * currentScale;
-
-        if (currentScale <= minimumScale)
-            ReturnOrDestroy();
     }
 }
