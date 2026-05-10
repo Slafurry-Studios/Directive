@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerMove playerMove { get; private set; }
     public PlayerDash playerDash { get; private set; }
     public PlayerAim playerAim { get; private set; }
+    public PlayerShoot playerShoot { get; private set; }
 
     public ProjectileSpawner projectileSpawner { get; private set; }
 
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
         playerMove = GetComponentInChildren<PlayerMove>();
         playerDash = GetComponentInChildren<PlayerDash>();
         playerAim = GetComponentInChildren<PlayerAim>();
+        playerShoot = GetComponentInChildren<PlayerShoot>();
 
         projectileSpawner = GetComponentInChildren<ProjectileSpawner>();
 
@@ -38,6 +40,25 @@ public class Player : MonoBehaviour
 
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
     }
+
+    public void Activate()
+    {
+        playerAim.enabled = true;
+        playerDash.enabled = true;
+        playerMove.enabled = true;
+        playerShoot.enabled = true;
+        playerAim.enabled = true;
+    }
+
+    public void Deactivate()
+    {
+        playerAim.enabled = false;
+        playerDash.enabled = false;
+        playerMove.enabled = false;
+        playerShoot.enabled = false;
+        playerAim.enabled = false;
+    }
+
 
     public void OnDashStart()
     {

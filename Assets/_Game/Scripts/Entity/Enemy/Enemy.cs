@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     private EnemySensor _sensor;
 
     // ============ ACTIONS ==============
+    private EnemyDash _dash;
     private EnemyMovement _move;
     private EnemyShoot _shoot;
 
@@ -21,10 +22,14 @@ public class Enemy : MonoBehaviour
     {
         _target = GameObject.FindGameObjectWithTag("Player");
         _sensor = GetComponentInChildren<EnemySensor>();
+
         _move = GetComponentInChildren<EnemyMovement>();
         _shoot = GetComponentInChildren<EnemyShoot>();
-        _collection = GetComponentInParent<EnemyCollection>(); 
+        _dash = GetComponentInChildren<EnemyDash>();
+
+        _collection = GetComponentInParent<EnemyCollection>();
         animators = GetComponentsInChildren<Animator>();
+
         BodyAnimator = animators[0];
         FeetAnimator = animators[1];
 
@@ -35,6 +40,13 @@ public class Enemy : MonoBehaviour
     public void OnDashStart()
     {
         _move.enabled = false;
+        _shoot.enabled = false;
+    }
+
+    public void DeactivateAll()
+    {
+        _move.enabled = false;
+        _dash.enabled = false;
         _shoot.enabled = false;
     }
 
