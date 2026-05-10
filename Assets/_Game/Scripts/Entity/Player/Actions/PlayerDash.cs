@@ -28,13 +28,15 @@ public class PlayerDash : MonoBehaviour
     private Vector2 lastMoveDirection;
     private Animator animator;
 
-    void Awake()
+    void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        player = GetComponent<Player>();
-        playerEnergy = GetComponent<PlayerEnergy>();
-        animator = GetComponent<Animator>();
-        originalLayer = gameObject.layer;
+        player = GetComponentInParent<Player>();
+        
+        rb = player.rb;
+
+        playerEnergy = player.playerEnergy;
+        animator = player.bodyAnim;
+        originalLayer = player.gameObject.layer;
 
     }
 
@@ -63,14 +65,14 @@ public class PlayerDash : MonoBehaviour
     {
         isDashing = true;
         lastDashTime = Time.time;
-        originalRotation = transform.rotation;
-        gameObject.layer = MaskToLayer(invincibilityLayer);
+        originalRotation = player.transform.rotation;
+        player.gameObject.layer = MaskToLayer(invincibilityLayer);
 
         playerEnergy.UseEnergy(dashCost);
         if (SfxPlayer.Instance != null) SfxPlayer.Instance.PlayPlayerSfx(clip: dashSound, volume: dashSoundVolume, loop: false);
 
         float angle = Mathf.Atan2(lastMoveDirection.y, lastMoveDirection.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle + 90f);
+        player.transform.rotation = Quaternion.Euler(0, 0, angle + 90f);
 
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
@@ -79,7 +81,7 @@ public class PlayerDash : MonoBehaviour
         yield return new WaitForSeconds(dashDuration);
 
         rb.gravityScale = originalGravity;
-        transform.rotation = originalRotation;
+        player.transform.rotation = originalRotation;
 
         isDashing = false;
         player.ResetCondition();
@@ -95,7 +97,7 @@ public class PlayerDash : MonoBehaviour
 
     private void RestoreLayer()
     {
-        gameObject.layer = originalLayer;
+        player.gameObject.layer = originalLayer;
     }
 
     private int MaskToLayer(LayerMask mask)

@@ -96,7 +96,7 @@ public abstract class BaseProjectile : MonoBehaviour
 
     protected virtual void HandleHit(Collider2D other)
     {
-        Health target = other.GetComponent<Health>();
+        Health target = other.GetComponentInChildren<Health>();
 
         if (target != null)
         {

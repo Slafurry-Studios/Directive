@@ -18,7 +18,7 @@ public class PlayerShoot : MonoBehaviour
     [Tooltip("The point where the bullet will originate from.")]
 
     private Transform firePoint;
-    private Animator animator;
+    private Animator bodyAnim;
 
     [Header("Audio Settings")]
     [SerializeField] private AudioClip shootSound;
@@ -26,13 +26,16 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float shootSoundVolume;
 
     // ============ INTERNAL STATE ============
+    private Player player;
     private ProjectileSpawner spawner;
 
     // ============ UNITY EVENTS ============
-    private void Awake()
+    private void Start()
     {
-        spawner = GetComponent<ProjectileSpawner>();
-        animator = GetComponent<Animator>();
+        player = GetComponentInParent<Player>();
+
+        spawner = player.projectileSpawner;
+        bodyAnim = player.bodyAnim;
     }
 
     private void Update()
@@ -46,7 +49,7 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetKeyDown(shootKey))
         {
             Shoot();
-            animator.Play("player_shoot");
+            bodyAnim.Play("player_shoot");
         }
     }
 

@@ -7,15 +7,17 @@ public class EnemyHealth : Health
     private Enemy enemy;
     private Animator animator;
     private EnemyHealthBar healthBar;
-
     private bool isHealthShown = false;
     protected override void Start()
     {
         base.Start();
+
         OnHealthChanged += HandleHit;
         OnDeath += Death;
+
         animator = GetComponent<Animator>();
         enemy = GetComponent<Enemy>();
+
         maxHealth = enemy.Info.stats.maxHealth;
         currentHealth = maxHealth;
     }

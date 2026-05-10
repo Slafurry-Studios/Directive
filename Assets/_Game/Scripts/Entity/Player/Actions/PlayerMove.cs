@@ -18,22 +18,23 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 lastMoveDirection;
-    private Animator animator;
+    private Animator bodyAnim;
 
     private bool wasMoving;
 
-    void Awake()
+    void Start()
     {
-        player = GetComponent<Player>();
-        rb = GetComponentInParent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        player = GetComponentInParent<Player>();
+        
+        bodyAnim = player.bodyAnim;
+        rb = player.rb;
     }
 
     void Update()
     {
         ReadInput();
 
-        animator.SetBool("isAiming", player.IsAiming());
+        bodyAnim.SetBool("isAiming", player.IsAiming());
     }
 
     void FixedUpdate()
@@ -67,7 +68,7 @@ public class PlayerMove : MonoBehaviour
 
         HandleMoveSfx(isMoving);
 
-        animator.SetFloat("move", moveInput.sqrMagnitude);
+        bodyAnim.SetFloat("move", moveInput.sqrMagnitude);
         feetAnimator.SetFloat("move", moveInput.sqrMagnitude);
     }
 
@@ -89,8 +90,8 @@ public class PlayerMove : MonoBehaviour
             Quaternion targetRotation =
                 Quaternion.Euler(0f, 0f, targetAngle + 90f);
 
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation,
+            transform.parent.rotation = Quaternion.RotateTowards(
+                transform.parent.rotation,
                 targetRotation,
                 rotationSpeed * 360f * Time.fixedDeltaTime
             );
@@ -101,7 +102,6 @@ public class PlayerMove : MonoBehaviour
     {
         if (SfxPlayer.Instance == null) return;
 
-        // Baru mulai bergerak
         if (isMoving && !wasMoving)
         {
             SfxPlayer.Instance.PlayPlayerSfx(
