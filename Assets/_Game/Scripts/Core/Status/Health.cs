@@ -10,7 +10,7 @@ public abstract class Health : MonoBehaviour
     // ================= EVENTS =================
     public event Action<int, int> OnHealthChanged;
     public event Action OnDeath;
-    private SquashOnHit squashOnHit;
+    protected SquashOnHit squashOnHit;
     // ================= UNITY LIFECYCLE =================
     protected virtual void Start()
     {
