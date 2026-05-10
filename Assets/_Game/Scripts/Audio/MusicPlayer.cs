@@ -25,20 +25,18 @@ public class MusicPlayer : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            LoadVolume();
+            OnReady?.Invoke(); // invoke di Awake setelah Instance siap
         }
         else
         {
             Destroy(gameObject);
-            return;
         }
-
     }
 
-    void Start()
-    {
-        LoadVolume();
-        OnReady?.Invoke();
-    }
+    void Start() { } // bisa dikosongkan
+
+
 
     // ─── Music ────────────────────────────────────────────────────────────────
 
@@ -110,5 +108,49 @@ public class MusicPlayer : MonoBehaviour
     private void LoadVolume()
     {
         _targetMusicVolume = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, 1f);
+    }
+
+    // ─── Stop Music ──────────────────────────────────────────────────────────────
+
+    public void StopMusic()
+    {
+        if (_fadeCoroutine != null)
+        {
+            StopCoroutine(_fadeCoroutine);
+            _fadeCoroutine = null;
+        }
+
+        _musicSource.Stop();
+        _musicSource.clip = null;
+    }
+
+    public void StopMusic(float fadeDuration)
+    {
+        if (_fadeCoroutine != null)
+            StopCoroutine(_fadeCoroutine);
+
+        _fadeCoroutine = StartCoroutine(FadeOutAndStop(fadeDuration));
+    }
+
+    private IEnumerator FadeOutAndStop(float duration)
+    {
+        float startVolume = _musicSource.volume;
+
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            _musicSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / duration);
+
+            yield return null;
+        }
+
+        _musicSource.volume = 0f;
+        _musicSource.Stop();
+        _musicSource.clip = null;
+
+        _fadeCoroutine = null;
     }
 }

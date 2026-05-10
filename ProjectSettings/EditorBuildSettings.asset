@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Scenes/Game/Game.unity
     guid: 16366710ae275a3fb8b1ffa1bf0465e5
+  - enabled: 1
+    path: Assets/_Game/Scenes/Game/Cutscene.unity
+    guid: b1237ea9c8246da418d24390d36f6791
+  - enabled: 1
+    path: Assets/_Game/Scenes/Game/ChokeScene.unity
+    guid: ce474d672a0118fdeb7e0c7f7bc54ea6
+  - enabled: 1
+    path: Assets/_Game/Scenes/Menu/Ending.unity
+    guid: adcfeffc7c11be02b88ccf4cbc65600c
   m_configObjects: {}

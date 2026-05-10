@@ -58,10 +58,11 @@ public class EnemyCollection : MonoBehaviour
 
     private void Cleared()
     {
-        Debug.Log("All enemies cleared!");
+        Debug.Log($"[EnemyCollection] {gameObject.name} has been cleared!");
 
         foreach (var obj in objectToActivate)
         {
+            Debug.Log($"[EnemyCollection] {gameObject.name} has activating {obj.name}");
             if (obj != null) obj.SetActive(true);
         }
 

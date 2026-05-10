@@ -47,23 +47,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86090194ba4e84f9586f0b7a09aaf75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
   lifeTime: 10
-  hitSound: {fileID: 8300000, guid: f4fc1233d89c6c458bc439d7ebb790da, type: 3}
-  hitSoundVolume: 4.55
-  bounceSound: {fileID: 8300000, guid: 7e28f6096cbb782f2afd695152284a3f, type: 3}
-  bounceSoundVolume: 4.83
-  bulletHitEffect: {fileID: 1731402386040083824, guid: 77a28ebc1f0da00488a282fc1d328e0b,
-    type: 3}
-  bulletBounceEffect: {fileID: 1731402386040083824, guid: 77a28ebc1f0da00488a282fc1d328e0b,
-    type: 3}
   environmentLayer:
     serializedVersion: 2
     m_Bits: 256
-  maxBounces: 100
+  hitSound: {fileID: 8300000, guid: f4fc1233d89c6c458bc439d7ebb790da, type: 3}
+  hitSoundVolume: 4.55
+  shootSound: {fileID: 8300000, guid: c0e503f17af86a0de913e637c302c04a, type: 3}
+  shootSoundVolume: 4.89
+  bulletHitEffect: {fileID: 1731402386040083824, guid: 77a28ebc1f0da00488a282fc1d328e0b,
+    type: 3}
+  enableShrink: 0
   initialScale: 10
   minimumScale: 0.1
   shrinkSpeed: 10
+  maxBounces: 100
+  bounceSound: {fileID: 8300000, guid: 7e28f6096cbb782f2afd695152284a3f, type: 3}
+  bounceSoundVolume: 4.83
+  bulletBounceEffect: {fileID: 1731402386040083824, guid: 77a28ebc1f0da00488a282fc1d328e0b,
+    type: 3}
 --- !u!212 &6621893960073708545
 SpriteRenderer:
   m_ObjectHideFlags: 0

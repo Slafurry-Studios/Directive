@@ -39,6 +39,12 @@ public class Enemy : MonoBehaviour
         EnemyIndicatorManager.Instance.RegisterEnemy(transform);
     }
 
+    private void OnDisable()
+    {
+        
+        EnemyIndicatorManager.Instance.UnregisterEnemy(transform);
+    }
+
     public void OnDashStart()
     {
         _move.enabled = false;
@@ -57,6 +63,8 @@ public class Enemy : MonoBehaviour
         _move.enabled = true;
         _shoot.enabled = true;
     }
+
+
 
 
     public EnemySensor Sensor => _sensor;

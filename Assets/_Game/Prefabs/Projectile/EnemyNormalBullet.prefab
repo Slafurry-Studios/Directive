@@ -53,9 +53,9 @@ MonoBehaviour:
     m_Bits: 256
   hitSound: {fileID: 8300000, guid: 643eaff42c2d07d5dbc355066db4af8f, type: 3}
   hitSoundVolume: 3.58
+  shootSound: {fileID: 8300000, guid: c0e503f17af86a0de913e637c302c04a, type: 3}
+  shootSoundVolume: 5.61
   bulletHitEffect: {fileID: 1731402386040083824, guid: 600b94036ca0a7400baff2b97285d753,
-    type: 3}
-  bulletBounceEffect: {fileID: 1731402386040083824, guid: 600b94036ca0a7400baff2b97285d753,
     type: 3}
   enableShrink: 1
   initialScale: 2

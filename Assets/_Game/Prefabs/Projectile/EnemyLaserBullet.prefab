@@ -53,9 +53,9 @@ MonoBehaviour:
     m_Bits: 256
   hitSound: {fileID: 8300000, guid: f4fc1233d89c6c458bc439d7ebb790da, type: 3}
   hitSoundVolume: 4.55
+  shootSound: {fileID: 8300000, guid: c0e503f17af86a0de913e637c302c04a, type: 3}
+  shootSoundVolume: 4.6
   bulletHitEffect: {fileID: 1731402386040083824, guid: 600b94036ca0a7400baff2b97285d753,
-    type: 3}
-  bulletBounceEffect: {fileID: 1731402386040083824, guid: 600b94036ca0a7400baff2b97285d753,
     type: 3}
   enableShrink: 1
   initialScale: 7
@@ -64,6 +64,8 @@ MonoBehaviour:
   maxBounces: 40
   bounceSound: {fileID: 8300000, guid: 7e28f6096cbb782f2afd695152284a3f, type: 3}
   bounceSoundVolume: 4.83
+  bulletBounceEffect: {fileID: 1731402386040083824, guid: 600b94036ca0a7400baff2b97285d753,
+    type: 3}
 --- !u!212 &6621893960073708545
 SpriteRenderer:
   m_ObjectHideFlags: 0

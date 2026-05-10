@@ -599,7 +599,7 @@ MonoBehaviour:
   projectileSpeed: 30
   firePoint: {fileID: 150059319073822795}
   shootSound: {fileID: 8300000, guid: c0e503f17af86a0de913e637c302c04a, type: 3}
-  shootSoundVolume: 5.07
+  shootSoundVolume: 0.66
 --- !u!114 &7919412204663490882
 MonoBehaviour:
   m_ObjectHideFlags: 0
