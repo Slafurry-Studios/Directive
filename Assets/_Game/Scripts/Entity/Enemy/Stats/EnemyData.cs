@@ -12,8 +12,7 @@ public class EnemyData : ScriptableObject
 [System.Serializable]
 public struct StatsSettings
 {
-    public float maxHealth;
-    public int contactDamage;
+    public int maxHealth;
 }
 
 [System.Serializable]
@@ -27,9 +26,8 @@ public struct MovementSettings
 public struct AttackSettings
 {
     public int damage;
-    public int projectileDamage;
     public float attackCoolDown;
-    public float projectileSpeed;
+    public int projectileSpeed;
 }
 
 [System.Serializable]

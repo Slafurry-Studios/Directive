@@ -11,6 +11,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     [Tooltip("The damage dealt by each bullet.")]
     private int damage = 10;
+    [SerializeField] int projectileSpeed = 10;
 
     [Header("References")]
     [SerializeField]
@@ -57,6 +58,6 @@ public class PlayerShoot : MonoBehaviour
 
         if (SfxPlayer.Instance != null) SfxPlayer.Instance.PlayPlayerSfx(clip: shootSound, volume: shootSoundVolume, loop: false);
 
-        spawner.SpawnProjectile(firePoint.transform, shootDirection, damage);
+        spawner.SpawnProjectile(firePoint.transform, shootDirection, damage, projectileSpeed);
     }
 }

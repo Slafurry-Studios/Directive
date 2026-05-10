@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class StraightSpawner : PatternSpawner
 {
-    public override void ExecutePattern(int damage, Vector2 direction, Transform position)
+    public override void ExecutePattern(int damage, Vector2 direction, Transform position, int speed)
     {
-        SpawnProjectile(position, direction, damage);
+        SpawnProjectile(position, direction, damage, speed);
     }
 }

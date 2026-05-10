@@ -6,7 +6,7 @@ public class CircleSpawner : PatternSpawner
     [SerializeField] private int circleCount = 12;
     private float currentOffsetAngle = 0f;
 
-    public override void ExecutePattern(int damage, Vector2 direction, Transform position)
+    public override void ExecutePattern(int damage, Vector2 direction, Transform position, int speed)
     {
         float angleStep = 360f / circleCount;
 
@@ -14,8 +14,8 @@ public class CircleSpawner : PatternSpawner
         {
             float angle = (i * angleStep) + currentOffsetAngle;
             Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
-            
-            SpawnProjectile(position, dir, damage);
+
+            SpawnProjectile(position, dir, damage, speed);
         }
     }
 }
