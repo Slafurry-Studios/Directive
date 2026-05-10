@@ -13,12 +13,12 @@ public class InvincibilityHandler : MonoBehaviour
     void Start()
     {
         player = GetComponentInParent<Player>();
-        originalLayer = gameObject.layer;
+        originalLayer = player.gameObject.layer;
     }
 
     public void StartInvincibility()
     {
-        gameObject.layer = MaskToLayer(invincibilityLayer);
+        player.gameObject.layer = MaskToLayer(invincibilityLayer);
 
         CancelInvoke(nameof(RestoreLayer));
         StopAllCoroutines();
@@ -60,7 +60,7 @@ public class InvincibilityHandler : MonoBehaviour
 
     private void RestoreLayer()
     {
-        gameObject.layer = originalLayer;
+        player.gameObject.layer = originalLayer;
     }
 
     private int MaskToLayer(LayerMask mask)

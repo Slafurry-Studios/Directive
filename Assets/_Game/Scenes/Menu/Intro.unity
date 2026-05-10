@@ -649,6 +649,8 @@ MonoBehaviour:
   maxLines: 30
   delayBetweenDialogs: 0.1
   typingSpeed: 0.001
+  nextSceneName: Game
+  delayBeforeSceneChange: 1
 --- !u!1 &1883298406
 GameObject:
   m_ObjectHideFlags: 0

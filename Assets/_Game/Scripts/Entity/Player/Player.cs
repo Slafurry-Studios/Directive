@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
@@ -41,39 +42,57 @@ public class Player : MonoBehaviour
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
     }
 
-    public void Activate()
+    void Start()
     {
-        playerAim.enabled = true;
-        playerDash.enabled = true;
-        playerMove.enabled = true;
-        playerShoot.enabled = true;
-        playerAim.enabled = true;
+        CheckpointTrigger[] checkpoints = FindObjectsOfType<CheckpointTrigger>();
+
+        int progress = PlayerPrefs.GetInt("PlayerCheckpoint", 0);
+
+        if (progress == 0) return;
+        foreach (CheckpointTrigger checkpoint in checkpoints)
+        {
+            if (checkpoint.CheckPointID == progress)
+            {
+                transform.position = checkpoint.transform.position;
+                break;
+            }
+        }
     }
 
-    public void Deactivate()
-    {
-        playerAim.enabled = false;
-        playerDash.enabled = false;
-        playerMove.enabled = false;
-        playerShoot.enabled = false;
-        playerAim.enabled = false;
-    }
+
+public void Activate()
+{
+    playerAim.enabled = true;
+    playerDash.enabled = true;
+    playerMove.enabled = true;
+    playerShoot.enabled = true;
+    playerAim.enabled = true;
+}
+
+public void Deactivate()
+{
+    playerAim.enabled = false;
+    playerDash.enabled = false;
+    playerMove.enabled = false;
+    playerShoot.enabled = false;
+    playerAim.enabled = false;
+}
 
 
-    public void OnDashStart()
-    {
-        playerMove.enabled = false;
-        playerAim.enabled = false;
-    }
+public void OnDashStart()
+{
+    playerMove.enabled = false;
+    playerAim.enabled = false;
+}
 
-    public void ResetCondition()
-    {
-        playerMove.enabled = true;
-        playerAim.enabled = true;
-    }
+public void ResetCondition()
+{
+    playerMove.enabled = true;
+    playerAim.enabled = true;
+}
 
-    public bool IsAiming()
-    {
-        return playerAim.isAiming;
-    }
+public bool IsAiming()
+{
+    return playerAim.isAiming;
+}
 }

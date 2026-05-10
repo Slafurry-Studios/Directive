@@ -3,10 +3,14 @@ using UnityEngine;
 public class BounceBullet : BaseProjectile
 {
     [Header("Bounce Settings")]
-    [SerializeField] private LayerMask environmentLayer;
     [SerializeField] private int maxBounces = 3;
+    [SerializeField] private AudioClip bounceSound;
+    [Range(0, 10f)][SerializeField] private float bounceSoundVolume;
+    [SerializeField] private ParticleSystem bulletBounceEffect;
 
     private int currentBounceCount;
+
+    protected override bool HandleEnvironmentInUpdate => false;
 
     protected override void Awake()
     {
@@ -54,7 +58,8 @@ public class BounceBullet : BaseProjectile
 
         StartShrinking();
 
-        SpawnBounceEffect();
+        if (bulletBounceEffect != null)
+            Instantiate(bulletBounceEffect, transform.position, Quaternion.identity);
 
         if (SfxPlayer.Instance != null)
             SfxPlayer.Instance.PlayBulletSfx(clip: bounceSound, volume: bounceSoundVolume, loop: false);

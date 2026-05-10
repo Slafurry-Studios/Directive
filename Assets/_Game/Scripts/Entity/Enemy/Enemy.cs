@@ -17,6 +17,10 @@ public class Enemy : MonoBehaviour
     public Animator BodyAnimator { get; private set; }
     public Animator FeetAnimator { get; private set; }
 
+    private void Awake()
+    {
+        _collection = GetComponentInParent<EnemyCollection>();
+    }
 
     private void Start()
     {
@@ -27,13 +31,11 @@ public class Enemy : MonoBehaviour
         _shoot = GetComponentInChildren<EnemyShoot>();
         _dash = GetComponentInChildren<EnemyDash>();
 
-        _collection = GetComponentInParent<EnemyCollection>();
         animators = GetComponentsInChildren<Animator>();
 
         BodyAnimator = animators[0];
         FeetAnimator = animators[1];
 
-        _collection.AddEnemy(this);
         EnemyIndicatorManager.Instance.RegisterEnemy(transform);
     }
 

@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class TextScript : MonoBehaviour
 {
@@ -16,10 +17,12 @@ public class TextScript : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private int maxLines = 4;
-
     [SerializeField] private float delayBetweenDialogs = 0.5f;
-
     [SerializeField] private float typingSpeed = 0.03f;
+
+    [Header("Scene Transition")]
+    [SerializeField] private string nextSceneName;
+    [SerializeField] private float delayBeforeSceneChange = 1f;
 
     private readonly List<string> activeLines = new();
 
@@ -46,10 +49,6 @@ public class TextScript : MonoBehaviour
 
     IEnumerator PlayDialog()
     {
-        // =========================
-        // PREPROCESSING
-        // =========================
-
         List<(string text, TextColor color)> processedLines = new();
 
         foreach (var entry in dialogData.dialogEntries)
@@ -64,40 +63,24 @@ public class TextScript : MonoBehaviour
                 if (string.IsNullOrWhiteSpace(line))
                     continue;
 
-                processedLines.Add(
-                    (
-                        line.Trim(),
-                        entry.color
-                    )
-                );
+                processedLines.Add((line.Trim(), entry.color));
             }
         }
 
-        // =========================
-        // PLAY DIALOG
-        // =========================
-
         foreach (var data in processedLines)
         {
-            string coloredLine =
-                $"<color={GetColor(data.color)}>{data.text}</color>";
+            string coloredLine = $"<color={GetColor(data.color)}>{data.text}</color>";
 
-            // tambah line baru
             activeLines.Add(coloredLine);
 
-            // tampilkan semua line lama dulu
             textUI.text = BuildTextWithoutLast();
 
-            // typing line terakhir saja
-            yield return StartCoroutine(
-                TypeLastLine(coloredLine)
-            );
+            yield return StartCoroutine(TypeLastLine(coloredLine));
 
             yield return null;
 
             textUI.ForceMeshUpdate();
 
-            // hapus line atas jika visual line melebihi batas
             while (textUI.textInfo.lineCount > maxLines)
             {
                 if (activeLines.Count <= 1)
@@ -114,6 +97,12 @@ public class TextScript : MonoBehaviour
 
             textBox.StopCursor(textUI);
         }
+
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            yield return new WaitForSeconds(delayBeforeSceneChange);
+            SceneManager.LoadScene(nextSceneName);
+        }
     }
 
     string BuildFullText()
@@ -126,15 +115,11 @@ public class TextScript : MonoBehaviour
         if (activeLines.Count <= 1)
             return "";
 
-        return string.Join(
-            "\n",
-            activeLines.GetRange(0, activeLines.Count - 1)
-        );
+        return string.Join("\n", activeLines.GetRange(0, activeLines.Count - 1));
     }
 
     IEnumerator TypeLastLine(string richText)
     {
-        // tambah enter jika sudah ada text sebelumnya
         if (!string.IsNullOrEmpty(textUI.text))
             textUI.text += "\n";
 
@@ -147,7 +132,6 @@ public class TextScript : MonoBehaviour
 
             textUI.text += c;
 
-            // delay hanya untuk karakter visible
             if (!insideTag)
                 yield return new WaitForSeconds(typingSpeed);
 
@@ -161,15 +145,9 @@ public class TextScript : MonoBehaviour
         return color switch
         {
             TextColor.White => "white",
-
             TextColor.Purple => "#B86CFF",
-
-            // neon green
             TextColor.Green => "#48FF00",
-
-            // bright red
             TextColor.Red => "#FF3030",
-
             _ => "white"
         };
     }

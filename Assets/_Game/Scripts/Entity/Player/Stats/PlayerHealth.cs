@@ -22,7 +22,7 @@ public class PlayerHealth : Health
         invincibilityHandler = GetComponentInChildren<InvincibilityHandler>();
         overlayEffect = GetComponentInChildren<OverlayEffect>();
 
-        OnHealthChanged += HandlePlayerHit;
+        OnHealthChanged += HandleHealthChanged;
         OnDeath += HandlePlayerDeath;
 
         bodyAnim = player.bodyAnim;
@@ -30,13 +30,19 @@ public class PlayerHealth : Health
         UpdateUI(currentHealth, maxHealth);
     }
 
-    private void HandlePlayerHit(int current, int max)
+    public override void TakeDamage(int amount)
     {
+        base.TakeDamage(amount);
+
         bodyAnim.SetTrigger("onHit");
 
         invincibilityHandler.StartInvincibility();
         overlayEffect.StartDamageEffect();
 
+    }
+
+    private void HandleHealthChanged(int current, int max)
+    {
         UpdateUI(current, max);
     }
 
