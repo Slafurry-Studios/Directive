@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class TextScript : MonoBehaviour
 {
+    public enum DisplayMode
+    {
+        Typewriter,
+        PerLine
+    }
+
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI textUI;
 
@@ -19,16 +25,41 @@ public class TextScript : MonoBehaviour
     [SerializeField] private int maxLines = 4;
     [SerializeField] private float delayBetweenDialogs = 0.5f;
     [SerializeField] private float typingSpeed = 0.03f;
+    [SerializeField] private DisplayMode displayMode = DisplayMode.Typewriter;
+
+    [Header("Typing Audio")]
+    [SerializeField] private AudioSource typeAudioSource;
+    [SerializeField] private AudioClip typeAudioClip;
+
+    [Header("Fade Out Audio Sources")]
+    [SerializeField] private List<AudioSource> fadeOutAudioSources = new();
+    [SerializeField] private float fadeOutDuration = 1f;
 
     [Header("Scene Transition")]
     [SerializeField] private string nextSceneName;
     [SerializeField] private float delayBeforeSceneChange = 1f;
+
+    [Header("Activate On Finish")]
+    [SerializeField] private List<GameObject> objectsToActivate = new();
 
     private readonly List<string> activeLines = new();
 
     private void Start()
     {
         Init();
+    }
+    void ActivateObjects()
+    {
+        if (objectsToActivate == null || objectsToActivate.Count == 0)
+            return;
+
+        foreach (GameObject obj in objectsToActivate)
+        {
+            if (obj == null)
+                continue;
+
+            obj.SetActive(true);
+        }
     }
 
     void Init()
@@ -45,6 +76,24 @@ public class TextScript : MonoBehaviour
         textUI.text = "";
 
         StartCoroutine(PlayDialog());
+    }
+
+    void StartLoopAudio()
+    {
+        if (typeAudioSource == null || typeAudioClip == null)
+            return;
+
+        typeAudioSource.clip = typeAudioClip;
+        typeAudioSource.loop = true;
+        typeAudioSource.Play();
+    }
+
+    void StopLoopAudio()
+    {
+        if (typeAudioSource == null)
+            return;
+
+        typeAudioSource.Stop();
     }
 
     IEnumerator PlayDialog()
@@ -75,7 +124,21 @@ public class TextScript : MonoBehaviour
 
             textUI.text = BuildTextWithoutLast();
 
-            yield return StartCoroutine(TypeLastLine(coloredLine));
+            if (displayMode == DisplayMode.Typewriter)
+            {
+                StartLoopAudio();
+
+                yield return StartCoroutine(TypeLastLine(coloredLine));
+
+                StopLoopAudio();
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(textUI.text))
+                    textUI.text += "\n";
+
+                textUI.text += coloredLine;
+            }
 
             yield return null;
 
@@ -98,10 +161,60 @@ public class TextScript : MonoBehaviour
             textBox.StopCursor(textUI);
         }
 
+        yield return StartCoroutine(FadeOutAllAudio());
+        ActivateObjects();
+
         if (!string.IsNullOrEmpty(nextSceneName))
         {
             yield return new WaitForSeconds(delayBeforeSceneChange);
             SceneManager.LoadScene(nextSceneName);
+        }
+    }
+
+    IEnumerator FadeOutAllAudio()
+    {
+        if (fadeOutAudioSources == null || fadeOutAudioSources.Count == 0)
+            yield break;
+
+
+        MusicPlayer.Instance.StopMusic(0.4f);
+
+        Dictionary<AudioSource, float> startVolumes = new();
+
+        foreach (AudioSource source in fadeOutAudioSources)
+        {
+            if (source == null)
+                continue;
+
+            startVolumes[source] = source.volume;
+        }
+
+        float time = 0f;
+
+        while (time < fadeOutDuration)
+        {
+            time += Time.deltaTime;
+
+            float t = time / fadeOutDuration;
+
+            foreach (AudioSource source in fadeOutAudioSources)
+            {
+                if (source == null)
+                    continue;
+
+                source.volume = Mathf.Lerp(startVolumes[source], 0f, t);
+            }
+
+            yield return null;
+        }
+
+        foreach (AudioSource source in fadeOutAudioSources)
+        {
+            if (source == null)
+                continue;
+
+            source.volume = 0f;
+            source.Stop();
         }
     }
 

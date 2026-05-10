@@ -13,6 +13,8 @@ public abstract class BaseProjectile : MonoBehaviour
     [Header("Audio Settings")]
     [SerializeField] private AudioClip hitSound;
     [Range(0, 10f)][SerializeField] private float hitSoundVolume;
+    [SerializeField] private AudioClip shootSound;
+    [Range(0, 10f)][SerializeField] private float shootSoundVolume;
 
     [Header("VFX")]
     public ParticleSystem bulletHitEffect;
@@ -60,6 +62,8 @@ public abstract class BaseProjectile : MonoBehaviour
             trail.Clear();
             trail.enabled = true;
         }
+
+        SfxPlayer.Instance.PlayEnvironmentSfx(shootSound, shootSoundVolume);
     }
 
     protected virtual void Update()

@@ -25,10 +25,11 @@ public class RoomTrigger : MonoBehaviour
 
     private void Opened()
     {
-        Debug.Log("All enemies cleared!");
+        Debug.Log($"[RoomTrigger] {gameObject.name} has been triggered!");
 
         foreach (var obj in objectToActivate)
         {
+            Debug.Log($"[RoomTrigger] {gameObject.name} has activating {obj.name}");
             if (obj != null) obj.SetActive(true);
         }
 

@@ -53,6 +53,8 @@ MonoBehaviour:
     m_Bits: 256
   hitSound: {fileID: 8300000, guid: 643eaff42c2d07d5dbc355066db4af8f, type: 3}
   hitSoundVolume: 5.48
+  shootSound: {fileID: 8300000, guid: c0e503f17af86a0de913e637c302c04a, type: 3}
+  shootSoundVolume: 5.54
   bulletHitEffect: {fileID: 1731402386040083824, guid: 77a28ebc1f0da00488a282fc1d328e0b,
     type: 3}
   enableShrink: 0

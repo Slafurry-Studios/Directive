@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 3098281041526730421}
   - component: {fileID: 6202823444963658208}
   m_Layer: 7
-  m_Name: Tank
+  m_Name: Chaser
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 3131727627495017259}
   - component: {fileID: 1103102544283348737}
   - component: {fileID: 8950764816017033939}
-  - component: {fileID: 8601921911946160884}
+  - component: {fileID: 2565856917274204541}
   m_Layer: 7
   m_Name: Actions
   m_TagString: Untagged
@@ -498,7 +498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2838424155064479233}
   shootSound: {fileID: 8300000, guid: fa3c9cbf9d87e43e68f1d17b56798b0a, type: 3}
-  shootSoundVolume: 2.59
+  shootSoundVolume: 0
 --- !u!114 &8950764816017033939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashSound: {fileID: 8300000, guid: 559719d1a9c931459b65237ae629fe63, type: 3}
   dashSoundVolume: 4.33
---- !u!114 &8601921911946160884
+--- !u!114 &2565856917274204541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8165534861268262088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056739c7711924d41ac0257fa4913fef, type: 3}
+  m_Script: {fileID: 11500000, guid: 692bfbd4edc97337192c6f9c3f12539f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6744558972759748, guid: b1b1c45fffb5e934bb3262b75ecb16b0,
@@ -532,7 +532,7 @@ MonoBehaviour:
     m_Bits: 1024
   enemyLayerForBullet:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 512
   projectileTag: EnemyBullet
-  burstCount: 5
-  burstDelay: 0.1
+  spreadCount: 5
+  spreadAngle: 45

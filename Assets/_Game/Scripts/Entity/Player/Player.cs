@@ -57,6 +57,8 @@ public class Player : MonoBehaviour
                 break;
             }
         }
+
+        SfxPlayer.Instance.StopAllLoopingSfx();
     }
 
 

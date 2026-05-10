@@ -8,6 +8,8 @@ public class PauseManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private string mainMenuSceneName = "MainMenu";
+    [SerializeField] private string gameSceneName = "Game";
 
     public bool IsPaused { get; private set; }
 
@@ -59,7 +61,13 @@ public class PauseManager : MonoBehaviour
         IsPaused = true;
     }
 
-    public void QuitToMainMenu(string mainMenuSceneName = "MainMenu")
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(gameSceneName);
+    }
+
+    public void QuitToMainMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(mainMenuSceneName);
