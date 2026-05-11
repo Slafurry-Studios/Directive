@@ -583,6 +583,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 487938515915303065}
     m_Modifications:
+    - target: {fileID: 2565856917274204541, guid: 45ea6a9169f9a4473a805d0ae6c4c389,
+        type: 3}
+      propertyPath: enemyLayerForBullet.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 3229631769395593999, guid: 45ea6a9169f9a4473a805d0ae6c4c389,
         type: 3}
       propertyPath: m_Name
@@ -2843,7 +2848,7 @@ PrefabInstance:
         type: 3}
       propertyPath: music
       value: 
-      objectReference: {fileID: 8300000, guid: a8c7e7aac4c063ec18f0707b28d39c25, type: 3}
+      objectReference: {fileID: 8300000, guid: 19eb31252e3a5bda98c6d8fb2ceffbc8, type: 3}
     - target: {fileID: 2041287079578313725, guid: ef23ffdbc39cedabd941f447f0e2d3fd,
         type: 3}
       propertyPath: relativeVolume
@@ -3138,11 +3143,7 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1817981458}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 654684257960441960, guid: 8a56c54ccccaaf0c2b14f7f8eea750ae,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 487938515915303067}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a56c54ccccaaf0c2b14f7f8eea750ae, type: 3}
 --- !u!1 &487938515915303064 stripped
 GameObject:
@@ -3156,26 +3157,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 487938515915303063}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &487938515915303066 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 654684257960441960, guid: 8a56c54ccccaaf0c2b14f7f8eea750ae,
-    type: 3}
-  m_PrefabInstance: {fileID: 487938515915303063}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &487938515915303067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487938515915303066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b32b1725109c3bff5aacd0757f6995b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 185ecdb30c94266799a9c9d9c2f62567, type: 3}
-  audioVolume: 1.01
 --- !u!1001 &3531404055193572827
 PrefabInstance:
   m_ObjectHideFlags: 0

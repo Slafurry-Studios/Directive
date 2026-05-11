@@ -819,7 +819,7 @@ MonoBehaviour:
   - {fileID: 1561191259}
   fadeOutDuration: 1
   nextSceneName: Credits
-  delayBeforeSceneChange: 1
+  delayBeforeSceneChange: 3
   objectsToActivate: []
 --- !u!82 &1222490237
 AudioSource:
