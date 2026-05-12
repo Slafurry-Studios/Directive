@@ -244,7 +244,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6}
+  m_Size: {x: 0.84, y: 0.74}
   m_EdgeRadius: 0
 --- !u!50 &370988488087470891
 Rigidbody2D:
@@ -532,7 +532,7 @@ MonoBehaviour:
     m_Bits: 1024
   enemyLayerForBullet:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   projectileTag: EnemyBullet
   spreadCount: 5
   spreadAngle: 45

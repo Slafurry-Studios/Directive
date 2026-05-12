@@ -19,9 +19,9 @@ MonoBehaviour:
     rotationSpeed: 670
   attack:
     damage: 10
-    attackCoolDown: 0.2
+    attackCoolDown: 1
     projectileSpeed: 20
   dash:
     dashSpeed: 20
     dashDuration: 0.2
-    dashCooldown: 1
+    dashCooldown: 0.2

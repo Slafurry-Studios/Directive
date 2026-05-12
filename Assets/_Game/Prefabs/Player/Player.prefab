@@ -424,7 +424,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7965393, y: 0.23044777}
+  m_Size: {x: 0.7965393, y: 0.36}
   m_EdgeRadius: 0
 --- !u!1 &7454798634607262417
 GameObject:
@@ -488,7 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxEnergy: 100
-  regainEnergyPerSecond: 20
+  regainEnergyPerSecond: 10
   currentEnergy: 0
   energyVFX: {fileID: 4658455796893224198, guid: c3088c03db9dccfb897623c1b2dc42c5,
     type: 3}
@@ -545,7 +545,7 @@ MonoBehaviour:
   rotationSpeed: 15
   feetAnimator: {fileID: 3292920003154960422}
   moveSound: {fileID: 8300000, guid: a134ef7a99c59e22ca0584229ee988cd, type: 3}
-  moveSoundVolume: 3.6
+  moveSoundVolume: 4.69
 --- !u!114 &3112938568558502401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,7 +566,7 @@ MonoBehaviour:
   dashCooldown: 1
   dashCost: 20
   dashSound: {fileID: 8300000, guid: 559719d1a9c931459b65237ae629fe63, type: 3}
-  dashSoundVolume: 4.62
+  dashSoundVolume: 8.19
 --- !u!114 &5894376320452171011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,7 +599,7 @@ MonoBehaviour:
   projectileSpeed: 30
   firePoint: {fileID: 150059319073822795}
   shootSound: {fileID: 8300000, guid: c0e503f17af86a0de913e637c302c04a, type: 3}
-  shootSoundVolume: 0.66
+  shootSoundVolume: 3.75
 --- !u!114 &7919412204663490882
 MonoBehaviour:
   m_ObjectHideFlags: 0
